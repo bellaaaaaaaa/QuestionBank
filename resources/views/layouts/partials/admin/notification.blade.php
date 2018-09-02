@@ -1,0 +1,23 @@
+@if ($errors->any())
+
+	@section('styles')
+		<style>
+			.alert-fixed{
+				position: absolute;
+		    top: 100px;
+		    z-index: 99;
+		    left: 24%;
+			}
+		</style>
+	@endsection
+	<div class="row justify-content-end">
+		<div class="col-md-6 alert-fixed">
+			<div class="alert alert-danger">
+				<button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+					<i class="nc-icon nc-simple-remove"></i>
+				</button>
+				<span>{{ $errors->first() }}</span>
+			</div>
+		</div>
+	</div>
+@endif

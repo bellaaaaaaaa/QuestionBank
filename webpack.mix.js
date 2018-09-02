@@ -15,3 +15,7 @@ mix.js('resources/assets/js/app/client.js', 'public/js')
 	 .js('resources/assets/js/app/admin.js', 'public/js')
    .sass('resources/assets/sass/app/client.scss', 'public/css')
 	 .sass('resources/assets/sass/app/admin.scss', 'public/css');
+
+if (mix.inProduction()) {
+  mix.version();
+}

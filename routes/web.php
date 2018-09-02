@@ -11,6 +11,41 @@
 |
 */
 
+
+//Admin Routes
+Route::prefix('admin')->group(function(){
+
+  //register
+  Route::middleware('register.access')->group(function(){
+    Route::get('register', "Admin\AuthController@viewRegister")->name('admin.register.show');
+    Route::post('register', "Admin\AuthController@register")->name('admin.register');
+  });
+  //login
+  Route::get('login','Admin\AuthController@viewLogin')->name('admin.login.show');
+  Route::post('login','Admin\AuthController@login')->name('admin.login');
+
+  Route::middleware('admin.auth')->group(function(){
+
+    Route::get('/', 'Admin\DashboardController@root');
+    //dashboard
+    Route::get('dashboard', 'Admin\DashboardController@dashboard')->name('dashboard');
+
+    //create, delete, and view all Admins team
+    Route::resource('teams', 'Admin\TeamsController', ['only' => ['index', 'create', 'store', 'destroy']]);
+
+    //delete and view all Users ( client )
+    Route::resource('clients','Admin\ClientsController', ['only' => ['index','destroy']]);
+
+		Route::get('logout', 'Admin\AuthController@root')->name('admin.logout');
+
+		//Settings
+    Route::get('settings', "Admin\AccountSettingsController@viewAccount")->name("admin.account.show");
+    Route::post('settings', "Admin\AccountSettingsController@updateAccount")->name("admin.account-settings");
+    Route::put('settings/password', "Admin\AccountSettingsController@updatePassword")->name("admin.password.change");
+  });
+});
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return 'Hello World';
 });
