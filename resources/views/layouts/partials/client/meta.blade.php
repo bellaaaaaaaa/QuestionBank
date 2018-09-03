@@ -15,8 +15,9 @@
 	<body>
 
 		{{-- Body Content --}}
-		@yield('master')
-
+		<div id="client-app">
+			@yield('master')
+		</div>
 
 	  <!-- Scripts -->
 	  <script src="{{ mix('js/client.js') }}"></script>

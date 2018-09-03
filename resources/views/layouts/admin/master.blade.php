@@ -10,6 +10,7 @@
 
       <div class="content">
         <div class="container-fluid">
+					@include('layouts.partials.admin.notification')
           <div class="row">
             <div class="col-md-12">
               @yield('content')

@@ -50,6 +50,8 @@ require('../scripts/bootstrap-table-setup');
 
 require('../scripts/bootstrap-datetime-setup');
 
+require('../scripts/live-file-review');
+
 
 
 // Vue Setup

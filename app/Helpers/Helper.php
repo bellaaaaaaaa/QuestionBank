@@ -1,6 +1,8 @@
 <?php
 
 use App\User;
+use Carbon\Carbon;
+
 
 function current_user(){
   return Auth::user();
@@ -39,4 +41,12 @@ function avatar_picture_exists($url, $option = 'thumbnail'){
   }else{
     return false;
   }
+}
+
+function date_to_human($date, $format = 'd/m/Y, h:i A'){
+	if ($date == null) {
+		return '';
+	}
+	$dt = Carbon::parse($date);
+	return $dt->format($format);
 }

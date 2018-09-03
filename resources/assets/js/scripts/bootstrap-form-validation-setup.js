@@ -16,4 +16,6 @@ $().ready(function() {
   }
 
   setFormValidation('#form-validation');
+	setFormValidation('#account-settings-form');
+	setFormValidation('#change-password-form');
 });

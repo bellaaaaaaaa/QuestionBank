@@ -15,7 +15,10 @@
 	<body>
 
 		{{-- Body Content --}}
-		@yield('master')
+		<div id="admin-app">
+			@yield('master')
+		</div>
+		
 
 
 	  <!-- Scripts -->

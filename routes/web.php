@@ -26,7 +26,7 @@ Route::prefix('admin')->group(function(){
 
   Route::middleware('admin.auth')->group(function(){
 
-    Route::get('/', 'Admin\DashboardController@root');
+    Route::get('/', 'Admin\DashboardController@dashboard');
     //dashboard
     Route::get('dashboard', 'Admin\DashboardController@dashboard')->name('dashboard');
 
@@ -36,16 +36,15 @@ Route::prefix('admin')->group(function(){
     //delete and view all Users ( client )
     Route::resource('clients','Admin\ClientsController', ['only' => ['index','destroy']]);
 
-		Route::get('logout', 'Admin\AuthController@root')->name('admin.logout');
+		Route::get('logout', 'Admin\AuthController@logout')->name('admin.logout');
 
 		//Settings
     Route::get('settings', "Admin\AccountSettingsController@viewAccount")->name("admin.account.show");
-    Route::post('settings', "Admin\AccountSettingsController@updateAccount")->name("admin.account-settings");
+    Route::post('settings', "Admin\AccountSettingsController@updateAccount")->name("admin.account.update");
     Route::put('settings/password', "Admin\AccountSettingsController@updatePassword")->name("admin.password.change");
   });
 });
 
 
-Route::get('/', function () {
-    return 'Hello World';
-});
+Route::get('/', 'Client\HomeController@home')->name('root');
+Route::get('/home', 'Client\HomeController@home')->name('home');

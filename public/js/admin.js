@@ -78878,6 +78878,8 @@ __webpack_require__(189);
 
 __webpack_require__(190);
 
+__webpack_require__(202);
+
 // Vue Setup
 window.Vue = __webpack_require__(36);
 
@@ -105768,6 +105770,8 @@ $().ready(function () {
     }
 
     setFormValidation('#form-validation');
+    setFormValidation('#account-settings-form');
+    setFormValidation('#change-password-form');
 });
 
 /***/ }),
@@ -105916,6 +105920,47 @@ $(document).ready(function () {
       console.log('error', error);
     });
   });
+});
+
+/***/ }),
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */
+/***/ (function(module, exports) {
+
+var _pictureUploader = function _pictureUploader(e) {
+	var input = $(this);
+	var files = this.files;
+	var pictureTag = $(input.data('target'));
+
+	if (!files && files.length == 0) {
+		return;
+	}
+
+	var reader = new FileReader();
+	reader.onload = function (e) {
+		if (pictureTag.is("div")) {
+			pictureTag.css('background-image', 'url(\'' + e.target.result + '\')');
+			pictureTag.find('.hidden-message').hide();
+		} else if (pictureTag.is("img")) {
+			pictureTag.attr('src', e.target.result);
+		}
+	};
+	reader.readAsDataURL(files[0]);
+	return;
+};
+
+$().ready(function () {
+	$('.on__file__change').on('change', _pictureUploader);
 });
 
 /***/ })
