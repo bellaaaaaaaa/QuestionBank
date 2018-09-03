@@ -19,7 +19,7 @@ $light-orange:               rgba($color-orange, .2);
 $light-red:                  rgba($color-red, .2);
 
 
-$default-color:              #888888 !default;
+$default-color:              $color-blue !default;
 
 $black-color:                #333333 !default;
 $black-hr:                   #444444 !default;
