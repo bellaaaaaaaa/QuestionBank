@@ -36,7 +36,11 @@ The following structures will walk you through the setup of the template.
 - run ` npm install `.
 - run ` npm run dev `, for production ` npm run production `.
 - Copy The ` .env.example ` to ` .env `.
+- update the database section in the `.env` file to match your details, make sure to create the database by using phpmyadmin or the command line.
 - run ` php artisan key:generate ` to generate the app key.
+- run ` php artisan migrate ` to generate the app migration.
+- run ` php artisan  storage:link ` to generate the public storage link.
+
 
 ## Contributing
 
