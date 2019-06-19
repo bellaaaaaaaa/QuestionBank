@@ -9,7 +9,7 @@
 </p>
 
 
-# <h1 align="center">  The Tehy Hub Laravel Project Template </h1>
+# <h1 align="center">  The Techy Hub Laravel Project Template </h1>
 
 
 ## About The Template
