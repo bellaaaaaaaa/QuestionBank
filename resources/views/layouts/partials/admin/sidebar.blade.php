@@ -24,13 +24,13 @@
     <ul class="nav">
       <li class="nav-item {{ is_active('dashboard') }}">
         <a class="nav-link" href="{{ route('dashboard') }}">
-          <i class="fa fa-pie-chart text-info"></i>
+          <i class="fa fa-pie-chart"></i>
           <p>Dashboard</p>
         </a>
       </li>
 			<li class="nav-item {{ is_active('teams') }}">
 				<a class="nav-link" href="{{ route('teams.index') }}">
-					<i class="fa fa-users text-info"></i>
+					<i class="fa fa-users"></i>
 					<p>Teams</p>
 				</a>
       </li>
