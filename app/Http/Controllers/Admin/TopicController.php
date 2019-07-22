@@ -4,16 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\TopicServices;
 use App\Topic;
 use Session;
 
 class TopicController extends Controller
 {
     protected $path = 'admin.topics.';
-    
+    protected $topicServices;
+
+    public function __construct(TopicServices $topicServices){
+        $this->topicServices = $topicServices;
+      }
+
     public function index(Request $request){
-    return view($this->path . 'index');
+        if ($request->isJson()) {
+			return $this->topicServices->all($request);
+		}
+		return view($this->path . 'index');
     }
+    
 
     public function create(){
     return view($this->path . 'create');

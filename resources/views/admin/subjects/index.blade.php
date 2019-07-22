@@ -11,11 +11,10 @@
           </button>
         </a>
       </div>
-      <table id="bootstrap-table" class="table" data-url="{{ route('teams.index') }}">
+      <table id="bootstrap-table" class="table" data-url="{{ route('subjects.index') }}">
         <thead>
           <th data-field="id" class="text-center" data-sortable="true">ID</th>
           <th data-field="name">Subject Name</th>
-          <th data-field="join_date" data-sortable="true">Join Date</th>
           <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
         </thead>
       </table>

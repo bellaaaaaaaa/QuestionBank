@@ -5,15 +5,21 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Subject;
+use App\Services\SubjectServices;
 use Session;
 
 class SubjectsController extends Controller{
     protected $path = 'admin.subjects.';
+    protected $subjectServices;
+
+    public function __construct(SubjectServices $subjectServices){
+      $this->subjectServices = $subjectServices;
+    }
 	//protected $teamServices;
 
   public function index(Request $request){
     if ($request->isJson()) {
-      return $this->teamServices->all($request);
+      return $this->subjectServices->all($request);
     }
     
 		return view($this->path . 'index');
