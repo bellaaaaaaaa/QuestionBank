@@ -78878,7 +78878,7 @@ __webpack_require__(189);
 
 __webpack_require__(190);
 
-__webpack_require__(202);
+__webpack_require__(191);
 
 // Vue Setup
 window.Vue = __webpack_require__(36);
@@ -89375,7 +89375,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     		- The provided value for the option;
     		- A reference to the options object;
     		- The name for the option;
-     	The testing function returns false when an error is detected,
+      	The testing function returns false when an error is detected,
     	or true when everything is OK. It can also modify the option
     	object, to make sure all values can be correctly looped elsewhere. */
 
@@ -105753,25 +105753,25 @@ lbd = {
 /***/ (function(module, exports) {
 
 $().ready(function () {
-    function setFormValidation(id) {
-        $(id).validate({
-            highlight: function highlight(element) {
-                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-                $(element).closest('.form-check').removeClass('has-success').addClass('has-error');
-            },
-            success: function success(element) {
-                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-                $(element).closest('.form-check').removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function errorPlacement(error, element) {
-                $(element).closest('.form-group').append(error).addClass('has-error');
-            }
-        });
-    }
+  function setFormValidation(id) {
+    $(id).validate({
+      highlight: function highlight(element) {
+        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+        $(element).closest('.form-check').removeClass('has-success').addClass('has-error');
+      },
+      success: function success(element) {
+        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+        $(element).closest('.form-check').removeClass('has-error').addClass('has-success');
+      },
+      errorPlacement: function errorPlacement(error, element) {
+        $(element).closest('.form-group').append(error).addClass('has-error');
+      }
+    });
+  }
 
-    setFormValidation('#form-validation');
-    setFormValidation('#account-settings-form');
-    setFormValidation('#change-password-form');
+  setFormValidation('#form-validation');
+  setFormValidation('#account-settings-form');
+  setFormValidation('#change-password-form');
 });
 
 /***/ }),
@@ -105923,18 +105923,7 @@ $(document).ready(function () {
 });
 
 /***/ }),
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */
+/* 191 */
 /***/ (function(module, exports) {
 
 var _pictureUploader = function _pictureUploader(e) {
