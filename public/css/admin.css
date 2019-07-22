@@ -13687,26 +13687,26 @@ body {
   margin-top: 8px;
 }
 
-.navbar {
+.front-navbar {
   width: 100%;
   background: #029FCE;
 }
 
-.navbar .navbar-brand img {
+.front-navbar .navbar-brand img {
   border-radius: 50%;
   width: 60px;
 }
 
-.navbar .navbar-brand span {
+.front-navbar .navbar-brand span {
   padding-left: 10px;
   color: #fff;
 }
 
-.navbar .nav-link {
+.front-navbar .nav-link {
   color: #fff !important;
 }
 
-.navbar .dropdown-menu {
+.front-navbar .dropdown-menu {
   border: none;
 }
 
@@ -13722,7 +13722,7 @@ body {
     min-height: 100vh;
   }
 
-  .navbar {
+  .front-navbar {
     display: none;
   }
 
@@ -14662,6 +14662,7 @@ input:focus {
   z-index: 1;
   color: #fff;
   font-weight: 200;
+  background-color: #029FCE;
   background-size: cover;
   background-position: center center;
 }
@@ -14943,11 +14944,6 @@ input:focus {
   top: 0;
   left: 0;
   z-index: 2;
-}
-
-.sidebar:before {
-  opacity: .33;
-  background: #000000;
 }
 
 .sidebar[data-image]:after,
