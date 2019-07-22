@@ -13663,26 +13663,26 @@ body {
   margin-top: 8px;
 }
 
-.navbar {
+.front-navbar {
   width: 100%;
   background: #029FCE;
 }
 
-.navbar .navbar-brand img {
+.front-navbar .navbar-brand img {
   border-radius: 50%;
   width: 60px;
 }
 
-.navbar .navbar-brand span {
+.front-navbar .navbar-brand span {
   padding-left: 10px;
   color: #fff;
 }
 
-.navbar .nav-link {
+.front-navbar .nav-link {
   color: #fff !important;
 }
 
-.navbar .dropdown-menu {
+.front-navbar .dropdown-menu {
   border: none;
 }
 
@@ -13698,7 +13698,7 @@ body {
     min-height: 100vh;
   }
 
-  .navbar {
+  .front-navbar {
     display: none;
   }
 
