@@ -24,13 +24,21 @@
     <ul class="nav">
       <li class="nav-item {{ is_active('dashboard') }}">
         <a class="nav-link" href="{{ route('dashboard') }}">
+<<<<<<< HEAD
+          <i class="fa fa-pie-chart" aria-hidden="true"></i>
+=======
           <i class="fa fa-pie-chart"></i>
+>>>>>>> ebb3b69bf767208a445c107e973a1e927801dffe
           <p>Dashboard</p>
         </a>
       </li>
 			<li class="nav-item {{ is_active('teams') }}">
 				<a class="nav-link" href="{{ route('teams.index') }}">
+<<<<<<< HEAD
+					<i class="fa fa-flag-checkered" aria-hidden="true"></i>
+=======
 					<i class="fa fa-users"></i>
+>>>>>>> ebb3b69bf767208a445c107e973a1e927801dffe
 					<p>Teams</p>
 				</a>
       </li>
@@ -53,9 +61,20 @@
         </a>
       <li class="nav-item {{ is_active('guardians') }}">
         <a class="nav-link" href="{{ route('guardians.index') }}">
-          <i class="fa fa-user-o" aria-hidden="true"></i>
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
         <p>Parents</p>
-        </a>
+      </a>
+      <li class="nav-item {{ is_active('students') }}">
+        <a class="nav-link" href="{{ route('students.index') }}">
+          <i class="fa fa-rocket" aria-hidden="true"></i>
+        <p>Students</p>
+      </a>
+      </li>
+      <li class="nav-item {{ is_active('answers') }}">
+        <a class="nav-link" href="{{ route('answers.index') }}">
+          <i class="fa fa-unlock" aria-hidden="true"></i>
+        <p>Answers</p>
+      </a>
 			</li>
     </ul>
   </div>

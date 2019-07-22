@@ -5,20 +5,18 @@
 	<div class="card bootstrap-table">
     <div class="card-body table-full-width">
       <div class="toolbar">
-        <a href="{{ route('questions.create') }}" class="ml-1">
+        <a href="{{ route('answers.create') }}" class="ml-1">
           <button class="btn btn-outline" style="border-radius: 30px">
             <i class="glyphicon fa fa-plus"></i>
           </button>
         </a>
       </div>
-      <table id="bootstrap-table" class="table" data-url="{{ route('questions.index') }}">
+      <table id="bootstrap-table" class="table" data-url="{{ route('answers.index') }}">
         <thead>
           <th data-field="id" class="text-center" data-sortable="true">ID</th>
-          <th data-field="topic_id">Topics ID</th>
-          <th data-field="name">Questions</th>
-          <th data-field="explanation">Explanation</th>
-          <th data-field="number_of_attempts">Number of Attempts</th>
-          <th data-field="number_of_correct_attempts">Number of Correct Attempts</th>
+          <th data-field="name">Answers</th>
+          <th data-field="correct">Correct</th>
+          <th data-field="question_id">Question ID</th>
           <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
         </thead>
       </table>

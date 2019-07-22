@@ -5,15 +5,21 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Guardian;
+use App\Services\GuardianServices;
 use Session;
 
 class GuardianController extends Controller
 {
-    protected $path = 'admin.guardians.';
+	protected $path = 'admin.guardians.';
+	protected $guardianServices;
+
+	public function __construct(GuardianServices $guardianServices){
+		$this->guardianServices = $guardianServices;
+	  }
 
   public function index(Request $request){
 		if ($request->isJson()) {
-			return $this->teamServices->all($request);
+			return $this->guardianServices->all($request);
 		}
 		return view($this->path . 'index');
   }

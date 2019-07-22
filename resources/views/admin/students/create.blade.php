@@ -6,24 +6,25 @@
       <div class="card-header">
         <div class="row">
           <div class="col-12 d-flex">
-            <h4 class="text-center mr-auto my-1">Add a new question! </h4>
+            <h4 class="text-center mr-auto my-1">Enter your details! </h4>
           </div>
         </div>
       </div>
       <div class="card-body">
-        {!! Form::open(['route' => 'questions.store', 'class' => 'form', 'id' => 'form-validation']) !!}
+        {!! Form::open(['route' => 'students.store', 'class' => 'form', 'id' => 'form-validation']) !!}
         <div class="form-group has-label">
-          <label>Question
+          <label>Name
             <star class="star">*</star>
           </label>
           {{ Form::text('name', null, [ 'class'=>'form-control', 'required']) }}
         </div>
         <div class="form-group has-label">
-          <label>Explanation
+          <label>Email
             <star class="star">*</star>
           </label>
-          {{ Form::text('explanation', null, [ 'class'=>'form-control', 'required']) }}
+          {{ Form::text('email', null, ['class' => 'form-control', 'required']) }}
         </div>
+
         <div class="card-category form-category">
           <star class="star">*</star> Required fields
 				</div>

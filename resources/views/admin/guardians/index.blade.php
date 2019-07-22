@@ -16,7 +16,6 @@
           <th data-field="id" class="text-center" data-sortable="true">ID</th>
           <th data-field="name">Name</th>
           <th data-field="email">Email Address</th>
-          <th data-field="id">Student_ID</th>
           <th data-field="join_date" data-sortable="true">Join Date</th>
           <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
         </thead>
