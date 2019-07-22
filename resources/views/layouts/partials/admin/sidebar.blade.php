@@ -24,21 +24,13 @@
     <ul class="nav">
       <li class="nav-item {{ is_active('dashboard') }}">
         <a class="nav-link" href="{{ route('dashboard') }}">
-<<<<<<< HEAD
           <i class="fa fa-pie-chart" aria-hidden="true"></i>
-=======
-          <i class="fa fa-pie-chart"></i>
->>>>>>> ebb3b69bf767208a445c107e973a1e927801dffe
           <p>Dashboard</p>
         </a>
       </li>
 			<li class="nav-item {{ is_active('teams') }}">
 				<a class="nav-link" href="{{ route('teams.index') }}">
-<<<<<<< HEAD
 					<i class="fa fa-flag-checkered" aria-hidden="true"></i>
-=======
-					<i class="fa fa-users"></i>
->>>>>>> ebb3b69bf767208a445c107e973a1e927801dffe
 					<p>Teams</p>
 				</a>
       </li>
