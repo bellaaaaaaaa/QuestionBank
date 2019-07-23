@@ -15,7 +15,7 @@
         <thead>
           <th data-field="id" class="text-center" data-sortable="true">ID</th>
           <th data-field="name">Name</th>
-          <th data-field="id">Subject ID</th>
+          <th data-field="subject_name">Subject</th>
           <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
         </thead>
       </table>

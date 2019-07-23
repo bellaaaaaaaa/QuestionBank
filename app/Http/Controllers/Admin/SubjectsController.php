@@ -39,6 +39,7 @@ class SubjectsController extends Controller{
       $subject = new Subject();
       $subject->name = $request->name;
       
+      $subject->save();
 
       Session::flash('success','This subject has been successfully saved!');
       //then redirect the user to another page

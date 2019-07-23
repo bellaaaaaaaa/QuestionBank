@@ -24,9 +24,16 @@
           </label>
           {{ Form::text('explanation', null, [ 'class'=>'form-control', 'required']) }}
         </div>
+        <div class="form-group has-label">
+          <label>Topic 
+            <star class="star">*</star>
+          </label>
+          {{ Form::select('topic_id', $topics, null, [ 'class'=>'form-control', 'required' => true]) }}
+        </div>
+
         <div class="card-category form-category">
           <star class="star">*</star> Required fields
-				</div>
+        </div>
 
         <div class="card-footer text-right">
           <button type="submit" class="btn btn-info btn-fill btn-wd">Submit</button>

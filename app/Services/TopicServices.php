@@ -33,6 +33,8 @@ class TopicServices extends TransformerService{
 		return [
             'id' => $topic->id,
             'name' => $topic->name,
+            'subject_name' => $topic->subject ? $topic->subject->name : '-'
+            // 'subject_id' => $topic->subject_id
             // 'name' => $this->transformDate($question->created_at),
            
 		];

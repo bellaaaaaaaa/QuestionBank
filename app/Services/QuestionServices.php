@@ -35,7 +35,8 @@ class QuestionServices extends TransformerService{
             'name' => $question->name,
             // 'name' => $this->transformDate($question->created_at),
             'correct_attempts' =>  $question->number_of_correct_attempts,
-            'explanation' => $question->explanation
+            'explanation' => $question->explanation,
+            'topic' => $question->topic ? $question->topic->name:'-',
 		];
 	}
 }
