@@ -18,6 +18,13 @@
           </label>
           {{ Form::text('name', null, [ 'class'=>'form-control', 'required']) }}
         </div>
+        <div class="form-group has-label">
+          <label>Subject
+            <star class="star">*</star>
+          </label>
+          {{ Form::select('subject_id', $subjects, null, [ 'class'=>'form-control', 'required' => true]) }}
+        </div>
+
 
         <div class="card-category form-category">
           <star class="star">*</star> Required fields
