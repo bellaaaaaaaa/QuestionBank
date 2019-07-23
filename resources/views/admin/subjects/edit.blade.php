@@ -6,23 +6,17 @@
       <div class="card-header">
         <div class="row">
           <div class="col-12 d-flex">
-            <h4 class="text-center mr-auto my-1">Enter your details! </h4>
+            <h4 class="text-center mr-auto my-1">Edit subject </h4>
           </div>
         </div>
       </div>
       <div class="card-body">
-        {!! Form::open(['route' => 'guardians.store', 'class' => 'form', 'id' => 'form-validation']) !!}
+        {!! Form::model($subject, ['method'=>'PUT', 'route' => ['subjects.update', $subject->id], 'class' => 'form', 'id' => 'form-validation']) !!}
         <div class="form-group has-label">
-          <label>Name
+          <label>Subject
             <star class="star">*</star>
           </label>
-          {{ Form::textarea('name', null, [ 'class'=>'form-control', 'required']) }}
-        </div>
-        <div class="form-group has-label">
-          <label>Email
-            <star class="star">*</star>
-          </label>
-          {{ Form::text('email', null, ['class' => 'form-control', 'required']) }}
+          {{ Form::text('name', null, [ 'class'=>'form-control', 'required' => true]) }}
         </div>
 
         <div class="card-category form-category">
@@ -38,3 +32,5 @@
     </div>
   </div>
 @endsection
+@extends('layouts.admin.master')
+

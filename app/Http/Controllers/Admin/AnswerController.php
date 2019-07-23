@@ -30,9 +30,9 @@ class AnswerController extends Controller
 
 
   public function store(Request $request){
-    $this->validate($request,array(
-        'name'=>'required|max:255')
-	);
+    $this->validate($request, [
+        'name'=>'required|max:255'
+    ]);
     
 		$answer = new Answer();
 		$answer->name = $request->name;
@@ -43,8 +43,20 @@ class AnswerController extends Controller
 		return redirect()->route('answers.index');
   }
 
+  public function edit(Answer $answer) {
+  return view($this->path . 'edit', ['answer' => $answer]);
+  }
+
+  public function update(Answer $answer, Request $request) {
+  
+    $answer->name = $request->name;
+    $answer->save();
+    Session::flash('success','Successfully saved!');
+  return redirect()->route('answers.index');
+  }
+
   public function destroy(Answer $answer){
-    $student->delete();
+    $answer->delete();
 
 		return success();
   }

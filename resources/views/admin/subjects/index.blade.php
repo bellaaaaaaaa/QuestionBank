@@ -26,6 +26,9 @@
   <script type="text/javascript">
     function operateFormatter(value, row, index) {
       return [
+        '<a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action edit" href="javascript:void(0)">',
+        '<i class="fa fa-edit"></i>',
+        '</a>',
 				'<a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action remove" href="javascript:void(0)">',
         '<i class="fa fa-remove"></i>',
         '</a>'

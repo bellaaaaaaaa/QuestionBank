@@ -41,11 +41,22 @@ class GuardianController extends Controller
 		$guardian->password = bcrypt('secret');;
 		$guardian->save();
 
-        Session::flash('success','Successfully saved!');
+    Session::flash('success','Successfully saved!');
 		return redirect()->route('guardians.index');
   }
+	public function edit(Guardian $guardian){
+		return view($this->path . 'edit',['guardian'=>$guardian]);
+	}
+	public function update(Guardian $guardian, Request $request){
+		$guardian->name = $request->name;
+		$guardian->email = $request->email;
+		$guardian->save();
+	
+	Session::flash('success','Successfully saved!');
+		return redirect()->route('guardians.index');
 
-  public function destroy(Guardian $guardian){
+	}
+ 	public function destroy(Guardian $guardian){
     $guardian->delete();
 
 		return success();

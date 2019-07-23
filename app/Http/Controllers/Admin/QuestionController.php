@@ -42,8 +42,20 @@ class QuestionController extends Controller
 
       return redirect()->route('questions.index');
     }
+    public function edit(Question $question){
+      return view($this->path . 'edit',['question'=>$question]);
+    }
+    
+    public function update(Request $request, Question $question){
 
+      $question->name = $request->name;
+      $question->explanation = $request->explanation;
+      $question->save();
 
+      Session::flash('success','This question has been successfully saved!');
+      return redirect()->route('questions.index');
+    }
+  
     public function destroy(Question $question){
       $question->delete();
 

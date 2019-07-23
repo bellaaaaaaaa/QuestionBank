@@ -6,24 +6,25 @@
       <div class="card-header">
         <div class="row">
           <div class="col-12 d-flex">
-            <h4 class="text-center mr-auto my-1">Enter your details! </h4>
+            <h4 class="text-center mr-auto my-1">Edit Question </h4>
           </div>
         </div>
       </div>
       <div class="card-body">
-        {!! Form::open(['route' => 'guardians.store', 'class' => 'form', 'id' => 'form-validation']) !!}
+        {!! Form::model($question, ['method'=>'PUT', 'route' => ['questions.update', $question->id], 'class' => 'form', 'id' => 'form-validation']) !!}
         <div class="form-group has-label">
-          <label>Name
+          <label>Question
             <star class="star">*</star>
           </label>
-          {{ Form::textarea('name', null, [ 'class'=>'form-control', 'required']) }}
+          {{ Form::textarea('name', null, [ 'class'=>'form-control', 'required' => true]) }}
         </div>
+
         <div class="form-group has-label">
-          <label>Email
-            <star class="star">*</star>
-          </label>
-          {{ Form::text('email', null, ['class' => 'form-control', 'required']) }}
-        </div>
+            <label>Explanation
+              <star class="star">*</star>
+            </label>
+          {{ Form::textarea('explanation', null, ['class' => 'form-control','required'=>true]) }}
+          </div>
 
         <div class="card-category form-category">
           <star class="star">*</star> Required fields
@@ -38,3 +39,5 @@
     </div>
   </div>
 @endsection
+@extends('layouts.admin.master')
+

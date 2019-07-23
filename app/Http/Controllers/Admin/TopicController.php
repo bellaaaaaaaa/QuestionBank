@@ -43,8 +43,25 @@ class TopicController extends Controller
 
 		return redirect()->route('topics.index');
   }
+
+  public function edit(Topic $topic) {
+      return view($this->path . 'edit', ['topic' => $topic]);
+  }
+
+  public function update(Topic $topic, Request $request) {
+    
+    $topic->name = $request->name;
+    $topic->save();
+    
+    Session::flash('success','This topic has been successfully saved!');
+    return redirect()->route('topics.index');
+  }
+
     
 
     public function destroy(Topic $topic){
+        $topic->delete();
+
+		return success();
     }
 }

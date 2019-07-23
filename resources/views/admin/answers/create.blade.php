@@ -16,7 +16,7 @@
           <label>Answer
             <star class="star">*</star>
           </label>
-          {{ Form::text('name', null, [ 'class'=>'form-control', 'required']) }}
+          {{ Form::textarea('name', null, [ 'class'=>'form-control', 'required']) }}
         </div>
 
         <div class="card-footer text-right">
