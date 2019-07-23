@@ -31,7 +31,7 @@ Route::prefix('admin')->group(function(){
     Route::get('dashboard', 'Admin\DashboardController@dashboard')->name('dashboard');
 
     //create, delete, and view all Admins team
-    Route::resource('teams', 'Admin\TeamsController', ['only' => ['index', 'create', 'store', 'destroy']]);
+    Route::resource('teams', 'Admin\TeamsController');
     Route::resource('subjects', 'Admin\SubjectsController');
     Route::resource('topics', 'Admin\TopicController');
     Route::resource('questions', 'Admin\QuestionController');

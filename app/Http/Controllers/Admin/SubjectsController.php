@@ -38,13 +38,22 @@ class SubjectsController extends Controller{
       //then store in the database
       $subject = new Subject();
       $subject->name = $request->name;
-      $subject->save();
+      
 
       Session::flash('success','This subject has been successfully saved!');
       //then redirect the user to another page
       return redirect()->route('subjects.index');
-	
-	
+    }
+	public function edit(Subject $subject){
+      return view($this->path . 'edit',['subject'=>$subject]);
+  
+  }
+  public function update(Subject $subject, Request $request){
+    $subject->name = $request->name;
+    $subject->save();
+
+    Session::flash('success','This subject has been successfully saved!');
+    return redirect()->route('subjects.index');
   }
   public function destroy(Subject $subject){
     $subject->delete();

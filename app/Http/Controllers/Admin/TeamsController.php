@@ -6,6 +6,7 @@ use App\User as TeamMember;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\TeamServices;
+use Session;
 
 class TeamsController extends Controller{
 
@@ -59,12 +60,18 @@ class TeamsController extends Controller{
 		return redirect()->route('teams.index');
   }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\User  $teamMember
-   * @return \Illuminate\Http\Response
-   */
+  public function edit(TeamMember $teamMember){
+    return view($this->path . 'edit');
+  }
+
+  public function update(TeamMember $teamMember, Request $request){
+		$teamMember->name = $request->name;
+		$teamMember->email = $request->email;
+    $teamMember->save();
+    
+    Session::flash('success','This topic has been successfully saved!');
+    return redirect()->route('teams.index');
+  }
   public function destroy(TeamMember $teamMember){
     $teamMember->delete();
 

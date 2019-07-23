@@ -43,6 +43,18 @@ class StudentController extends Controller
         Session::flash('success','Successfully saved!');
 		return redirect()->route('students.index');
   }
+  public function edit(Student $student){
+		return view($this->path . 'edit',['student'=>$student]);
+  }
+  
+  public function update(Student $student, Request $request){
+	  $student->name = $request->name;
+	  $student->email = $request->email;
+	  $student->save();
+
+	  Session::flash('success','Successfully saved!');
+  return redirect()->route('students.index');  
+  }
 
   public function destroy(Student $student){
     $student->delete();
