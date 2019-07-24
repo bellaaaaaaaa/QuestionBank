@@ -9,7 +9,7 @@ use App\Topic;
 use App\Subject;
 use Session;
 
-class TopicController extends Controller
+class TopicsController extends Controller
 {
     protected $path = 'admin.topics.';
     protected $topicServices;

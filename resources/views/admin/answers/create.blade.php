@@ -18,6 +18,14 @@
           </label>
           {{ Form::textarea('name', null, [ 'class'=>'form-control', 'required']) }}
         </div>
+        <div class="card-body">
+          
+          <div class="form-group has-label">
+            <label>Question
+              <star class="star">*</star>
+            </label>
+            {{ Form::select('question_id',$questions, null, [ 'class'=>'form-control', 'required' => true]) }}
+          </div>
 
         <div class="card-footer text-right">
           <button type="submit" class="btn btn-info btn-fill btn-wd">Add</button>

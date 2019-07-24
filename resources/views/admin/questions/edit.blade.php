@@ -46,5 +46,5 @@
     </div>
   </div>
 @endsection
-@extends('layouts.admin.master')
+
 

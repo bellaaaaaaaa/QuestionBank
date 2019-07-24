@@ -33,11 +33,11 @@ Route::prefix('admin')->group(function(){
     //create, delete, and view all Admins team
     Route::resource('teams', 'Admin\TeamsController');
     Route::resource('subjects', 'Admin\SubjectsController');
-    Route::resource('topics', 'Admin\TopicController');
-    Route::resource('questions', 'Admin\QuestionController');
-    Route::resource('guardians', 'Admin\GuardianController');
-    Route::resource('students', 'Admin\StudentController');
-    Route::resource('answers', 'Admin\AnswerController');
+    Route::resource('topics', 'Admin\TopicsController');
+    Route::resource('questions', 'Admin\QuestionsController');
+    Route::resource('guardians', 'Admin\GuardiansController');
+    Route::resource('students', 'Admin\StudentsController');
+    Route::resource('answers', 'Admin\AnswersController');
     
     //delete and view all Users ( client )
     Route::resource('clients','Admin\ClientsController', ['only' => ['index','destroy']]);

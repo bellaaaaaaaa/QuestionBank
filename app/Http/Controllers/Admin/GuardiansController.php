@@ -8,7 +8,7 @@ use App\Guardian;
 use App\Services\GuardianServices;
 use Session;
 
-class GuardianController extends Controller
+class GuardiansController extends Controller
 {
 	protected $path = 'admin.guardians.';
 	protected $guardianServices;
