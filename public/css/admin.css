@@ -13732,6 +13732,37 @@ body {
   }
 }
 
+.login-register {
+  height: 100vh;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #dedede), color-stop(50%, #029FCE));
+  background: linear-gradient(180deg, #dedede 50%, #029FCE 50%);
+}
+
+.login-register .login-register-form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.login-register .star {
+  color: red;
+}
+
+.login-register .login-btn {
+  background-color: #029FCE;
+  border: none;
+  opacity: 1;
+}
+
+.login-register .login-btn:hover {
+  opacity: 0.8;
+}
+
 .box {
   margin: 20px 0;
   border: 1px solid #000;
