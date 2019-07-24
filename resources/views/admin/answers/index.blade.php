@@ -16,7 +16,7 @@
           <th data-field="id" class="text-center" data-sortable="true">ID</th>
           <th data-field="name">Answers</th>
           <th data-field="correct">Correct</th>
-          <th data-field="question_id">Question ID</th>
+          <th data-field="question">Question</th>
           <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
         </thead>
       </table>

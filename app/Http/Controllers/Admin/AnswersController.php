@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\AnswerServices;
+use App\Question;
 use App\Answer;
 use Session;
 
-class AnswerController extends Controller
+class AnswersController extends Controller
 {
     protected $path = 'admin.answers.';
     protected $answerServices;
@@ -25,7 +26,9 @@ class AnswerController extends Controller
   }
 
   public function create(){
-		return view($this->path . 'create');
+    $questions = Question::pluck('name','id');
+
+		return view($this->path . 'create',['questions' => $questions]);
   }
 
 
@@ -36,7 +39,7 @@ class AnswerController extends Controller
     
 		$answer = new Answer();
 		$answer->name = $request->name;
-		
+		$answer->question_id = $request->question_id;
 		$answer->save();
 
     Session::flash('success','Successfully saved!');
@@ -44,15 +47,19 @@ class AnswerController extends Controller
   }
 
   public function edit(Answer $answer) {
-  return view($this->path . 'edit', ['answer' => $answer]);
+    $questions = Question::pluck('name','id');
+
+    return view($this->path . 'edit', ['answer' => $answer,'questions' => $questions]);
   }
 
   public function update(Answer $answer, Request $request) {
   
     $answer->name = $request->name;
+    $answer->question_id = $request->topic_id;
     $answer->save();
+
     Session::flash('success','Successfully saved!');
-  return redirect()->route('answers.index');
+    return redirect()->route('answers.index');
   }
 
   public function destroy(Answer $answer){

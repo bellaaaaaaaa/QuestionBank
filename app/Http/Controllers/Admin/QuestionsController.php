@@ -9,7 +9,7 @@ use App\Question;
 use App\Topic;
 use Session;
 
-class QuestionController extends Controller
+class QuestionsController extends Controller
 {
     protected $path = 'admin.questions.';
     protected $questionServices;
@@ -49,7 +49,7 @@ class QuestionController extends Controller
     public function edit(Question $question){
       $topics = Topic::pluck('name','id');
 
-      return view($this->path . 'edit',['question'=>$question,'topics'=>$topics]);
+      return view($this->path . 'edit',['question' => $question,'topics' => $topics]);
     }
     
     public function update(Request $request, Question $question){

@@ -35,7 +35,7 @@ class AnswerServices extends TransformerService{
             'name' => $answer->name,
             // 'name' => $this->transformDate($question->created_at),
             'correct' =>  $answer->correct,
-            'question_id' => $answer->question_id
+            'question' => $answer->question ? $answer->question->name:'-',
 		];
 	}
 }

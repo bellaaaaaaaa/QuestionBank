@@ -8,7 +8,7 @@ use App\Student;
 use Session;
 use App\Services\StudentServices;
 
-class StudentController extends Controller
+class StudentsController extends Controller
 {
     protected $path = 'admin.students.';
 	protected $studentServices;
