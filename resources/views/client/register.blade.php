@@ -1,0 +1,51 @@
+@extends('layouts.client.stranger')
+
+@section('content')
+<div class="login-register">
+	<div class="container">
+		<div class="row">
+			<form id="form-validation" class="col-10 col-sm-8 col-lg-4 login-register-form">
+				<div class=" card-login">
+					<div class="text-center">
+						<h4 class="header text-center">Register Form</h4>
+						<p>Don't have an account? Register now</p>
+					</div> 
+					<div class="">
+						<div class="form-group has-label">
+							<label>Email Address
+				              <star class="star">*</star>
+				          	</label> 
+				            <input name="email" type="text" email="true" required="required" class="form-control">
+				        </div>
+				        <div class="form-group has-label">
+				        	<label>Name
+				              <star class="star">*</star>
+				          	</label> 
+				          	<input name="name" type="password" required="required" class="form-control">
+				        </div> 
+				        <div class="form-group has-label">
+				        	<label>Password
+				              <star class="star">*</star>
+				          	</label> 
+				          	<input name="password" type="password" required="required" class="form-control">
+				        </div>
+				        <div class="form-group has-label">
+				        	<label>Confirm Password
+				              <star class="star">*</star>
+				          	</label> 
+				          	<input name="confirmpassword" type="password" required="required" class="form-control">
+				        </div> 
+				        <div class=" form-category">
+				        	<star class="star">*</star> 
+				        	Required fields
+						</div>
+					</div> 
+					<div class="text-center mt-3">
+						<button type="submit" class="btn btn-primary login-btn">Register</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+@endsection

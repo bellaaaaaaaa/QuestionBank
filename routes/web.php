@@ -56,6 +56,8 @@ Route::get('/', 'Client\HomeController@home')->name('root');
 Route::get('/home', 'Client\HomeController@home')->name('home');
 
 
-//added by Pat to view the other 2 frontend pages
+//added by Pat to view the frontend pages
 Route::view('/quiz', '/client/quiz');
 Route::view('/mcq-exam', '/client/mcq-exam');
+Route::view('/login', '/client/login');
+Route::view('/register', '/client/register');

@@ -1,0 +1,28 @@
+.login-register{
+	height:100vh;
+	background: linear-gradient(180deg, #dedede 50%, $brand-color 50%);
+
+	.login-register-form{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		background: #fff;
+	    padding: 40px;
+	    border-radius: 10px;
+	}
+
+	.star{
+		color:red;
+	}
+
+	.login-btn{
+		background-color:$brand-color;
+		border:none;
+		opacity:1;
+
+		&:hover{
+			opacity:0.8;
+		}
+	}
+}
