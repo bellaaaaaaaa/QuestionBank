@@ -53,9 +53,8 @@ class AnswersController extends Controller
   }
 
   public function update(Answer $answer, Request $request) {
-  
     $answer->name = $request->name;
-    $answer->question_id = $request->topic_id;
+    $answer->question_id = $request->question_id;
     $answer->save();
 
     Session::flash('success','Successfully saved!');

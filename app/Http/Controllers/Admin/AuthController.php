@@ -12,9 +12,9 @@ class AuthController extends Controller{
 
 	public function viewRegister(){
     return view('admin.auth.register');
-  }
+  	}
 
-  public function register(Request $request){
+ 	public function register(Request $request){
 	  $this->validate($request, [
 	    "email" => "required|email|unique:users",
 	    "name" => "required",
