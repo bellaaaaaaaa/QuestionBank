@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="blue" data-image="{{ asset('images/sidebar_bg.jpg') }}">
+<div class="sidebar">
 
   <div class="logo">
 		<a href="{{ route('admin.dashboard') }}" class="simple-text logo-mini">

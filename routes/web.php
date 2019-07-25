@@ -66,6 +66,8 @@ Route::get('login','Client\AuthController@viewLogin')->name('client.login.show')
 Route::post('login','Client\AuthController@login')->name('client.login');
 
 
-//added by Pat to view the other 2 frontend pages
+//added by Pat to view the frontend pages
 Route::view('/quiz', '/client/quiz');
-// Route::view('/mcq-exam', '/client/mcq-exam');
+Route::view('/mcq-exam', '/client/mcq-exam');
+Route::view('/login', '/client/login');
+Route::view('/register', '/client/register');

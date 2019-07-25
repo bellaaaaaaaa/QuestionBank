@@ -13687,26 +13687,26 @@ body {
   margin-top: 8px;
 }
 
-.navbar {
+.front-navbar {
   width: 100%;
   background: #029FCE;
 }
 
-.navbar .navbar-brand img {
+.front-navbar .navbar-brand img {
   border-radius: 50%;
   width: 60px;
 }
 
-.navbar .navbar-brand span {
+.front-navbar .navbar-brand span {
   padding-left: 10px;
   color: #fff;
 }
 
-.navbar .nav-link {
+.front-navbar .nav-link {
   color: #fff !important;
 }
 
-.navbar .dropdown-menu {
+.front-navbar .dropdown-menu {
   border: none;
 }
 
@@ -13722,7 +13722,7 @@ body {
     min-height: 100vh;
   }
 
-  .navbar {
+  .front-navbar {
     display: none;
   }
 
@@ -13730,6 +13730,37 @@ body {
     min-width: 0;
     width: 100%;
   }
+}
+
+.login-register {
+  height: 100vh;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #dedede), color-stop(50%, #029FCE));
+  background: linear-gradient(180deg, #dedede 50%, #029FCE 50%);
+}
+
+.login-register .login-register-form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.login-register .star {
+  color: red;
+}
+
+.login-register .login-btn {
+  background-color: #029FCE;
+  border: none;
+  opacity: 1;
+}
+
+.login-register .login-btn:hover {
+  opacity: 0.8;
 }
 
 .box {
@@ -14662,6 +14693,7 @@ input:focus {
   z-index: 1;
   color: #fff;
   font-weight: 200;
+  background-color: #029FCE;
   background-size: cover;
   background-position: center center;
 }
@@ -14943,11 +14975,6 @@ input:focus {
   top: 0;
   left: 0;
   z-index: 2;
-}
-
-.sidebar:before {
-  opacity: .33;
-  background: #000000;
 }
 
 .sidebar[data-image]:after,
