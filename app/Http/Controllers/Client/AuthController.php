@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,7 +11,7 @@ use Auth;
 class AuthController extends Controller{
 
 	public function viewRegister(){
-    return view('admin.auth.register');
+    return view('client.auth.register');
   	}
 
  	public function register(Request $request){
@@ -21,16 +21,16 @@ class AuthController extends Controller{
 	    "password" => "required|confirmed"
 	  ]);
 
-	  $user = User::create($request->all());
-	  $user->role = 1;
-	  $user->save();
-	  Auth::login($user);
+	  $client = User::create($request->all());
+	  $client->role = 0;
+	  $client->save();
+	  Auth::login($client);
 
-	  return redirect()->route('admin.dashboard');
+	  return redirect()->route('home');
 	}
 
 	public function viewLogin(){
-	  return view('admin.auth.login');
+	  return view('client.auth.login');
 	}
 
 	public function login(Request $request){
@@ -39,8 +39,8 @@ class AuthController extends Controller{
 	    "password" => "required"
 	  ]);
 
-	  if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 1])) {
-	    return redirect()->route('admin.dashboard');
+	  if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 0])) {
+	    return redirect()->route('home');
 	  }else{
 	    return redirect()->back()->withErrors(['message' => 'Email or password is incorrect']);
 	  }
@@ -51,11 +51,5 @@ class AuthController extends Controller{
 
 	  return redirect()->route('admin.login.show');
 	}
-
-
-
-
-
-
 
 }
