@@ -28,7 +28,7 @@ Route::prefix('admin')->group(function(){
 
     Route::get('/', 'Admin\DashboardController@dashboard');
     //dashboard
-    Route::get('dashboard', 'Admin\DashboardController@dashboard')->name('dashboard');
+    Route::get('dashboard', 'Admin\DashboardController@dashboard')->name('admin.dashboard');
 
     //create, delete, and view all Admins team
     Route::resource('teams', 'Admin\TeamsController');
@@ -51,9 +51,19 @@ Route::prefix('admin')->group(function(){
   });
 });
 
-
+// Client
 Route::get('/', 'Client\HomeController@home')->name('root');
 Route::get('/home', 'Client\HomeController@home')->name('home');
+
+ //Client register
+ Route::get('/client/register', 'Client\AuthController@viewRegister')->name('client.register');
+ Route::post('register', "Client\AuthController@register")->name('client.register');
+
+Route::get('mcq-exam', 'Client\QuestionsController@showQuestion')->name('show.questions');
+
+//Client Login
+Route::get('login','Client\AuthController@viewLogin')->name('client.login.show');
+Route::post('login','Client\AuthController@login')->name('client.login');
 
 
 //added by Pat to view the frontend pages
