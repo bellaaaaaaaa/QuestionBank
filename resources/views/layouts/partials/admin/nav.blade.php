@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent mt-0" id="nav-item-color" style="border-bottom: 1px solid #ddd;">
+<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent mt-0" id="nav-item-color">
  <div class="container-fluid">
    <div class="navbar-wrapper">
      <div class="navbar-toggle">
@@ -27,7 +27,7 @@
        </li>
        <li class="nav-item btn-rotate dropdown">
          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <i class="nc-icon nc-settings-gear-65"></i>
+           <i class="fa fa-cog"></i>
            <p>
              <span class="d-lg-none d-md-block">Some Actions</span>
            </p>

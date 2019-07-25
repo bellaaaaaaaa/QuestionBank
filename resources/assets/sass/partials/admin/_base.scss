@@ -10,3 +10,12 @@
 .pagination > li.active > a{
 	background-color: $default-color !important;
 }
+
+.navbar{
+	background:#fff;
+	border-bottom: 1px solid #ddd;
+
+	.dropdown-toggle i{
+		color:#888;
+	}
+}
