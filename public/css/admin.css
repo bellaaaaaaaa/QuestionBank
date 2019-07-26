@@ -27661,9 +27661,37 @@ select.selectpicker {
 .navbar {
   background: #fff;
   border-bottom: 1px solid #ddd;
+  height: 60px !important;
+  min-height: 60px;
+  max-height: 60px;
 }
 
 .navbar .dropdown-toggle i {
   color: #888;
+}
+
+.navbar .navbar-toggler {
+  border: none;
+}
+
+@media (max-width: 991px) {
+  .nav-item.mobile-log,
+  .main-panel .nav-item {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .main-panel .nav-item.mobile-log {
+    display: none;
+  }
+
+  .main-panel .nav-item.btn-rotate span {
+    display: none;
+  }
+}
+
+.footer {
+  height: 60px;
 }
 
