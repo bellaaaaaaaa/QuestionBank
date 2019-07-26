@@ -20,17 +20,18 @@
       <div class="border-right" id="sidebar-wrapper">
         <div class="sidebar-heading"><img src="{{ asset('images/user-default.jpg') }}"><span>John Doe</span></div>
         <div class="list-group list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
-          <a class="list-group-item list-group-item-action dropdown-btn">Learning Materials</a>
+          <a href="/" class="list-group-item list-group-item-action active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+         <!--  <a class="list-group-item list-group-item-action dropdown-btn"><i class="fas fa-book-open"></i> Learning Materials</a>
           <div class="dropdown-container">
             <a href="#">Chapter 1</a>
             <a href="#">Chapter 2</a>
             <a href="#">Chapter 3</a>
-          </div>
-          <a href="#" class="list-group-item list-group-item-action">Quiz</a>
-          <a href="#" class="list-group-item list-group-item-action">Articles</a>
-          <a href="#" class="list-group-item list-group-item-action">MCQ Exam</a>
-          <a href="#" class="list-group-item list-group-item-action">Subjective Exam</a>
+          </div> -->
+          <a href="/quiz" class="list-group-item list-group-item-action"><i class="fas fa-question-circle"></i> Quiz</a>
+          <!-- <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-newspaper"></i> Articles</a> -->
+          <a href="/mcq-exam" class="list-group-item list-group-item-action"><i class="fas fa-clipboard-list"></i> MCQ Exam</a>
+          <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-graduation-cap"></i> Subjective Exam</a>
+          <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-sign-out-alt"></i> Log out</a>
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -44,29 +45,32 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Dashboard</a>
+              <a class="nav-link" href="#"><i class="fas fa-chart-pie"></i> Dashboard</a>
             </li>
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Learning Materials
+                <i class="fas fa-book-open"></i> Learning Materials
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">Chapter 1</a>
                 <a class="dropdown-item" href="#">Chapter 2</a>
                 <a class="dropdown-item" href="#">Chapter 3</a>
               </div>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-question-circle"></i> Quiz</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-newspaper"></i> Articles</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-clipboard-list"></i> MCQ Exam</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Quiz</a>
+              <a class="nav-link" href="#"><i class="fas fa-graduation-cap"></i> Subjective Exam</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Articles</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">MCQ Exam</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Subjective Exam</a>
+              <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Log out</a>
             </li>
           </ul>
         </div>
