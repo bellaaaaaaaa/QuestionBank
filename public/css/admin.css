@@ -27658,3 +27658,12 @@ select.selectpicker {
   background-color: #447DF7 !important;
 }
 
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar .dropdown-toggle i {
+  color: #888;
+}
+

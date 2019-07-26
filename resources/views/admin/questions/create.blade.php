@@ -16,13 +16,13 @@
           <label>Question
             <star class="star">*</star>
           </label>
-          {{ Form::text('name', null, [ 'class'=>'form-control', 'required']) }}
+          {{ Form::textarea('name', null, [ 'class'=>'form-control', 'required']) }}
         </div>
         <div class="form-group has-label">
           <label>Explanation
             <star class="star">*</star>
           </label>
-          {{ Form::text('explanation', null, [ 'class'=>'form-control', 'required']) }}
+          {{ Form::textarea('explanation', null, [ 'class'=>'form-control', 'required']) }}
         </div>
         <div class="form-group has-label">
           <label>Topic 

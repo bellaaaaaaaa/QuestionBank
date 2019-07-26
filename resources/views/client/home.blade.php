@@ -10,15 +10,15 @@
 				<table cellspacing="10">
 					<tr>
 						<td>Name:</td>
-						<td>John Doe</td>
+						<td>{{ $username }}</td>
 					</tr>
 					<tr>
 						<td>Email:</td>
-						<td>johndoe@gmail.com</td>
+						<td>{{ $useremail }}</td>
 					</tr>
 					<tr>
 						<td>Age:</td>
-						<td>19</td>
+					<td> {{ $age }}</td>
 					</tr>
 					<tr>
 						<td>Subject:</td>
@@ -26,7 +26,7 @@
 					</tr>
 					<tr>
 						<td>Subscription:</td>
-						<td>30th September 2019</td>
+						<td>{{ $subscription }}</td>
 					</tr>
 				</table>
 			</div>

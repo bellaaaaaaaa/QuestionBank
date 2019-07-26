@@ -33,7 +33,7 @@ class QuestionsController extends Controller
 
     public function store(Request $request) {
       $this->validate($request, [
-        "name" => "required"
+        'name' => 'required|unique:questions'
       ]);
 
       $question = new Question();
@@ -53,6 +53,9 @@ class QuestionsController extends Controller
     }
     
     public function update(Request $request, Question $question){
+      $this->validate($request, [
+        'name' => 'required|max:255|unique:questions'
+      ]);
 
       $question->name = $request->name;
       $question->explanation = $request->explanation;
@@ -64,6 +67,7 @@ class QuestionsController extends Controller
     }
   
     public function destroy(Question $question){
+
       $question->delete();
 
       return success();

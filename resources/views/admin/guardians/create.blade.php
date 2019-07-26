@@ -16,7 +16,7 @@
           <label>Name
             <star class="star">*</star>
           </label>
-          {{ Form::textarea('name', null, [ 'class'=>'form-control', 'required']) }}
+          {{ Form::text('name', null, [ 'class'=>'form-control', 'required']) }}
         </div>
         <div class="form-group has-label">
           <label>Email

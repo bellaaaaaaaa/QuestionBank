@@ -32,7 +32,7 @@ class SubjectsController extends Controller{
   public function store(Request $request){
       //this validates the data
       $this->validate($request,array(
-        'name'=>'required|max:255')
+        'name'=>'required|max:255|unique:subjects')
        
       );
       //then store in the database
@@ -50,6 +50,10 @@ class SubjectsController extends Controller{
   
   }
   public function update(Subject $subject, Request $request){
+    $this->validate($request,array(
+      'name'=>'required|max:255|unique:subjects,id,' . $subject->id)
+    );
+
     $subject->name = $request->name;
     $subject->save();
 

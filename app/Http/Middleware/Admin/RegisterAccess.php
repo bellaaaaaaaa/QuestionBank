@@ -20,7 +20,7 @@ class RegisterAccess{
     
     if($admin) { // has a value or true
       if(current_user()) {
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
       }else {
         return redirect()->route('admin.login.show');
       }

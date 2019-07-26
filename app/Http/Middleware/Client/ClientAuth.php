@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Middleware\Admin;
+namespace App\Http\Middleware\Client;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class AdminAuth{
+class ClientAuth{
   /**
    * Handle an incoming request.
    *
@@ -15,13 +15,12 @@ class AdminAuth{
    */
   public function handle($request, Closure $next, $guard = null){
 		if (Auth::guard($guard)->check()) {
-      if(current_user()->role == 1) {
-        return $next($request);
-      } else {
-        return redirect()->route('home');
-      }
-    }
-    
-		return redirect()->route('admin.login.show');
+            if(current_user()->role == 0) {
+                return $next($request);
+            } else {
+                return redirect()->route('admin.dashboard');
+            }
+		}
+		return redirect()->route('client.login.show');
   }
 }

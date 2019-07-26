@@ -11,7 +11,7 @@ use Auth;
 class AuthController extends Controller{
 
 	public function viewRegister(){
-    return view('client.auth.register');
+	    return view('client.auth.register');
   	}
 
  	public function register(Request $request){
@@ -20,12 +20,12 @@ class AuthController extends Controller{
 	    "name" => "required",
 	    "password" => "required|confirmed"
 	  ]);
-
+	  
 	  $client = User::create($request->all());
 	  $client->role = 0;
 	  $client->save();
 	  Auth::login($client);
-
+		
 	  return redirect()->route('home');
 	}
 
@@ -38,7 +38,7 @@ class AuthController extends Controller{
 	    "email" => "required|email",
 	    "password" => "required"
 	  ]);
-
+	  
 	  if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 0])) {
 	    return redirect()->route('home');
 	  }else{
