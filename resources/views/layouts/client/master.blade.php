@@ -29,7 +29,6 @@
           </div>
           <a href="#" class="list-group-item list-group-item-action">Quiz</a>
           <a href="#" class="list-group-item list-group-item-action">Articles</a>
-          {{-- <a href="{{ route('show.questions') }}" class="list-group-item list-group-item-action">MCQ Exam</a> --}}
           <a href="#" class="list-group-item list-group-item-action">MCQ Exam</a>
           <a href="#" class="list-group-item list-group-item-action">Subjective Exam</a>
         </div>
