@@ -27691,6 +27691,16 @@ select.selectpicker {
   }
 }
 
+.navbar-brand,
+.nav-item a {
+  color: #888 !important;
+  opacity: 1 !important;
+}
+
+.sidebar-wrapper .nav-item i {
+  color: #fff;
+}
+
 .footer {
   height: 60px;
 }
