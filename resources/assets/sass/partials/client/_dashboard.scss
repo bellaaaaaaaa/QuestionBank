@@ -1,12 +1,22 @@
 .box{
 	margin:20px 0;
 	border:1px solid #000;
-	padding:20px;
 	background:#fff;
+	padding:20px 0;
+
+	@media (min-width:768px) {
+		padding:20px;
+	}
 
 	h2{
 		background:#fff;
 		width: max-content;
+		padding: 10px;
+	    
+	    @media (max-width:768px) {
+	    	margin: 0 auto;
+	    	display: block;
+	    }
 	
 		@media(min-width: 1200px) {
 			padding: 10px 30px;
@@ -31,7 +41,6 @@
 
 	.table-striped{
 		border-collapse:collapse;
-		width: 50%;
 
 		&.mcq-attempts{
 			width: 80%;
@@ -46,6 +55,15 @@
 				padding-right:10px;
 			}
 		}
+
+		@media (max-width: 768px) {
+			width: 80%;
+			margin:0 auto;
+		}
+
+		@media (min-width: 768px) {
+			width: 50%;
+		}
 	}
 
 	.border-box{
@@ -54,8 +72,8 @@
 	}
 
 	#piechart{
-		width: 170px;
-		height: 170px;
+		width: 150px;
+		height: 150px;
 
 		@media(min-width: 768px) {
 			width: 250px;
