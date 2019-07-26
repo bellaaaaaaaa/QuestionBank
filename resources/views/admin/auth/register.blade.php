@@ -1,7 +1,7 @@
 @extends('layouts.admin.stranger')
 
 @section('content')
-  <div class="col-md-4 col-sm-6 ml-auto mr-auto">
+  <div class="col-md-6 ml-auto mr-auto">
     {!! Form::open(['route' => 'admin.register', 'id' => 'form-validation', 'class' => 'form form__submit']) !!}
       <div class="card card-login card-hidden">
         <div class="card-header">

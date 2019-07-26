@@ -15096,13 +15096,12 @@ body {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  margin-top: -50px;
-  padding: 10px 30px;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 1200px) {
   .box h2 {
-    margin-top: 0;
+    padding: 10px 30px;
+    margin-top: -50px;
   }
 }
 
@@ -15128,7 +15127,6 @@ body {
 }
 
 .box .table-striped td {
-  border-bottom: 1px solid #dedede;
   padding: 10px;
 }
 
@@ -15348,6 +15346,11 @@ body {
 
 .questions ul li label.wrong {
   background-color: #ea5e5e;
+  color: #fff;
+}
+
+.questions ul li label.correct:hover,
+.questions ul li label.wrong:hover {
   color: #fff;
 }
 

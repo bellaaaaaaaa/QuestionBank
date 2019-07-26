@@ -186,6 +186,12 @@
 			    	background-color:$wrong-answer;
 			    	color: #fff;
 			    }
+
+			    &.correct, &.wrong{
+			    	&:hover{
+			    		color: #fff;	
+			    	}
+			    }
 			}
 
 			&:hover label{
