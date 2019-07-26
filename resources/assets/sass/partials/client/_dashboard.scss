@@ -7,11 +7,10 @@
 	h2{
 		background:#fff;
 		width: max-content;
-		margin-top: -50px;
-    	padding: 10px 30px;
-
-		@media(max-width: 1200px){
-			margin-top: 0;	
+	
+		@media(min-width: 1200px) {
+			padding: 10px 30px;
+			margin-top: -50px;
 		}
 	}
 
@@ -35,7 +34,7 @@
 		width: 80%;
 
 		td{
-			border-bottom:1px solid #dedede;
+			// border-bottom:1px solid #dedede;
 			padding: 10px;
 
 			i{
