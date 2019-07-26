@@ -1,33 +1,39 @@
-@extends('layouts.admin.stranger')
+@extends('layouts.client.stranger')
 
 @section('content')
-  <div class="col-md-4 col-sm-6 ml-auto mr-auto">
-    {!! Form::open(['route' => 'client.login', 'id' => 'form-validation', 'class' => 'form']) !!}
-      <div class="card card-login card-hidden">
-        <div class="card-header ">
-          <h4 class="header text-center">Login Form</h4>
-        </div>
-        <div class="card-body ">
-          <div class="form-group has-label">
-            <label>Email Address
-              <star class="star">*</star>
-            </label>
-            <input class="form-control" name="email" type="text" email="true" required="true" />
-          </div>
-          <div class="form-group has-label">
-            <label>Password
-              <star class="star">*</star>
-            </label>
-            <input class="form-control" name="password" type="password" required="true" />
-          </div>
-          <div class="card-category form-category">
-						<star class="star">*</star> Required fields
+<div class="login-register">
+	<div class="container">
+		<div class="row">
+        {!! Form::open(['route' => 'client.login', 'id' => 'form-validation', 'class' => 'col-10 col-sm-8 col-lg-4 login-register-form']) !!}
+				<div class=" card-login">
+					<div class="text-center">
+						<h4 class="header text-center">Welcome back</h4>
+						<p>Login below to access your dashboard</p>
+					</div> 
+					<div class="">
+						<div class="form-group has-label">
+							<label>Email Address
+				              <star class="star">*</star>
+				          	</label> 
+				            <input name="email" type="text" email="true" required="required" class="form-control">
+				        </div> 
+				        <div class="form-group has-label">
+				        	<label>Password
+				              <star class="star">*</star>
+				          	</label> 
+				          	<input name="password" type="password" required="required" class="form-control">
+				        </div> 
+				        <div class=" form-category">
+				        	<star class="star">*</star> 
+				        	Required fields
+						</div>
+					</div> 
+					<div class="text-center mt-3">
+						<button type="submit" class="btn btn-primary login-btn">Login</button>
 					</div>
-        </div>
-        <div class="card-footer mx-auto">
-          <button type="submit" class="btn btn-wd btn-primary">Login</button>
-        </div>
-      </div>
-    {!! Form::close() !!}
-  </div>
+				</div>
+        {!! Form::close() !!}
+		</div>
+	</div>
+</div>
 @endsection

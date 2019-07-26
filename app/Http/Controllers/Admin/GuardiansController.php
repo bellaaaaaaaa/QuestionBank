@@ -31,7 +31,7 @@ class GuardiansController extends Controller
 
   public function store(Request $request){
 		$this->validate($request, [
-			"email" => "required|email|unique:users",
+			"email" => "required|email|unique:guardians",
 			"name" => "required",
 		]);
 

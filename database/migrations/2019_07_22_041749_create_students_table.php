@@ -19,6 +19,8 @@ class CreateStudentsTable extends Migration
             $table->string('ic_number')->unique()->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->integer('user_id')->nullable();
+            $table->integer('age')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

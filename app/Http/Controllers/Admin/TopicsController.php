@@ -34,7 +34,7 @@ class TopicsController extends Controller
 
     public function store(Request $request){
       $this->validate($request, [
-        'name' => 'required',
+        'name' => 'required|unique:topics',
       ]);
 
       $topic = new Topic;
@@ -54,6 +54,9 @@ class TopicsController extends Controller
   }
 
   public function update(Topic $topic, Request $request) {
+    $this->validate($request, [
+      'name' => 'required|max:255|unique:topics,id,' . $topic->id
+    ]);
     
     $topic->name = $request->name;
     $topic->subject_id = $request->subject_id;
