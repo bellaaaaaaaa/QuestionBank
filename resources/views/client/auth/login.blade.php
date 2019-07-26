@@ -22,6 +22,17 @@
 				              <star class="star">*</star>
 				          	</label> 
 				          	<input name="password" type="password" required="required" class="form-control">
+				        </div>
+				        <div class="form-group has-label">
+				        	<label>Subject
+				              <star class="star">*</star>
+				          	</label> 
+				          	 <select class="custom-select" aria-label="Select Subject">
+							    <option hidden>Select Subject</option>
+							    <option value="1">One</option>
+							    <option value="2">Two</option>
+							    <option value="3">Three</option>
+							  </select>
 				        </div> 
 				        <div class=" form-category">
 				        	<star class="star">*</star> 

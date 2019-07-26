@@ -2,13 +2,13 @@
 	margin:20px 0;
 	border:1px solid #000;
 	padding:20px;
-	background:#F8FAF5;
+	background:#fff;
 
 	h2{
-		background:$heading-bg;
+		background:#fff;
 		width: max-content;
 		margin-top: -50px;
-    	padding: 10px;
+    	padding: 10px 30px;
 
 		@media(max-width: 1200px){
 			margin-top: 0;	
@@ -28,6 +28,26 @@
 				display:block;
 			}
 		}
+	}
+
+	.table-striped{
+		border-collapse:collapse;
+		width: 80%;
+
+		td{
+			border-bottom:1px solid #dedede;
+			padding: 10px;
+
+			i{
+				color:$brand-color;
+				padding-right:10px;
+			}
+		}
+	}
+
+	.border-box{
+		display:flex;
+		justify-content: center;
 	}
 
 	#piechart{
