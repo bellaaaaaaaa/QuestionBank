@@ -9,7 +9,7 @@
 			}
 		</style>
 	@endsection
-	<div class="row justify-content-end">
+	<div class="row justify-content-center">
 		<div class="col-md-6 alert-fixed">
 			<div class="alert alert-danger">
 				<button type="button" aria-hidden="true" class="close" data-dismiss="alert">
@@ -23,8 +23,8 @@
 
 @if (session('success'))
 	<div class="container">
-		<div class="row justify-content-end">
-			<div class="col-md-12 alert-fixed">
+		<div class="row justify-content-center">
+			<div class="col-md-6 alert-fixed">
 				<div class="alert alert-success">
 					<button type="button" aria-hidden="true" class="close" data-dismiss="alert">
 						<i class="nc-icon nc-simple-remove"></i>
@@ -38,8 +38,8 @@
 
 @if (session('error'))
 	<div class="container">
-		<div class="row justify-content-end">
-			<div class="col-md-12 alert-fixed">
+		<div class="row justify-content-center">
+			<div class="col-md-6 alert-fixed">
 				<div class="alert alert-danger">
 					<button type="button" aria-hidden="true" class="close" data-dismiss="alert">
 						<i class="nc-icon nc-simple-remove"></i>

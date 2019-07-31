@@ -1,0 +1,91 @@
+.box{
+	margin:20px 0;
+	border:1px solid #000;
+	background:#fff;
+	padding:20px 0;
+
+	@media (min-width:768px) {
+		padding:20px;
+	}
+
+	h2{
+		background:#fff;
+		width: max-content;
+		padding: 10px;
+	    
+	    @media (max-width:768px) {
+	    	margin: 0 auto;
+	    	display: block;
+	    }
+	
+		@media(min-width: 1200px) {
+			padding: 10px 30px;
+			margin-top: -50px;
+		}
+	}
+
+	table{
+		border-collapse: separate;
+		margin-top: 20px;
+
+		td:first-child{
+			font-weight:bold;
+		}
+
+		@media(max-width: 768px) {
+			tr,td{
+				display:block;
+			}
+		}
+	}
+
+	.table-striped{
+		border-collapse:collapse;
+
+		&.mcq-attempts{
+			width: 80%;
+		}
+
+		td{
+			// border-bottom:1px solid #dedede;
+			padding: 10px;
+
+			i{
+				color:$brand-color;
+				padding-right:10px;
+			}
+		}
+
+		@media (max-width: 768px) {
+			width: 80%;
+			margin:0 auto;
+		}
+
+		@media (min-width: 768px) {
+			width: 50%;
+		}
+	}
+
+	.border-box{
+		display:flex;
+		justify-content: center;
+	}
+
+	#piechart{
+		width: 150px;
+		height: 150px;
+
+		@media(min-width: 768px) {
+			width: 250px;
+			height: 250px;
+		}
+
+		rect{
+			fill:transparent;
+		}
+
+		text{
+			font-size:12px;
+		}
+	}
+}

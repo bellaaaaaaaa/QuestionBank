@@ -1,0 +1,48 @@
+.subjects-title{
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 5rem;
+  font-weight: 100;
+}
+
+.subjects-list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  .subjects-list-item{
+    background: transparent;
+    word-break: break-all;
+    margin: 0;
+    padding: 15px 60px 15px 15px;
+    display: block;
+    line-height: 1.2;
+    transition: color 0.4s;
+    font-size: 24px;
+    font-weight: 300;
+
+    .subjects-list-item-link{
+      color: #343a40;
+     text-decoration: none !important;
+    }
+  }
+}
+
+.question-bank-cont {
+  .title{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    @media (min-width: 576px) {
+      font-size: 60px;
+    }
+    
+    @media (min-width: 992px) { 
+      font-size: 82px;
+    }
+  }
+  .table {
+    th {
+      vertical-align: middle;
+    }
+  }
+}

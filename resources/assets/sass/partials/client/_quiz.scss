@@ -1,0 +1,280 @@
+.q-links{
+	ol{
+		list-style-type: none;
+	    padding: 20px 0;;
+	}
+
+	a{
+		color:#495057;
+		text-decoration: none;
+	}
+
+	li{
+		display: inline-block;
+	    margin: 0 5px 5px 0;
+	    border: 1px solid #CFCFCF;
+	    padding: 5px 0;
+	    width: 30px;
+	    text-align: center;
+	    background-color: #fff;
+	    cursor: pointer;
+	    list-style-type: none;
+	    background-image: none;
+	    color: #333;
+
+	    &:hover{
+	    	background:$brand-color;
+			a{
+				color:#fff;
+			}
+	    }
+
+	    &.active{
+			background:$brand-color;
+			color:#fff;
+
+			a{
+				color:#fff;
+			}
+		}
+
+		&.wrong{
+			background:$wrong-answer;
+
+			a{
+				color:#fff;
+			}
+		}
+
+		&.correct{
+			background:$correct-answer;
+
+			a{
+				color:#fff;
+			}
+		}
+	}
+}
+
+.q-revsec {
+	&>div{
+		display:inline-block;
+	}
+
+    li{
+    	display: inline;
+	    margin: 4%;
+	    padding: 1%;
+	    float: left;
+	    margin-top: 0px;
+    }
+
+    span.wpProQuiz_reviewColor {
+	    float: left;
+	    height: 11px;
+	    margin: 6px 0;
+	    width: 10px;
+
+	    &.correct{
+	    	background-color:$correct-answer;
+	    }
+
+	    &.wrong{
+	    	background-color:$wrong-answer;
+	    }
+	}
+
+	span.wpProQuiz_reviewText {
+	    margin: 0 4px;
+	    font-weight: normal;
+	}
+}
+
+.q-stats{
+	margin-top:40px;
+}
+
+.stats-col{
+	margin-bottom: 20px;
+    
+    .bar-col{
+    	overflow: hidden;
+    	// background-color: #dedede;	
+
+    	.progress-bar{
+	    	color:transparent;
+	    }
+
+	    .progress-bar-correct{
+	    	background-color:$correct-answer;
+	    }
+
+	    .progress-bar-wrong{
+	    	background-color:$wrong-answer;
+	    }
+    }
+}
+
+.topics{
+	ul{
+		list-style-type: none;
+		padding: 0;
+	}
+
+	a{
+		color:#fff;
+
+		&:hover{
+			color:#000;
+			text-decoration:none;
+		}
+
+		&:nth-child(odd) li{
+			background:$brand-color;
+		}
+
+		&:nth-child(even) li{
+			background:rgba($brand-color, 0.8);
+		}
+
+		li{
+			padding:10px;
+			margin:10px 0;
+		}
+	}
+}
+
+.questions{
+	h3{
+		margin-top:20px;
+	}
+
+	a{
+		color: $brand-color;
+	}
+
+	ul{
+		list-style-type: upper-latin;
+
+		li{
+			color:#495057;
+			position: relative;
+			width: 100%;
+
+			input[type=radio]{
+			  position: absolute;
+			  visibility: hidden;
+			}
+
+			label{
+				display: block;
+				position: relative;
+				font-weight: 300;
+				font-size: 1rem;
+				padding: 10px 25px 10px 50px;
+				margin: 10px auto;
+				z-index: 9;
+				cursor: pointer;
+				-webkit-transition: all 0.25s linear;
+
+				&.correct{
+			    	background-color:$correct-answer;
+			    	color: #fff;
+			    }
+
+			    &.wrong{
+			    	background-color:$wrong-answer;
+			    	color: #fff;
+			    }
+
+			    &.correct, &.wrong{
+			    	&:hover{
+			    		color: #fff;	
+			    	}
+			    }
+			}
+
+			&:hover label{
+				color: $brand-color;
+			}
+
+			.check{
+				display: block;
+				position: absolute;
+				border: 3px solid #AAAAAA;
+				border-radius: 100%;
+				height: 15px;
+				width: 15px;
+				top: 15px;
+				left: 20px;
+				z-index: 9;
+				transition: border .25s linear;
+				-webkit-transition: border .25s linear;
+			}
+
+			&:hover .check {
+			  border: 3px solid $brand-color;;
+			}
+
+			.check::before {
+				display: block;
+				position: absolute;
+				content: '';
+				border-radius: 100%;
+				height:5px;
+				width: 5px;
+				top: 2px;
+				left: 2px;
+				margin: auto;
+				transition: background 0.25s linear;
+				-webkit-transition: background 0.25s linear;
+			}
+		}
+	}
+
+	input[type=radio]:checked ~ .check {
+	  border: 3px solid $brand-color;
+	}
+
+	input[type=radio]:checked ~ .check::before{
+	  background: $brand-color;
+	}
+
+	input[type=radio]:checked ~ label{
+	  color: $brand-color;
+	}
+}
+
+.buttons{
+	background: $brand-color;
+    color: #fff;
+    border: none;
+    padding: 5px 20px;
+    border:2px solid transparent;
+
+    &:hover{
+    	border:2px solid $brand-color;
+    	color: $brand-color;
+    	background: transparent;
+    }
+
+    @media (max-width:768px) {
+		display: block;
+    	margin: auto;
+    	margin-top: 10px;
+    }
+}
+
+.next-btn, .read-btn{
+	display:flex;
+	margin-left: auto;
+}
+
+.pagination-buttons{
+	
+    @media (min-width: 768px) {
+		display:flex;
+		justify-content: space-between;
+	}
+}
+

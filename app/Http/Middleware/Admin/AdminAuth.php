@@ -15,9 +15,13 @@ class AdminAuth{
    */
   public function handle($request, Closure $next, $guard = null){
 		if (Auth::guard($guard)->check()) {
-			return $next($request);
-		}
+      if(current_user()->role == 1) {
+        return $next($request);
+      } else {
+        return redirect()->route('home');
+      }
+    }
+    
 		return redirect()->route('admin.login.show');
-
   }
 }

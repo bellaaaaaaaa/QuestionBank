@@ -1,0 +1,74 @@
+.question-cont{
+    .title{
+        font-size: 30px;
+        font-weight: bold;
+				margin-top: 20px;
+				margin-bottom: 10px;
+				@media (min-width:576px){
+				margin-top: 40px;
+				}
+    }
+    .mcq{
+				font-size: 20px;
+				margin-top: 20px;
+    }
+    .numbergrp button{ 
+				flex: 1 0 calc(20% - 10px);
+        background-color: $blue;
+        border: 1px solid $blue;
+        color: $white;
+				cursor: pointer;
+				margin: 5px;
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				&::after{
+					content: '';
+					display: block;
+					padding-bottom: 100%;
+				}
+    }
+    .numbergrp button:hover{
+        background-color: $green;
+    }
+    .borders {
+				display: flex;
+				flex-wrap: wrap;
+        border: 1px solid $primary;
+        padding: 10px;
+        @media (min-width:992px){
+            padding: 25px;
+        }
+    }
+    .subt{
+        text-align: center;
+        @media (min-width:576px){
+            text-align: left;
+        }
+		}
+		.iden{
+    	.correct{
+				display: inline-block;
+				margin-top: -10px;
+				width: 25px;
+				margin-right: 10px;
+      	background-color: $green;
+    	}
+    	.wrong{
+				display: inline-block;
+		 	  background-color: $red;
+			  margin-right: 10px;
+				margin-left: 50px;
+				width: 25px;
+				@media (min-width:992px) {
+					margin-left: 100px;
+				}
+			}   
+			.check{
+				display: flex;
+			  justify-content: center;
+			  align-items: center;
+			}
+		}
+}

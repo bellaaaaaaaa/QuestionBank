@@ -32,6 +32,10 @@ class User extends Authenticatable{
 			$password = bcrypt($user->password);
 			$user->password = $password;
 		});
-	}
+  }
+  
+  public function student(){
+    return $this->hasOne('App\Student');
+  }
 
 }
