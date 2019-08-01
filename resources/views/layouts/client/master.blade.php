@@ -18,9 +18,9 @@
 
       <!-- Sidebar -->
       <div class="border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading"><img src="{{ asset('images/user-default.jpg') }}"><span>John Doe</span></div>
+        <div class="sidebar-heading d-flex"><img src="{{ asset('images/user-default.jpg') }}"><span class="align-self-center">John Doe</span></div>
         <div class="list-group list-group-flush">
-          <a href="/" class="list-group-item list-group-item-action active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+          <a href="/home" class="list-group-item list-group-item-action active"><i class="fas fa-chart-pie"></i> Dashboard</a><!--active class on current page-->
           <a class="list-group-item list-group-item-action dropdown-btn"><i class="fas fa-book-open"></i> Learning Materials</a>
           <div class="dropdown-container">
             <a href="#">Chapter 1</a>
@@ -45,7 +45,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#"><i class="fas fa-chart-pie"></i> Dashboard</a>
+              <a class="nav-link" href="/home"><i class="fas fa-chart-pie"></i> Dashboard</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,13 +58,13 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-question-circle"></i> Quiz</a>
+              <a class="nav-link" href="/quiz"><i class="fas fa-question-circle"></i> Quiz</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><i class="fas fa-newspaper"></i> Articles</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-clipboard-list"></i> MCQ Exam</a>
+              <a class="nav-link" href="/mcq-exam"><i class="fas fa-clipboard-list"></i> MCQ Exam</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><i class="fas fa-graduation-cap"></i> Subjective Exam</a>
