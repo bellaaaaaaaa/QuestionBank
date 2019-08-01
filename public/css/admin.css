@@ -29067,6 +29067,14 @@ select.selectpicker {
   background-color: #447DF7 !important;
 }
 
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
 .navbar {
   background: #fff;
   border-bottom: 1px solid #ddd;
@@ -29108,6 +29116,25 @@ select.selectpicker {
 
 .sidebar-wrapper .nav-item i {
   color: #fff;
+}
+
+.bootstrap-table button {
+  border: 1px solid #ccc !important;
+  border-radius: 2px !important;
+  color: #029FCE !important;
+}
+
+.bootstrap-table button:hover {
+  background: #029FCE !important;
+  color: #fff !important;
+}
+
+.bootstrap-table td.edit-hover {
+  cursor: pointer;
+}
+
+.bootstrap-table td.edit-hover:hover {
+  color: #029FCE;
 }
 
 .footer {

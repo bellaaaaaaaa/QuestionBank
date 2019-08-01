@@ -11,6 +11,14 @@
 	background-color: $default-color !important;
 }
 
+.pull-left{
+	float:left;
+}
+
+.pull-right{
+	float:right;
+}
+
 //navbar
 .navbar{
 	background:#fff;
@@ -55,6 +63,28 @@
 
 .sidebar-wrapper .nav-item i{
 	color:#fff;
+}
+
+//dashboard
+.bootstrap-table{
+	button{
+		border: 1px solid #ccc !important;
+	    border-radius: 2px !important;
+	    color:$brand-color !important;
+
+	    &:hover{
+	    	background: $brand-color !important;
+	    	color:#fff !important;
+	    }
+	}
+
+	td.edit-hover{
+		cursor:pointer;
+
+		&:hover{
+			color:$brand-color;
+		}
+	}
 }
 
 //footer
