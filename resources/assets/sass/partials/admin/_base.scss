@@ -87,6 +87,17 @@
 	}
 }
 
+.btn-info{
+	background-color:$brand-color;
+	border:1px solid $brand-color;
+
+	&:hover{
+		background-color:$brand-color;
+		border:1px solid $brand-color;
+		opacity:0.8;
+	}
+}
+
 //footer
 .footer{
 	height:60px;

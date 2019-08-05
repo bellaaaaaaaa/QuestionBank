@@ -2,7 +2,7 @@
 	margin:20px 0;
 	border:1px solid #000;
 	background:#fff;
-	padding:20px 0;
+	padding:20px 5px;
 
 	@media (min-width:768px) {
 		padding:20px;
@@ -10,12 +10,16 @@
 
 	h2{
 		background:#fff;
-		width: max-content;
 		padding: 10px;
 	    
 	    @media (max-width:768px) {
 	    	margin: 0 auto;
 	    	display: block;
+	    	text-align: center;
+	    }
+
+	    @media (min-width:768px) {
+	     	width: max-content;
 	    }
 	
 		@media(min-width: 1200px) {
@@ -49,6 +53,7 @@
 		td{
 			// border-bottom:1px solid #dedede;
 			padding: 10px;
+			word-break: break-word;
 
 			i{
 				color:$brand-color;

@@ -69,7 +69,9 @@ Route::get('register', 'Client\AuthController@viewRegister')->name('client.regis
 Route::post('register', "Client\AuthController@register")->name('client.register');
 
 //added by Pat to view the frontend pages
-Route::view('/quiz', '/client/quiz');
+Route::view('/edit-profile', '/client/edit-profile');
 Route::view('/mcq-exam', '/client/mcq-exam');
+Route::view('/quiz/1', '/client/quiz');
+Route::view('/quiz/topics', '/client/topics');
 
 
