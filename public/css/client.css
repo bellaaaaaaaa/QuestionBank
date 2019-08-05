@@ -15072,6 +15072,11 @@ body {
   opacity: 0.8;
 }
 
+.login-register .link-black {
+  color: black;
+  text-decoration: underline;
+}
+
 .box {
   margin: 20px 0;
   border: 1px solid #000;

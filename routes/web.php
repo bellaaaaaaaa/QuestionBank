@@ -50,11 +50,14 @@ Route::prefix('admin')->group(function(){
     Route::put('settings/password', "Admin\AccountSettingsController@updatePassword")->name("admin.password.change");
   });
 });
+
 Route::middleware('client.auth')->group(function(){
   // Client
   Route::get('/', 'Client\HomeController@home')->name('root');
   Route::get('/home', 'Client\HomeController@home')->name('home');
   Route::get('mcq-exam', 'Client\QuestionsController@showQuestion')->name('show.questions');
+
+  Route::get('logout', 'Client\AuthController@logout')->name('client.logout');
 });
 
 //Client Login

@@ -19,6 +19,7 @@
       <!-- Page Content -->
       <div id="page-content-wrapper">
 
+      @include('layouts.partials.admin.notification')
         @yield('content')
 
       </div>

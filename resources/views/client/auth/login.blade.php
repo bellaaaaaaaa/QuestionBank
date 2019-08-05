@@ -15,7 +15,7 @@
 							<label>Email Address
 				              <star class="star">*</star>
 				          	</label> 
-				            <input name="email" type="text" email="true" required="required" class="form-control">
+				            <input name="email" type="text" email="true" value="{{ old('email') }}" required="required" class="form-control">
 				        </div> 
 				        <div class="form-group has-label">
 				        	<label>Password
@@ -27,12 +27,12 @@
 				        	<label>Subject
 				              <star class="star">*</star>
 				          	</label> 
-				          	 <select class="custom-select" aria-label="Select Subject">
-							    <option hidden>Select Subject</option>
-							    <option value="1">One</option>
-							    <option value="2">Two</option>
-							    <option value="3">Three</option>
-							  </select>
+				          <select class="custom-select" aria-label="Select Subject" name="subject">
+                    <option hidden>Select Subject</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+					  		  </select>
 				        </div> 
 				        <div class=" form-category">
 				        	<star class="star">*</star> 
