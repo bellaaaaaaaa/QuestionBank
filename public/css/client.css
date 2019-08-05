@@ -14924,7 +14924,7 @@ body {
   margin-left: -15rem;
   -webkit-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
-  background: #029FCE;
+  background: #036635;
   color: #fff;
 }
 
@@ -14950,19 +14950,19 @@ body {
 }
 
 #sidebar-wrapper .list-group-item-action {
-  background: #029FCE;
+  background: #036635;
   color: #fff;
 }
 
 #sidebar-wrapper .list-group-item-action.active,
 #sidebar-wrapper .list-group-item-action:hover {
-  color: #029FCE;
+  color: #036635;
   background: #fff;
 }
 
 #sidebar-wrapper .dropdown-container {
   display: none;
-  background-color: rgba(2, 159, 206, 0.8);
+  background-color: rgba(3, 102, 53, 0.8);
 }
 
 #sidebar-wrapper .dropdown-container a {
@@ -14998,7 +14998,7 @@ body {
 
 .front-navbar {
   width: 100%;
-  background: #029FCE;
+  background: #036635;
 }
 
 .front-navbar .navbar-brand img {
@@ -15043,8 +15043,8 @@ body {
 
 .login-register {
   height: 100vh;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #dedede), color-stop(50%, #029FCE));
-  background: linear-gradient(180deg, #dedede 50%, #029FCE 50%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #dedede), color-stop(50%, #036635));
+  background: linear-gradient(180deg, #dedede 50%, #036635 50%);
 }
 
 .login-register .login-register-form {
@@ -15063,7 +15063,7 @@ body {
 }
 
 .login-register .login-btn {
-  background-color: #029FCE;
+  background-color: #036635;
   border: none;
   opacity: 1;
 }
@@ -15072,11 +15072,26 @@ body {
   opacity: 0.8;
 }
 
+.profile-img {
+  max-width: 180px;
+}
+
+.btn-info {
+  background-color: #036635;
+  border: 1px solid #036635;
+}
+
+.btn-info:hover {
+  background-color: #036635;
+  border: 1px solid #036635;
+  opacity: 0.8;
+}
+
 .box {
   margin: 20px 0;
   border: 1px solid #000;
   background: #fff;
-  padding: 20px 0;
+  padding: 20px 5px;
 }
 
 @media (min-width: 768px) {
@@ -15087,9 +15102,6 @@ body {
 
 .box h2 {
   background: #fff;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   padding: 10px;
 }
 
@@ -15097,6 +15109,15 @@ body {
   .box h2 {
     margin: 0 auto;
     display: block;
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .box h2 {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
   }
 }
 
@@ -15133,10 +15154,11 @@ body {
 
 .box .table-striped td {
   padding: 10px;
+  word-break: break-word;
 }
 
 .box .table-striped td i {
-  color: #029FCE;
+  color: #036635;
   padding-right: 10px;
 }
 
@@ -15207,7 +15229,7 @@ body {
 }
 
 .q-links li:hover {
-  background: #029FCE;
+  background: #036635;
 }
 
 .q-links li:hover a {
@@ -15215,7 +15237,7 @@ body {
 }
 
 .q-links li.active {
-  background: #029FCE;
+  background: #036635;
   color: #fff;
 }
 
@@ -15310,11 +15332,11 @@ body {
 }
 
 .topics a:nth-child(odd) li {
-  background: #029FCE;
+  background: #036635;
 }
 
 .topics a:nth-child(even) li {
-  background: rgba(2, 159, 206, 0.8);
+  background: rgba(3, 102, 53, 0.8);
 }
 
 .topics a li {
@@ -15327,7 +15349,7 @@ body {
 }
 
 .questions a {
-  color: #029FCE;
+  color: #036635;
 }
 
 .questions ul {
@@ -15373,7 +15395,7 @@ body {
 }
 
 .questions ul li:hover label {
-  color: #029FCE;
+  color: #036635;
 }
 
 .questions ul li .check {
@@ -15391,7 +15413,7 @@ body {
 }
 
 .questions ul li:hover .check {
-  border: 3px solid #029FCE;
+  border: 3px solid #036635;
 }
 
 .questions ul li .check::before {
@@ -15409,19 +15431,19 @@ body {
 }
 
 .questions input[type=radio]:checked ~ .check {
-  border: 3px solid #029FCE;
+  border: 3px solid #036635;
 }
 
 .questions input[type=radio]:checked ~ .check::before {
-  background: #029FCE;
+  background: #036635;
 }
 
 .questions input[type=radio]:checked ~ label {
-  color: #029FCE;
+  color: #036635;
 }
 
 .buttons {
-  background: #029FCE;
+  background: #036635;
   color: #fff;
   border: none;
   padding: 5px 20px;
@@ -15429,8 +15451,8 @@ body {
 }
 
 .buttons:hover {
-  border: 2px solid #029FCE;
-  color: #029FCE;
+  border: 2px solid #036635;
+  color: #036635;
   background: transparent;
 }
 
