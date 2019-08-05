@@ -13,7 +13,7 @@
     <!-- <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-newspaper"></i> Articles</a> -->
     <a href="/mcq-exam" class="list-group-item list-group-item-action"><i class="fas fa-clipboard-list"></i> MCQ Exam</a>
     <!-- <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-graduation-cap"></i> Subjective Exam</a> -->
-    <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-sign-out-alt"></i> Log out</a>
+    <a href="{{ route('client.logout') }}" class="list-group-item list-group-item-action"><i class="fas fa-sign-out-alt"></i> Log out</a>
   </div>
 </div>
 <!-- /#sidebar-wrapper -->
@@ -52,7 +52,7 @@
         <a class="nav-link" href="#"><i class="fas fa-graduation-cap"></i> Subjective Exam</a>
       </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Log out</a>
+        <a class="nav-link" href="{{ route('client.logout') }}"><i class="fas fa-sign-out-alt"></i> Log out</a>
       </li>
     </ul>
   </div>

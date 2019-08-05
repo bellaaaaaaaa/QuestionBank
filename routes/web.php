@@ -58,6 +58,9 @@ Route::middleware('client.auth')->group(function(){
   Route::get('mcq-exam', 'Client\QuestionsController@showQuestion')->name('show.questions');
 
   Route::get('logout', 'Client\AuthController@logout')->name('client.logout');
+
+  Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');
+  Route::get('quizzes/topics/{topic}', 'Client\QuizzesController@showQuestions')->name('quizzes.questions');
 });
 
 //Client Login

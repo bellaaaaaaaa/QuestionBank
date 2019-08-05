@@ -31670,8 +31670,8 @@ if (token) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(163);
-__webpack_require__(165);
-module.exports = __webpack_require__(166);
+__webpack_require__(169);
+module.exports = __webpack_require__(170);
 
 
 /***/ }),
@@ -31685,20 +31685,12 @@ module.exports = __webpack_require__(166);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(164);
+
 __webpack_require__(14);
 
 window.Vue = __webpack_require__(36);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-var app = new Vue({
-	el: '#client-app'
-});
+__webpack_require__(164);
 
 $(document).ready(function () {
 	//match height//
@@ -31756,6 +31748,15 @@ $(document).ready(function () {
 	$("#profileImg").change(function () {
 		readURL(this);
 	});
+});
+
+var files = __webpack_require__(232);
+files.keys().map(function (key) {
+	return Vue.component(key.split('/').pop().split('.')[0], files(key));
+});
+
+var app = new Vue({
+	el: '#client-app'
 });
 
 /***/ }),
@@ -32159,13 +32160,261 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ }),
 
 /***/ 165:
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+var disposed = false
+var normalizeComponent = __webpack_require__(166)
+/* script */
+var __vue_script__ = __webpack_require__(167)
+/* template */
+var __vue_template__ = __webpack_require__(168)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/client/quizzes/QuizComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-259ccd02", Component.options)
+  } else {
+    hotAPI.reload("data-v-259ccd02", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 
 /***/ 166:
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 167:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultSubject', 'defaultQuestions'],
+  data: function data() {
+    return {
+      subject: {},
+      questions: [],
+      stats: {
+        show: false
+      },
+      currentIndex: 0
+    };
+  },
+  mounted: function mounted() {
+    this.setDefault();
+  },
+
+  methods: {
+    setDefault: function setDefault() {
+      this.subject = JSON.parse(this.defaultSubject);
+      this.questions = JSON.parse(this.defaultQuestions);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ 168:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "page-container m-3 m-sm-5" },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-sm-12" },
+          [
+            _c("h1", { staticClass: "my-3 mb-sm-0 mb-sm-5" }, [
+              _vm._v("Quiz -" + _vm._s(_vm.subject.name))
+            ]),
+            _vm._v(" "),
+            _vm.stats.show
+              ? _c("question-stats-component", {
+                  attrs: { "default-stats": _vm.stats }
+                })
+              : _vm._e()
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("quiz-question-component", {
+        attrs: { "default-questions": _vm.questions }
+      }),
+      _vm._v(" "),
+      _vm.stats.show ? _c("question-explanation-component") : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-259ccd02", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 169:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -32176,6 +32425,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(18);
+
+/***/ }),
+
+/***/ 170:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -32748,6 +33004,33 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 /***/ }),
 
+/***/ 232:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./client/quizzes/QuizComponent.vue": 165,
+	"./client/quizzes/partials/QuestionExplanationComponent.vue": 251,
+	"./client/quizzes/partials/QuestionStatsComponent.vue": 244,
+	"./client/quizzes/partials/QuizQuestionComponent.vue": 245
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 232;
+
+/***/ }),
+
 /***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32822,6 +33105,539 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
+/***/ 244:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(166)
+/* script */
+var __vue_script__ = __webpack_require__(248)
+/* template */
+var __vue_template__ = __webpack_require__(247)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuestionStatsComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-29ce44d0", Component.options)
+  } else {
+    hotAPI.reload("data-v-29ce44d0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 245:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(166)
+/* script */
+var __vue_script__ = __webpack_require__(250)
+/* template */
+var __vue_template__ = __webpack_require__(249)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuizQuestionComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f4b470c4", Component.options)
+  } else {
+    hotAPI.reload("data-v-f4b470c4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 247:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box row" }, [
+      _c("h2", [_vm._v("Legend")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "q-links col-sm-12" }, [
+        _c("ol", [
+          _c("li", { staticClass: "review-1 active" }, [
+            _c("a", { attrs: { href: "javascript:void(0)" } }, [
+              _vm._v("\n              1 \n            ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "review-2" }, [
+            _c("a", { attrs: { href: "javascript:void(0)" } }, [
+              _vm._v("\n              2 \n            ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "review-3" }, [
+            _c("a", { attrs: { href: "javascript:void(0)" } }, [
+              _vm._v("\n              3 \n            ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "review-4" }, [
+            _c("a", { attrs: { href: "javascript:void(0)" } }, [
+              _vm._v("\n              4 \n            ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "review-5" }, [
+            _c("a", { attrs: { href: "javascript:void(0)" } }, [
+              _vm._v("\n              5 \n            ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "review-6" }, [
+            _c("a", { attrs: { href: "javascript:void(0)" } }, [
+              _vm._v("\n              6 \n            ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "review-7" }, [
+            _c("a", { attrs: { href: "javascript:void(0)" } }, [
+              _vm._v("\n              7 \n            ")
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "q-revsec col-sm-12" }, [
+        _c("div", [
+          _c("span", { staticClass: "wpProQuiz_reviewColor correct" }, [
+            _vm._v(" ")
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "wpProQuiz_reviewText" }, [
+            _vm._v("Correct")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", { staticClass: "wpProQuiz_reviewColor wrong" }, [
+            _vm._v(" ")
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "wpProQuiz_reviewText" }, [_vm._v("Wrong")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box q-stats col-lg-6" }, [
+        _c("h2", [_vm._v("Question Stats")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row stats-col" }, [
+          _c("div", { staticClass: "col-md-1" }, [_vm._v("A")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-9 bar-col" }, [
+            _c(
+              "div",
+              {
+                staticClass: "progress-bar progress-bar-correct",
+                staticStyle: { width: "72%" },
+                attrs: {
+                  role: "progressbar",
+                  "aria-valuenow": "72",
+                  "aria-valuemin": "0",
+                  "aria-valuemax": "100"
+                }
+              },
+              [_vm._v("\n          %\n        ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2" }, [_vm._v("72%")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row stats-col" }, [
+          _c("div", { staticClass: "col-md-1" }, [_vm._v("B")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-9 bar-col" }, [
+            _c(
+              "div",
+              {
+                staticClass: "progress-bar progress-bar-wrong",
+                staticStyle: { width: "8%" },
+                attrs: {
+                  role: "progressbar",
+                  "aria-valuenow": "8",
+                  "aria-valuemin": "0",
+                  "aria-valuemax": "100"
+                }
+              },
+              [_vm._v("\n          %\n        ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2 col-xl-1" }, [_vm._v("8%")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row stats-col" }, [
+          _c("div", { staticClass: "col-md-1" }, [_vm._v("C")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-9 bar-col" }, [
+            _c(
+              "div",
+              {
+                staticClass: "progress-bar progress-bar-wrong",
+                staticStyle: { width: "16%" },
+                attrs: {
+                  role: "progressbar",
+                  "aria-valuenow": "16",
+                  "aria-valuemin": "0",
+                  "aria-valuemax": "100"
+                }
+              },
+              [_vm._v("\n          %\n        ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2" }, [_vm._v("16%")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row stats-col" }, [
+          _c("div", { staticClass: "col-md-1" }, [_vm._v("D")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-9 bar-col" }, [
+            _c(
+              "div",
+              {
+                staticClass: "progress-bar progress-bar-wrong",
+                staticStyle: { width: "4%" },
+                attrs: {
+                  role: "progressbar",
+                  "aria-valuenow": "4",
+                  "aria-valuemin": "0",
+                  "aria-valuemax": "100"
+                }
+              },
+              [_vm._v("\n          %\n        ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2" }, [_vm._v("4%")])
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("72% of users answered this question correctly")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-29ce44d0", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 248:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultStats'],
+  data: function data() {
+    return {
+      stats: {}
+    };
+  },
+  watch: {
+    defaultStats: function defaultStats() {
+      this.setDefault();
+    }
+  },
+  methods: {
+    setDefault: function setDefault() {
+      this.stats = this.defaultStats;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ 249:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "box questions" }, [
+          _c("h2", [_vm._v("Questions")]),
+          _vm._v(" "),
+          _c("h3", [_vm._v("Question 1 of 7")]),
+          _vm._v(" "),
+          _c("p", [
+            _c("small", [
+              _vm._v("Question Chapter : Chapter 2  - "),
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Biology Organisms")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v("Which one of the following statements is incorrect?")
+          ]),
+          _vm._v(" "),
+          _c("ul", [
+            _c("li", [
+              _c("input", {
+                attrs: { type: "radio", id: "a-option", name: "selector" }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "correct", attrs: { for: "a-option" } },
+                [
+                  _vm._v(
+                    "Viviparity is the productive pattern shown by most mammals"
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "check" })
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("input", {
+                attrs: { type: "radio", id: "b-option", name: "selector" }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "wrong", attrs: { for: "b-option" } },
+                [
+                  _vm._v(
+                    "Viviparity is the productive pattern shown by most mammals"
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "check" })
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("input", {
+                attrs: { type: "radio", id: "c-option", name: "selector" }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "c-option" } }, [
+                _vm._v(
+                  "Viviparity is the productive pattern shown by most mammals"
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "check" })
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("input", {
+                attrs: { type: "radio", id: "d-option", name: "selector" }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "d-option" } }, [
+                _vm._v(
+                  "Viviparity is the productive pattern shown by most mammals"
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "check" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "buttons next-btn",
+            attrs: { type: "button", name: "next", value: "Next" }
+          })
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f4b470c4", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32880,6 +33696,212 @@ module.exports = function parseHeaders(headers) {
   return parsed;
 };
 
+
+/***/ }),
+
+/***/ 250:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultQuestions'],
+  data: function data() {
+    return {
+      questions: []
+    };
+  },
+  watch: {
+    defaultQuestions: function defaultQuestions() {
+      this.setDefault();
+    }
+  },
+  methods: {
+    setDefault: function setDefault() {
+      this.questions = this.defaultQuestions;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ 251:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(166)
+/* script */
+var __vue_script__ = __webpack_require__(252)
+/* template */
+var __vue_template__ = __webpack_require__(253)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuestionExplanationComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-26874e44", Component.options)
+  } else {
+    hotAPI.reload("data-v-26874e44", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 252:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultQuestions'],
+  data: function data() {
+    return {
+      questions: []
+    };
+  },
+  watch: {
+    defaultQuestions: function defaultQuestions() {
+      this.setDefault();
+    }
+  },
+  methods: {
+    setDefault: function setDefault() {
+      this.questions = this.defaultQuestions;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ 253:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "box row" }, [
+          _c("h2", [_vm._v("Explanation")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque bibendum elit eget auctor mattis. Suspendisse id tortor nec tellus placerat varius. Sed nec molestie nunc, sit amet posuere nisi. Nulla at tincidunt lectus, a venenatis erat. Aenean in ex quam. Nam diam turpis, rutrum eget mattis non, feugiat vitae sem. Nulla pellentesque egestas aliquet."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Fusce nec odio ipsum. Maecenas pretium sapien tortor. Praesent sagittis efficitur libero, non aliquet orci posuere eu. Fusce pellentesque neque orci, ut hendrerit tortor blandit eget. Nam ultrices mi in fringilla rhoncus. Ut egestas ultrices hendrerit. Quisque odio ipsum, vestibulum sit amet nisi nec, hendrerit rhoncus mauris. Vivamus vitae nisi ac nisl malesuada laoreet id non nulla. Vestibulum mi urna, dignissim ac placerat quis, pellentesque eu nunc. Aenean sagittis justo ut quam porta, eget interdum neque fringilla."
+            )
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "buttons read-btn",
+            attrs: {
+              type: "button",
+              name: "read_chapter",
+              value: "Read Chapter"
+            }
+          })
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-26874e44", module.exports)
+  }
+}
 
 /***/ }),
 
