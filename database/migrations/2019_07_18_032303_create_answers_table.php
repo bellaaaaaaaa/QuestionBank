@@ -15,9 +15,9 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->increments('id')->nullable();
-            $table->text('name')->nullable();
-            $table->boolean('correct')->nullable();
             $table->integer('question_id')->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('correct')->nullable();
             $table->timestamps();
         });
     }

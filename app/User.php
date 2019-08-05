@@ -2,26 +2,23 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
+Relation::morphMap([
+  'Student' => 'App\Student',
+  'Guardian' => 'App\Guardian',
+  'Teacher' => 'App\Teacher'
+]);
 
 class User extends Authenticatable{
   use Notifiable;
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
   protected $fillable = [
-      'name', 'email', 'password',
+      'name', 'email', 'password', 'owner_id', 'owner_type', 'avatar'
   ];
 
-  /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
   protected $hidden = [
       'password', 'remember_token',
   ];
@@ -34,8 +31,23 @@ class User extends Authenticatable{
 		});
   }
   
-  public function student(){
-    return $this->hasOne('App\Student');
+  public function owner() {
+    return $this->morphTo();
   }
 
+  public function isAdmin(){
+    return $this->owner_type === null;
+  }
+
+  public function isStudent(){
+    return $this->owner_type === 'Student';
+  }
+
+  public function isGuardian(){
+    return $this->owner_type === 'Guardian';
+  }
+  
+  public function isTeacher(){
+    return $this->owner_type === 'Teacher';
+  }
 }

@@ -4,12 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Topic extends Model
-{
-    public function subject(){
-        return $this->belongsTo('App\Subject');
-    }
-    public function questions(){
-        return $this->hasMany('App\Question');
-    }
+class Topic extends Model {
+  protected $fillable = [
+    'subject_id', 'name'
+  ];
+
+  public function subject(){
+    return $this->belongsTo('App\Subject');
+  }
+  
+  public function questions(){
+    return $this->hasMany('App\Question');
+  }
 }

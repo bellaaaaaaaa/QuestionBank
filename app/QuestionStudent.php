@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class GuardianStudent extends Pivot {
+class QuestionStudent extends Pivot {
   protected $fillable = [
-    'guardian_id', 'student_id', 'relationship'
+    'question_id', 'student_id', 'num_of_attempts_left'
   ];
 
-  public function guardian(){
-    return $this->belongsTo('App\Guardian');
+  public function question(){
+    return $this->belongsTo('App\Question');
   }
 
   public function student(){
