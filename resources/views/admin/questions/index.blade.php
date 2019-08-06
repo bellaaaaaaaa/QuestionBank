@@ -15,8 +15,7 @@
         <thead>
           <th data-field="id" class="text-center" data-sortable="true">ID</th>
           <th data-field="topic">Topic</th>
-          <th data-field="name" class="edit-hover">Questions</th>
-          <th data-field="explanation">Explanation</th>
+          <th data-field="name">Questions</th>
           <th data-field="number_of_attempts">Number of Attempts</th>
           <th data-field="number_of_correct_attempts">Number of Correct Attempts</th>
           <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>

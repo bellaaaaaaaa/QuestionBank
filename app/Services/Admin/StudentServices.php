@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use App\Student;
 use Illuminate\Http\Request;
+use App\Services\TransformerService;
 
 class StudentServices extends TransformerService{
 

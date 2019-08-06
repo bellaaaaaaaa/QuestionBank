@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use App\Topic;
 use Illuminate\Http\Request;
+use App\Services\TransformerService;
 
 class TopicServices extends TransformerService{
 
