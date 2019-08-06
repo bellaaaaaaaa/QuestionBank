@@ -51,7 +51,17 @@ Route::put('settings/password', "Admin\AccountSettingsController@updatePassword"
 });
 });
 
+
+//Client Login
+Route::get('login','Client\AuthController@viewLogin')->name('client.login.show');
+Route::post('login','Client\AuthController@login')->name('client.login');
+
+//Client register
+Route::get('register', 'Client\AuthController@viewRegister')->name('client.register.show');
+Route::post('register', "Client\AuthController@register")->name('client.register');
+
 Route::middleware('client.auth')->group(function(){
+ 
   // Client
   Route::get('/', 'Client\HomeController@home')->name('root');
   Route::get('/home', 'Client\HomeController@home')->name('home');
@@ -62,14 +72,6 @@ Route::middleware('client.auth')->group(function(){
   Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');
   Route::get('quizzes/topics/{topic}', 'Client\QuizzesController@showQuestions')->name('quizzes.questions');
 });
-
-//Client Login
-Route::get('login','Client\AuthController@viewLogin')->name('client.login.show');
-Route::post('login','Client\AuthController@login')->name('client.login');
-
-//Client register
-Route::get('register', 'Client\AuthController@viewRegister')->name('client.register.show');
-Route::post('register', "Client\AuthController@register")->name('client.register');
 
 //added by Pat to view the frontend pages
 Route::view('/edit-profile', '/client/edit-profile');

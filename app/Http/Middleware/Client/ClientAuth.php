@@ -14,12 +14,10 @@ class ClientAuth{
    * @return mixed
    */
   public function handle($request, Closure $next, $guard = null){
-		if (Auth::guard($guard)->check()) {
-      if(current_user()->isStudent()) {
-        return $next($request);
-      } else {
-        return redirect()->route('admin.dashboard');
-      }
+	  if(current_user()->isStudent()) {
+      return $next($request);
+    } else {
+      return redirect()->route('admin.dashboard');
     }
     
 		return redirect()->route('client.login.show');
