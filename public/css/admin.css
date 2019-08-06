@@ -15104,6 +15104,32 @@ body {
   opacity: 0.8;
 }
 
+.payment-gateway img {
+  width: 100%;
+}
+
+.form-check {
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+.form-check input {
+  display: none;
+}
+
+.form-check.active,
+.form-check:hover {
+  background: #036635;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form-group > label {
+  font-weight: bold;
+}
+
 .box {
   margin: 20px 0;
   border: 1px solid #000;
@@ -15167,6 +15193,12 @@ body {
 
 .box .table-striped.mcq-attempts {
   width: 80%;
+}
+
+.box .table-striped.account {
+  width: 80%;
+  margin: 0 auto;
+  display: table;
 }
 
 .box .table-striped td {

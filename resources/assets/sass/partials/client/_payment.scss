@@ -1,0 +1,30 @@
+.payment-gateway{
+	img{
+		width:100%;
+	}
+}
+
+.form-check{
+	margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #000;
+    padding: 10px;
+
+	input{
+		display:none;
+	}
+
+	&.active, &:hover{
+		background:$brand-color;
+		color:#fff;
+		cursor:pointer;
+	}
+}
+
+.form-group>label{
+	font-weight: bold;
+}
+
+.form-check-input:checked{
+
+}

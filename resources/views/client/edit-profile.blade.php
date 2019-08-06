@@ -8,25 +8,25 @@
 			<div class="box">
 				<h2>Account Settings</h2>
 				<form>
-					<table class="table-striped">
+					<table class="table-striped account mt-3">
 						<tr>
 							<td>Profile Picture:</td>
 							<td>
-								<input type='file' id="profileImg" />
-								<img id="profile-img" class="profile-img" src="{{ asset('images/user-default.jpg') }}" alt="your image" />
+								<img id="profile-img" class="profile-img mb-3" src="{{ asset('images/user-default.jpg') }}" alt="your image" /><br>
+								<!-- <input type='file' id="profileImg" accept="image/x-png,image/jpeg" /> -->
+								<div class="input-group mb-3">
+								  <div class="custom-file">
+								    <input type="file" class="custom-file-input" id="profileImg" accept="image/x-png,image/jpeg">
+								    <label class="custom-file-label" for="profileImg">Choose file</label>
+								  </div>
+								</div>
+								
 							</td>
 						</tr>
-
 						<tr class="form-group">
 							<td><label for="name">Name:</label></td>
 							<td>
 	    						<input type="text" class="form-control" id="name">
-							</td>
-						</tr>
-						<tr class="form-group">
-							<td><label for="name">Email:</label></td>
-							<td>
-								<input type="email" class="form-control" id="email">
 							</td>
 						</tr>
 						<tr class="form-group">
@@ -35,10 +35,17 @@
 								<input type="number" class="form-control" id="nric">
 							</td>
 						</tr>
-						<tr>
-							<td colspan="2" class="text-right"><button type="submit" class="btn btn-info">Submit</button></td>
+						<tr class="form-group">
+							<td><label for="name">Email:</label></td>
+							<td>
+								<input type="email" class="form-control" id="email">
+							</td>
 						</tr>
+						
 					</table>
+					<div class="text-right mt-3" style="width:80%;margin:0 auto;">
+						<button type="submit" class="btn btn-info text-right">Submit</button>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -49,7 +56,7 @@
 			<div class="box">
 				<h2>Change Password</h2>
 				<form>
-					<table class="table-striped">
+					<table class="table-striped account mt-3">
 						<tr>
 							<td><label for="name">Current Password:</label></td>
 							<td><input type="password" class="form-control" id="current-password"></td>
@@ -62,10 +69,10 @@
 							<td><label for="name">Confirm Password:</label></td>
 							<td><input type="password" class="form-control" id="confirm-password"></td>
 						</tr>
-						<tr>
-							<td colspan="2" class="text-right"><button type="submit" class="btn btn-info">Submit</button></td>
-						</tr>
 					</table>
+					<div class="text-right mt-3" style="width:80%;margin:0 auto;">
+						<button type="submit" class="btn btn-info text-right">Submit</button>
+					</div>
 				</form>
 			</div>
 		</div>

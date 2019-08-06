@@ -14,7 +14,6 @@
 	</head>
 	<body>
 
-		{{-- Body Content --}}
 		<div id="client-app">
 			@yield('master')
 		</div>
