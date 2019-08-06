@@ -4,32 +4,25 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-require('../../../../node_modules/jquery-match-height/jquery.matchHeight.js');
+
+
 require('../bootstrap');
 
 window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
-const app = new Vue({
-    el: '#client-app'
-});
+require('../../../../node_modules/jquery-match-height/jquery.matchHeight.js');
 
 $(document).ready(function() {
 	//match height//
 	$('.mh').matchHeight();
 
 	//google chart//
-	if ( $( "#piechart" ).length ) {   
+	if ($( "#piechart" ).length) {   
 		google.charts.load('current', {'packages':['corechart']});
 		google.charts.setOnLoadCallback(drawChart);
 
 		function drawChart() {
-
 			var data = google.visualization.arrayToDataTable([
 			  ['Task', 'Percentage'],
 			  ['Completed',     45],
@@ -48,24 +41,23 @@ $(document).ready(function() {
 			var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
 			chart.draw(data, options);
-			}
 
 			var dropdown = document.getElementsByClassName("dropdown-btn");
 			var i;
 
 			for (i = 0; i < dropdown.length; i++) {
 			  dropdown[i].addEventListener("click", function() {
-			  this.classList.toggle("active");
-			  var dropdownContent = this.nextElementSibling;
-			  if (dropdownContent.style.display === "block") {
-			  dropdownContent.style.display = "none";
-			  } else {
-			  dropdownContent.style.display = "block";
-			  }
-			});
-		}	 
-	}
-
+          this.classList.toggle("active");
+          var dropdownContent = this.nextElementSibling;
+          if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          } else {
+          dropdownContent.style.display = "block";
+          }
+        });
+      }
+    }	  
+  }
 	//file input preview image
 
 	function readURL(input) {
@@ -103,3 +95,10 @@ $(document).ready(function() {
 	// });
 });
 
+const files = require.context('./../components/', true, /\.vue$/i);
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)));
+
+const app = new Vue({   
+  el: '#client-app'
+});   
+ 

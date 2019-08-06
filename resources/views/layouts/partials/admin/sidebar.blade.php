@@ -2,10 +2,10 @@
 
   <div class="logo">
 		<a href="{{ route('admin.dashboard') }}" class="simple-text logo-mini">
-      TH
+      QB
     </a>
     <a href="{{ route('admin.dashboard') }}" class="simple-text logo-normal">
-      The Techy Hub
+      Question Bank
     </a>
   </div>
 
