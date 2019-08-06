@@ -23285,7 +23285,7 @@ License - nucleoapp.com/license/
 @font-face {
   font-family: 'nucleo-icons';
   src: url(/fonts/nucleo-icons.eot?8224e0160e362e117cbe00495919e2af);
-  src: url(/fonts/nucleo-icons.eot?8224e0160e362e117cbe00495919e2af) format("embedded-opentype"), url(/fonts/nucleo-icons.woff2?ff208b8d733e61a630992ee2b72c9c1c) format("woff2"), url(/fonts/nucleo-icons.woff?861720fa94b80958075f620b2c6e8fb9) format("woff"), url(/fonts/nucleo-icons.ttf?b0dc05d015e91e7d28d79cd0056fe555) format("truetype"), url(/fonts/nucleo-icons.svg?ae42fa524981a56f3f289447cff36eb1) format("svg");
+  src: url(/fonts/nucleo-icons.eot?8224e0160e362e117cbe00495919e2af) format("embedded-opentype"), url(/fonts/nucleo-icons.woff2?ff208b8d733e61a630992ee2b72c9c1c) format("woff2"), url(/fonts/nucleo-icons.woff?861720fa94b80958075f620b2c6e8fb9) format("woff"), url(/fonts/nucleo-icons.ttf?b0dc05d015e91e7d28d79cd0056fe555) format("truetype"), url(/fonts/nucleo-icons.svg?dc0cdfac3187d5fe800b249201cdf9b0) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -28923,8 +28923,8 @@ select.selectpicker {
   border-radius: 3px;
   background: #FFF;
   cursor: default;
-  -webkit-box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
-          box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
+  -webkit-box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
+          box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
   -webkit-transition: 300ms ease 0s;
   -moz-transition: 300ms ease 0s;
   -ms-transition: 300ms ease 0s;
@@ -29201,10 +29201,39 @@ select.selectpicker {
   border: 1px solid #036635;
 }
 
-.btn-info:hover {
-  background-color: #036635;
+.btn-info:hover,
+.btn-info:active,
+.btn-info:focus {
+  background-color: #036635 !important;
   border: 1px solid #036635;
   opacity: 0.8;
+}
+
+.form-check {
+  border: none;
+  padding: 5px 0;
+  margin: 0;
+}
+
+.form-check:hover {
+  background-color: transparent !important;
+}
+
+.form-check .form-check-sign::before,
+.form-check .form-check-sign::after {
+  font-family: 'Font Awesome 5 Free' !important;
+  color: #036635 !important;
+  font-size: 30px !important;
+  margin-left: -22px;
+}
+
+.form-check .form-check-sign::before {
+  content: "\F0C8" !important;
+}
+
+.form-check .form-check-sign::after {
+  content: "\F14A" !important;
+  position: relative !important;
 }
 
 .footer {

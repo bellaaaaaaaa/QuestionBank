@@ -22,7 +22,7 @@
     </div>
 
     <div class="container">
-        <div class="row" v-for="(answer, index) in answers" v-if="!answer.deleted">
+        <div class="row mb-3" v-for="(answer, index) in answers" v-if="!answer.deleted">
           <div class="col-12 col-md-9">
             <input type="text" name="answers" class="form-control" v-model="answer.name"> 
           </div>
@@ -37,7 +37,7 @@
           </div>
           
           <div class="col-12 col-md-2">
-            <div class="btn btn-primary" @click="deleteClick(index)">Delete</div>
+            <div class="btn btn-primary btn-info" @click="deleteClick(index)">Delete</div>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
           </div>
 
           <div class="col-12 col-md-2">
-            <div class="btn btn-primary" @click="onClick()">Create</div>
+            <div class="btn btn-primary btn-info" @click="onClick()">Create</div>
           </div>
         </div>
         
