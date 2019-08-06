@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\AnswerServices;
+use App\Services\Admin\AnswerServices;
 use App\Question;
 use App\Answer;
 use Session;
@@ -19,9 +19,10 @@ class AnswersController extends Controller
     }
 
   public function index(Request $request){
-		if ($request->isJson()) {
+		if ($request->wantsJson()) {
 			return $this->answerServices->all($request);
-		}
+    }
+    
 		return view($this->path . 'index');
   }
 

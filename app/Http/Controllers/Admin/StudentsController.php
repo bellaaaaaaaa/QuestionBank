@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Student;
 use Session;
-use App\Services\StudentServices;
+use App\Services\Admin\StudentServices;
 
 class StudentsController extends Controller
 {
