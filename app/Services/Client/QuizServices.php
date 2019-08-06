@@ -29,8 +29,7 @@ class QuizServices extends TransformerService{
 	public function transform($topic){
 		return [
       'id' => $topic->id,
-      'name' => $topic->name,
-      'subject_name' => $topic->subject ? $topic->subject->name : '-'
+      'name' => $topic->name
 		];
 	}
 }

@@ -54,14 +54,13 @@ Route::put('settings/password', "Admin\AccountSettingsController@updatePassword"
 
 //Client Login
 Route::get('login','Client\AuthController@viewLogin')->name('client.login.show');
-Route::post('login','Client\AuthController@login')->name('client.login');
+Route::post('login','Client\AuthController@login')->name('login');
 
 //Client register
 Route::get('register', 'Client\AuthController@viewRegister')->name('client.register.show');
 Route::post('register', "Client\AuthController@register")->name('client.register');
 
-Route::middleware('client.auth')->group(function(){
- 
+Route::middleware('client.auth')->group(function(){  
   // Client
   Route::get('/', 'Client\HomeController@home')->name('root');
   Route::get('/home', 'Client\HomeController@home')->name('home');

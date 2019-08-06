@@ -4,7 +4,7 @@
       <div class="box questions">
         <h2>Questions</h2>
         <h3>Question {{ currentIndex + 1 }} of {{ this.questions.length }}</h3>
-        <p><small>Question Chapter : Chapter 2  - <a href="#">Biology Organisms</a></small></p>
+        <p><small>Question Chapter : {{ defaultTopic.name }}</small></p>
 
         <p>{{ currentQuestion.description }}</p>
         <ul>
@@ -23,7 +23,7 @@
 
 <script>
   export default{
-    props: ['defaultQuestions'],
+    props: ['defaultQuestions', 'defaultTopic'],
     data: function(){
       return {
         questions: [],
@@ -56,7 +56,20 @@
         }
         
         this.submitted = true;
-        this.$emit('questionSubmitted', this.currentIndex);
+        var result = null;
+
+        this.currentQuestion.answers.forEach((answer) => {
+          if(answer.id == this.selected) {
+            if(answer.correct == true) {
+              result = true;
+            }else {
+              result = false;
+            }
+          }
+        });
+
+        Vue.set(this.currentQuestion, 'result', result);
+        this.$emit('questionSubmitted', this.currentIndex, this.currentQuestion);
       },
       onNextClick: function() {
         if(!this.submitted) {
@@ -66,6 +79,7 @@
         if(this.currentIndex < this.questions.length) {
           this.currentIndex++;
           this.currentQuestion = this.questions[this.currentIndex];
+          this.$emit('questionNext', this.currentIndex, this.currentQuestion);
         }
       }
     }
