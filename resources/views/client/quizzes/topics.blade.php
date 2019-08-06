@@ -19,7 +19,7 @@
 				<h2>Topics</h2>
 				<ul>
           @foreach($topics as $key => $topic)
-					  <a href="{{ route('quizzes.topic.questions', $topic['id']) }}"><li>Chapter {{ $key + 1 }} - {{ $topic['name'] }}</li></a>
+					  <a href="{{ route('quizzes.questions', $topic['id']) }}"><li>Chapter {{ $key + 1 }} - {{ $topic['name'] }}</li></a>
           @endforeach
 				</ul>
 			</div>

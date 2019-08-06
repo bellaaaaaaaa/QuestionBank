@@ -2,14 +2,14 @@
   <div class="page-container m-3 m-sm-5">
     <div class="row">
       <div class="col-sm-12">
-        <h1 class="my-3 mb-sm-0 mb-sm-5">Quiz -{{ subject.name }}</h1>
-        <question-stats-component :default-stats="stats" v-if="stats.show"></question-stats-component>
+        <h1 class="my-3 mb-sm-0 mb-sm-5">Quiz - {{ subject.name }}</h1>
+        <question-stats-component :default-questions="questions" :default-stats="showStats" :default-current-index="currentIndex"></question-stats-component>
       </div>
     </div>
 
-    <quiz-question-component :default-questions="questions"></quiz-question-component>
+    <quiz-question-component :default-questions="questions" @questionSubmitted="onQuestionSubmitted"></quiz-question-component>
 
-    <question-explanation-component v-if="stats.show"></question-explanation-component>
+    <question-explanation-component v-if="showStats"></question-explanation-component>
   </div>
 </template>  
 <script>
@@ -19,9 +19,7 @@
       return {
         subject: {},
         questions: [],
-        stats: {
-          show: false
-        },
+        showStats: false,
         currentIndex: 0
       };
     },
@@ -32,6 +30,10 @@
       setDefault: function() {
         this.subject = JSON.parse(this.defaultSubject);
         this.questions = JSON.parse(this.defaultQuestions);
+      },
+      onQuestionSubmitted: function(currentIndex) {
+        this.showStats = true;
+        this.currentIndex = currentIndex;
       }
     }
   }

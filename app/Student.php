@@ -28,5 +28,9 @@ class Student extends Model {
   public function loginTo(){
     return $this->belongsTo('App\Subject', 'login_to');
   }
+
+  public function answers(){
+    return $this->belongsToMany('App\Answer', 'answer_student');
+  }
 }
 

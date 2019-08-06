@@ -19,7 +19,7 @@ class QuizzesController extends Controller {
 
   public function showTopics() {
     $subject = get_student_subject();
-    $topics = $this->quizServices->getTopics();
+    $topics = $this->quizServices->getTopics($subject);
 
     return view($this->path . 'topics', ['subject' => $subject, 'topics' => $topics]);
   }
