@@ -12,12 +12,12 @@
 					</div> 
 					<div class="payment-gateway">
 				        <div class="form-group has-label row">
-				          	<div class="form-check col-sm-6" id="paypal">
+				          	<div class="col-sm-6" id="paypal">
 				          		<a href="#">
 							    	<img src="{{ asset('images/paypal-long.png') }}">
 							    </a>
 							</div>
-							<div class="form-check col-sm-6" id="stripe">
+							<div class="col-sm-6" id="stripe">
 								<a href="/stripe">
 							  		<img src="{{ asset('images/stripe.png') }}">
 							  	</a>
