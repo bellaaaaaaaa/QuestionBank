@@ -15,7 +15,12 @@ class CreateSubjectsTable extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('teacher_id');
             $table->string('name');
+            $table->string('description');
+            $table->double('1_month_price');
+            $table->double('2_month_price');
+            $table->double('3_month_price');
             $table->timestamps();
         });
     }

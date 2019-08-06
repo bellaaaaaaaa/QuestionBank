@@ -1,15 +1,15 @@
 <?php
 
 use App\User;
-use Carbon\Carbon;
 
+use Carbon\Carbon;
 
 function current_user(){
   return Auth::user();
 }
 
 function admin_register_open(){
-	return User::count() == 0;
+	return User::where('owner_type', null)->first() == null;
 }
 
 function is_active($path, $class = 'active'){
@@ -49,4 +49,12 @@ function date_to_human($date, $format = 'd/m/Y, h:i A'){
 	}
 	$dt = Carbon::parse($date);
 	return $dt->format($format);
+}
+
+function get_student_subject() {
+  if(current_user()->owner_type != 'Student') {
+    return false;
+  }
+
+  return current_user()->owner->loginTo;
 }

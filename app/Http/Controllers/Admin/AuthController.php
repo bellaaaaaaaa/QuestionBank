@@ -22,8 +22,7 @@ class AuthController extends Controller{
 	  ]);
 
 	  $user = User::create($request->all());
-	  $user->role = 1;
-	  $user->save();
+
 	  Auth::login($user);
 
 	  return redirect()->route('admin.dashboard');
@@ -39,7 +38,7 @@ class AuthController extends Controller{
 	    "password" => "required"
 	  ]);
 
-	  if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 1])) {
+	  if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'owner_type' => null])) {
 	    return redirect()->route('admin.dashboard');
 	  }else{
 	    return redirect()->back()->withErrors(['message' => 'Email or password is incorrect']);
@@ -51,11 +50,4 @@ class AuthController extends Controller{
 
 	  return redirect()->route('admin.login.show');
 	}
-
-
-
-
-
-
-
 }

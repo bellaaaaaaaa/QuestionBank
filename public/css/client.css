@@ -15072,6 +15072,11 @@ body {
   opacity: 0.8;
 }
 
+.login-register .link-black {
+  color: black;
+  text-decoration: underline;
+}
+
 .profile-img {
   max-width: 180px;
 }
@@ -15085,6 +15090,32 @@ body {
   background-color: #036635;
   border: 1px solid #036635;
   opacity: 0.8;
+}
+
+.payment-gateway img {
+  width: 100%;
+}
+
+.form-check {
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+.form-check input {
+  display: none;
+}
+
+.form-check.active,
+.form-check:hover {
+  background: #036635;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form-group > label {
+  font-weight: bold;
 }
 
 .box {
@@ -15150,6 +15181,12 @@ body {
 
 .box .table-striped.mcq-attempts {
   width: 80%;
+}
+
+.box .table-striped.account {
+  width: 80%;
+  margin: 0 auto;
+  display: table;
 }
 
 .box .table-striped td {

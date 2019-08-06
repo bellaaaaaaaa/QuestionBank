@@ -31,7 +31,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -60,7 +60,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 				'admin.auth' => \App\Http\Middleware\Admin\AdminAuth::class,
-                'register.access' => \App\Http\Middleware\Admin\RegisterAccess::class,
-                'client.auth' => \App\Http\Middleware\Client\ClientAuth::class,
+        'register.access' => \App\Http\Middleware\Admin\RegisterAccess::class,
+        'client.auth' => \App\Http\Middleware\Client\ClientAuth::class,
     ];
 }

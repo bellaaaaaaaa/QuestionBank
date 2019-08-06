@@ -50,11 +50,17 @@ Route::post('settings', "Admin\AccountSettingsController@updateAccount")->name("
 Route::put('settings/password', "Admin\AccountSettingsController@updatePassword")->name("admin.password.change");
 });
 });
+
 Route::middleware('client.auth')->group(function(){
   // Client
   Route::get('/', 'Client\HomeController@home')->name('root');
   Route::get('/home', 'Client\HomeController@home')->name('home');
   Route::get('mcq-exam', 'Client\QuestionsController@showQuestion')->name('show.questions');
+
+  Route::get('logout', 'Client\AuthController@logout')->name('client.logout');
+
+  Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');
+  Route::get('quizzes/topics/{topic}', 'Client\QuizzesController@showQuestions')->name('quizzes.questions');
 });
 
 //Client Login
@@ -70,6 +76,10 @@ Route::view('/edit-profile', '/client/edit-profile');
 Route::view('/mcq-exam', '/client/mcq-exam');
 Route::view('/quiz/1', '/client/quiz');
 Route::view('/quiz/topics', '/client/topics');
+
+Route::view('/payment', '/client/payment/payment');
+Route::view('/payment-gateway', '/client/payment/payment-gateway');
+Route::view('/stripe', '/client/payment/stripe-info');
 
 
 

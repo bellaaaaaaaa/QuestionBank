@@ -6,25 +6,47 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Student;
+use App\Subject;
 use Auth;
 
 class AuthController extends Controller{
 
 	public function viewRegister(){
-	    return view('client.auth.register');
-  	}
+    return view('client.auth.register');
+  }
 
  	public function register(Request $request){
-	  $this->validate($request, [
+    $this->validate($request, [
 	    "email" => "required|email|unique:users",
-	    "name" => "required",
-	    "password" => "required|confirmed"
-	  ]);
-	  
-	  $client = User::create($request->all());
-	  $client->role = 0;
-	  $client->save();
-	  Auth::login($client);
+      "name" => "required",
+      "nric" => "required|numeric",
+      "age" => "required|numeric",
+	    "password" => "required|confirmed",
+	    "subject" => "required"
+    ]);
+    
+    $subject = $this->getSubject($request->subject);
+
+    if(!$subject) {
+      return redirect()->back()->withInput()->with('error', 'Subject not found.');
+    }
+
+	  $user = User::create([
+      'email' => $request->email,
+      'name' => $request->name,
+      'password' => $request->password
+    ]);
+
+    $student = Student::create([
+      'login_to' => $subject->id,
+      'nric' => $request->nric,
+      'age' => $request->age 
+    ]);
+    
+    $student->owner()->save($user);
+
+	  Auth::login($user);
 		
 	  return redirect()->route('home');
 	}
@@ -36,10 +58,23 @@ class AuthController extends Controller{
 	public function login(Request $request){
 	  $this->validate($request, [
 	    "email" => "required|email",
-	    "password" => "required"
-	  ]);
+	    "password" => "required",
+	    "subject" => "required"
+    ]);
+    
+    $subject = $this->getSubject($request->subject);
+
+    if(!$subject) {
+      return redirect()->back()->withInput()->with('error', 'Subject not found.');
+    }
 	  
-	  if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 0])) {
+	  if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'owner_type' => 'Student'])) {
+      Auth::logoutOtherDevices($request->password);
+
+      $student = current_user()->owner;
+      $student->login_to = $subject->id;
+      $student->save();
+
 	    return redirect()->route('home');
 	  }else{
 	    return redirect()->back()->withErrors(['message' => 'Email or password is incorrect']);
@@ -49,7 +84,10 @@ class AuthController extends Controller{
 	public function logout(){
 	  Auth::logout();
 
-	  return redirect()->route('admin.login.show');
-	}
-
+	  return redirect()->route('client.login.show');
+  }
+  
+  public function getSubject($subject) {
+    return Subject::find($subject);
+  }
 }

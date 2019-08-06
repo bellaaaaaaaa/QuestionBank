@@ -17,9 +17,7 @@ class CreateStudentSubjectTable extends Migration
             $table->increments('id');
             $table->string('student_id');
             $table->string('subject_id');
-            $table->boolean('subscribed');
-            $table->string('subscription_model');
-            $table->datetime('subscription_expiration_time');
+            $table->datetime('expiration_date');
             $table->timestamps();
         });
     }

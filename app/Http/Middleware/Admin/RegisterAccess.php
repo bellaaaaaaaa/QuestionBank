@@ -15,7 +15,7 @@ class RegisterAccess{
    * @return mixed
    */
   public function handle($request, Closure $next){
-    $admin = User::where('role', 1)->first();
+    $admin = User::where('owner_type', null)->first();
 
     
     if($admin) { // has a value or true
