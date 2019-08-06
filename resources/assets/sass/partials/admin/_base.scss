@@ -11,11 +11,94 @@
 	background-color: $default-color !important;
 }
 
+.pull-left{
+	float:left;
+}
+
+.pull-right{
+	float:right;
+}
+
+//navbar
 .navbar{
 	background:#fff;
 	border-bottom: 1px solid #ddd;
+	height:60px !important;
+	min-height: 60px;
+	max-height:60px;
 
 	.dropdown-toggle i{
 		color:#888;
 	}
+
+	.navbar-toggler{
+		border:none;
+	}
+}
+
+@media (max-width: 991px) {
+	.nav-item.mobile-log, .main-panel .nav-item{
+		display:none;
+	}	
+}
+
+@media (min-width: 992px) {
+	.main-panel{
+		.nav-item.mobile-log{
+			display:none;
+		}
+
+		.nav-item.btn-rotate{
+			span{
+				display:none;
+			}
+		}
+	}
+}
+
+.navbar-brand, .nav-item a{
+	color: #888 !important;
+    opacity: 1 !important;
+}
+
+.sidebar-wrapper .nav-item i{
+	color:#fff;
+}
+
+//dashboard
+.bootstrap-table{
+	button{
+		border: 1px solid #ccc !important;
+	    border-radius: 2px !important;
+	    color:$brand-color !important;
+
+	    &:hover{
+	    	background: $brand-color !important;
+	    	color:#fff !important;
+	    }
+	}
+
+	td.edit-hover{
+		cursor:pointer;
+
+		&:hover{
+			color:$brand-color;
+		}
+	}
+}
+
+.btn-info{
+	background-color:$brand-color;
+	border:1px solid $brand-color;
+
+	&:hover{
+		background-color:$brand-color;
+		border:1px solid $brand-color;
+		opacity:0.8;
+	}
+}
+
+//footer
+.footer{
+	height:60px;
 }

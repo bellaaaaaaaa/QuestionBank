@@ -65,8 +65,11 @@ Route::post('login','Client\AuthController@login')->name('client.login');
 Route::get('register', 'Client\AuthController@viewRegister')->name('client.register.show');
 Route::post('register', "Client\AuthController@register")->name('client.register');
 
-// //added by Pat to view the frontend pages
-// Route::view('/quiz', '/client/quiz');
-// Route::view('/mcq-exam', '/client/mcq-exam');
+//added by Pat to view the frontend pages
+Route::view('/edit-profile', '/client/edit-profile');
+Route::view('/mcq-exam', '/client/mcq-exam');
+Route::view('/quiz/1', '/client/quiz');
+Route::view('/quiz/topics', '/client/topics');
+
 
 

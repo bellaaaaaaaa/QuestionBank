@@ -15,7 +15,7 @@
           <img src="{{ avatar_picture_url(current_user()->avatar) }}" >
         </div>
       </div>
-			<a data-toggle="collapse" href="#collapseExample" class="collapsed">
+			<a href="{{ route('admin.account.show') }}">
 				<span>{{ str_limit(current_user()->name, 20) }}</span>
       </a>
 		</div>
@@ -23,16 +23,33 @@
     <ul class="nav">
       <li class="nav-item {{ is_active('admin.dashboard') }}">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
-          <i class="fa fa-pie-chart" aria-hidden="true"></i>
+          <i class="fas fa-chart-pie" aria-hidden="true"></i>
           <p>Dashboard</p>
         </a>
       </li>
 
-      <li class="nav-item {{ is_active('subjects') }}">
-        <a class="nav-link" href="{{ route('subjects.index') }}">
-          <i class="fa fa-book" aria-hidden="true"></i>
-          <p>Subjects</p>
-        </a>
+    <li class="nav-item {{ is_active('subjects') }}">
+      <a class="nav-link" href="{{ route('subjects.index') }}">
+        <i class="fa fa-book" aria-hidden="true"></i>
+        <p>Subjects</p>
+      </a>
+    </li>
+    <li class="nav-item {{ is_active('topics') }}">
+      <a class="nav-link" href="{{ route('topics.index') }}">
+        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+      <p>Topics</p>
+    </a>
+  </li>
+    <li class="nav-item {{ is_active('questions') }}">
+      <a class="nav-link" href="{{ route('questions.index') }}">
+        <i class="fa fa-question" aria-hidden="true"></i>
+      <p>Questions</p>
+      </a>
+    <li class="nav-item {{ is_active('answers') }}">
+      <a class="nav-link" href="{{ route('answers.index') }}">
+        <i class="fa fa-unlock" aria-hidden="true"></i>
+      <p>Answers</p>
+      </a>
       </li>
 
       <li class="nav-item {{ is_active('topics') }}">

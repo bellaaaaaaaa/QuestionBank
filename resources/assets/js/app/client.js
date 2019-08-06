@@ -20,8 +20,10 @@ const app = new Vue({
 });
 
 $(document).ready(function() {
+	//match height//
 	$('.mh').matchHeight();
 
+	//google chart//
 	google.charts.load('current', {'packages':['corechart']});
 	google.charts.setOnLoadCallback(drawChart);
 
@@ -37,7 +39,7 @@ $(document).ready(function() {
       legend: 'none',
       tooltip: { trigger: 'none' },
       slices: {
-        0: { color: '#029FCE' },
+        0: { color: '#036635' },
         1: { color: '#dedede' }
       }
     };
@@ -61,4 +63,22 @@ $(document).ready(function() {
 	  }
 	  });
 	}
+
+	function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    
+	    reader.onload = function(e) {
+	      $('#profile-img').attr('src', e.target.result);
+	    }
+	    
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	}
+
+	$("#profileImg").change(function() {
+	  readURL(this);
+	});
+
 });
+

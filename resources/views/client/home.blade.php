@@ -7,7 +7,7 @@
 		<div class="col-sm-12">
 			<div class="box">
 				<h2>Personal Details</h2>
-				<table cellspacing="10">
+				<table class="table-striped">
 					<tr>
 						<td>Name:</td>
 						<td>{{ $username }}</td>
@@ -56,25 +56,25 @@
 			<div class="box mh">
 				<h2>MCQ Exam</h2>
 				<div class="border-box">
-					<table cellspacing="10">
+					<table class="table-striped mcq-attempts">
 						<tr>
-							<td>Attempt 1:</td>
+							<td><i class="fas fa-check-circle"></i>Attempt 1:</td>
 							<td>45%</td>
 						</tr>
 						<tr>
-							<td>Attempt 2:</td>
+							<td><i class="fas fa-check-circle"></i>Attempt 2:</td>
 							<td>65%</td>
 						</tr>
 						<tr>
-							<td>Attempt 3:</td>
+							<td><i class="fas fa-check-circle"></i>Attempt 3:</td>
 							<td>Incomplete</td>
 						</tr>
 						<tr>
-							<td>Attempt 4:</td>
+							<td><i class="fas fa-check-circle"></i>Attempt 4:</td>
 							<td>Incomplete</td>
 						</tr>
 						<tr>
-							<td>Attempt 5:</td>
+							<td><i class="fas fa-check-circle"></i>Attempt 5:</td>
 							<td>Incomplete</td>
 						</tr>
 					</table>
@@ -87,7 +87,7 @@
 		<div class="col-sm-12">
 			<div class="box">
 				<h2>Subjective Exam</h2>
-				<table cellspacing="10">
+				<table class="table-striped">
 					<tr>
 						<td>Submission:</td>
 						<td>24/07/2019</td>

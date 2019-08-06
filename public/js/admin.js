@@ -105788,6 +105788,14 @@ $().ready(function () {
 
   var $table = $('#bootstrap-table');
   var url = $table.data('url');
+  var heading = $table.data('clickable');
+
+  $table.on('click-cell.bs.table', function (e, value, row, element) {
+    if (value == heading) {
+      location.href = url + '/' + element.id + '/edit';
+      $(this).style.cursor = 'pointer';
+    }
+  });
 
   window.operateEvents = {
     'click .view': function clickView(e, value, row, index) {
@@ -105834,13 +105842,13 @@ $().ready(function () {
   $table.bootstrapTable((_$table$bootstrapTabl = {
     toolbar: ".toolbar",
     clickToSelect: true,
-    showRefresh: true,
+    showRefresh: false,
     search: true,
     showToggle: false,
     showColumns: false,
     pagination: true,
-    searchAlign: 'left',
-    toolbarAlign: 'right',
+    searchAlign: 'right',
+    toolbarAlign: 'left',
     pageSize: 10,
     sidePagination: 'server'
   }, _defineProperty(_$table$bootstrapTabl, 'clickToSelect', false), _defineProperty(_$table$bootstrapTabl, 'formatShowingRows', function formatShowingRows(pageFrom, pageTo, totalRows) {
@@ -105848,7 +105856,7 @@ $().ready(function () {
   }), _defineProperty(_$table$bootstrapTabl, 'formatRecordsPerPage', function formatRecordsPerPage(pageNumber) {
     return pageNumber + " rows visible";
   }), _defineProperty(_$table$bootstrapTabl, 'icons', {
-    refresh: 'fa fa-refresh',
+    refresh: 'fas fa-sync',
     toggle: 'fa fa-th-list',
     columns: 'fa fa-columns',
     detailOpen: 'fa fa-plus-circle',

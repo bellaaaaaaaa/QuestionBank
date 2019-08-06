@@ -6,10 +6,9 @@
 	<div class="row my-3 mb-sm-0 mb-sm-5">
 		<div class="col-sm-12">
 			<h1 class="">MCQ - Management Accounting</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque bibendum elit eget auctor mattis. Suspendisse id tortor nec tellus placerat varius. Sed nec molestie nunc, sit amet posuere nisi. Nulla at tincidunt lectus, a venenatis erat. Aenean in ex quam. Nam diam turpis, rutrum eget mattis non, feugiat vitae sem. Nulla pellentesque egestas aliquet.Fusce nec odio ipsum. Maecenas pretium sapien tortor. Praesent sagittis efficitur libero, non aliquet orci posuere eu. Fusce pellentesque neque orci, ut hendrerit tortor blandit eget. Nam ultrices mi in fringilla rhoncus. Ut egestas ultrices hendrerit. Quisque odio ipsum, vestibulum sit amet nisi nec, hendrerit rhoncus mauris. Vivamus vitae nisi ac nisl malesuada laoreet id non nulla. Vestibulum mi urna, dignissim ac placerat quis, pellentesque eu nunc. Aenean sagittis justo ut quam porta, eget interdum neque fringilla.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque bibendum elit eget auctor mattis. Suspendisse id tortor nec tellus placerat varius. Sed nec molestie nunc, sit amet posuere nisi. Nulla at tincidunt lectus, a venenatis erat. Aenean in ex quam. Nam diam turpis, rutrum eget mattis non, feugiat vitae sem. Nulla pellentesque egestas aliquet.Fusce nec odio ipsum. Maecenas pretium sapien tortor. Praesent sagittis efficitur libero, non aliquet orci posuere eu.</p>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="box questions">
@@ -246,8 +245,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
-
 
 @endsection

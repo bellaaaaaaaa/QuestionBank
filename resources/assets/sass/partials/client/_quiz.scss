@@ -115,9 +115,42 @@
     }
 }
 
+.topics{
+	ul{
+		list-style-type: none;
+		padding: 0;
+	}
+
+	a{
+		color:#fff;
+
+		&:hover{
+			color:#000;
+			text-decoration:none;
+		}
+
+		&:nth-child(odd) li{
+			background:$brand-color;
+		}
+
+		&:nth-child(even) li{
+			background:rgba($brand-color, 0.8);
+		}
+
+		li{
+			padding:10px;
+			margin:10px 0;
+		}
+	}
+}
+
 .questions{
 	h3{
 		margin-top:20px;
+	}
+
+	a{
+		color: $brand-color;
 	}
 
 	ul{
@@ -152,6 +185,12 @@
 			    &.wrong{
 			    	background-color:$wrong-answer;
 			    	color: #fff;
+			    }
+
+			    &.correct, &.wrong{
+			    	&:hover{
+			    		color: #fff;	
+			    	}
 			    }
 			}
 
