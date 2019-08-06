@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Subject;
-use App\Services\SubjectServices;
+use App\Services\Admin\SubjectServices;
 use Session;
 
 class SubjectsController extends Controller{

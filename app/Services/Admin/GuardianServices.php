@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
-use App\Answer;
+use App\Guardian;
 use Illuminate\Http\Request;
+use App\Services\TransformerService;
 
-class AnswerServices extends TransformerService{
+class GuardianServices extends TransformerService{
 
 	public function all(Request $request){
 		$sort = $request->sort ? $request->sort : 'created_at';
@@ -14,13 +15,13 @@ class AnswerServices extends TransformerService{
         $offset = $request->offset ? $request->offset : 0;
         $query = $request->search ? $request->search : '';
 
-        $answers =  Answer::where('name', 'like', "%{$query}%")->orderBy($sort, $order);
-        $listCount = $answers->count();
+        $guardians =  Guardian::where('name', 'like', "%{$query}%")->orderBy($sort, $order);
+        $listCount = $guardians->count();
 
-        $answers = $answers->limit($limit)->offset($offset)->get();
+        $guardians = $guardians->limit($limit)->offset($offset)->get();
 
         // return respond(['rows' => $questions, 'total' => $listCount]);
-        return respond(['rows' => $this->transformCollection($answers), 'total' => $listCount]);
+        return respond(['rows' => $this->transformCollection($guardians), 'total' => $listCount]);
 	}
 
     // public function transformDate($date) {
@@ -29,13 +30,12 @@ class AnswerServices extends TransformerService{
     //     return $date;
     // }
 
-	public function transform($answer){
+	public function transform($guardian){
 		return [
-            'id' => $answer->id,
-            'name' => $answer->name,
+            'id' => $guardian->id,
+            'name' => $guardian->name,
+            'email' => $guardian->email
             // 'name' => $this->transformDate($question->created_at),
-            'correct' =>  $answer->correct,
-            'question' => $answer->question ? $answer->question->name:'-',
-		];
+        ];  
 	}
 }

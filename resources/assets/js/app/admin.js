@@ -63,6 +63,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('questions-component', require('../components/Admin/QuestionsComponent.vue'));
+
 const app = new Vue({
-    el: '#admin-app'
+    el: '#admin-app',
 });

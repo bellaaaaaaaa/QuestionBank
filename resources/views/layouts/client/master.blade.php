@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
    
     <title>{{ config('app.name') }}</title>
 
@@ -18,9 +19,9 @@
 
       <!-- Sidebar -->
       <div class="border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading"><img src="{{ asset('images/user-default.jpg') }}"><span>John Doe</span></div>
+      <div class="sidebar-heading"><img src="{{ asset('images/user-default.jpg') }}"><span>{{ current_user()->name }}</span></div>
         <div class="list-group list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
+        <a href="{{ route('home')}}" class="list-group-item list-group-item-action active">Dashboard</a>
           <a class="list-group-item list-group-item-action dropdown-btn">Learning Materials</a>
           <div class="dropdown-container">
             <a href="#">Chapter 1</a>
@@ -29,7 +30,7 @@
           </div>
           <a href="#" class="list-group-item list-group-item-action">Quiz</a>
           <a href="#" class="list-group-item list-group-item-action">Articles</a>
-          <a href="#" class="list-group-item list-group-item-action">MCQ Exam</a>
+        <a href="{{ route('show.questions') }}" class="list-group-item list-group-item-action">MCQ Exam</a>
           <a href="#" class="list-group-item list-group-item-action">Subjective Exam</a>
         </div>
       </div>

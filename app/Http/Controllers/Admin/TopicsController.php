@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\TopicServices;
+use App\Services\Admin\TopicServices;
 use App\Topic;
 use App\Subject;
 use Session;

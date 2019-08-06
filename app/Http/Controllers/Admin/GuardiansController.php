@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Guardian;
-use App\Services\GuardianServices;
+use App\Services\Admin\GuardianServices;
 use Session;
 
 class GuardiansController extends Controller
