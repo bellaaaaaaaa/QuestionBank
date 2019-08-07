@@ -21,7 +21,9 @@ class QuestionServices extends TransformerService{
       'description' => $question->description,
       'explanation' => $question->explanation,
       'answers' => $this->answerServices->transformCollection($question->answers),
-      'totalAnswers' => $this->answerStudentServices->getTotalStudents($question->answers)
+      'totalAnswers' => $this->answerStudentServices->getTotalStudents($question->answers),
+      'submitted' => false,
+      'selected' => false,
 		];
 	}
 }
