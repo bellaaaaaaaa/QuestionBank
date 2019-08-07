@@ -48518,7 +48518,8 @@ var map = {
 	"./client/quizzes/QuizComponent.vue": 170,
 	"./client/quizzes/partials/QuestionExplanationComponent.vue": 173,
 	"./client/quizzes/partials/QuestionStatsComponent.vue": 176,
-	"./client/quizzes/partials/QuizQuestionComponent.vue": 179
+	"./client/quizzes/partials/QuizQuestionComponent.vue": 179,
+	"./client/quizzes/partials/QuizResultComponent.vue": 238
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -48603,16 +48604,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['defaultSubject', 'defaultTopic', 'defaultQuestions'],
   data: function data() {
     return {
+      questions: [],
       subject: {},
       topic: {},
-      questions: [],
-      showStats: false,
-      currentIndex: 0
+      currentQuestion: {},
+      currentIndex: 0,
+      completed: false
     };
   },
   mounted: function mounted() {
@@ -48624,16 +48629,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.subject = JSON.parse(this.defaultSubject);
       this.topic = JSON.parse(this.defaultTopic);
       this.questions = JSON.parse(this.defaultQuestions);
+      this.currentQuestion = this.questions[this.currentIndex];
     },
-    onQuestionSubmitted: function onQuestionSubmitted(currentIndex, currentQuestion) {
-      this.questions[this.currentIndex] = currentQuestion;
-      this.currentIndex = currentIndex;
-      this.showStats = true;
+    onQuestionSubmitted: function onQuestionSubmitted(currentQuestion, answer) {
+      var self = this;
+      axios.post('/quizzes/topics/answer', { answer_id: answer }).then(function (_ref) {
+        var data = _ref.data;
+
+        self.questions[self.currentIndex] = currentQuestion;
+      }, function (error) {
+        console.log(error);
+      });
     },
-    onQuestionNext: function onQuestionNext(currentIndex, currentQuestion) {
+    onQuestionNext: function onQuestionNext(finalQuestion) {
+      if (finalQuestion) {
+        this.completed = true;
+      } else {
+        this.currentIndex += 1;
+        this.currentQuestion = this.questions[this.currentIndex];
+      }
+    },
+    onQuestionChanged: function onQuestionChanged(currentQuestion, currentIndex) {
+      this.currentQuestion = currentQuestion;
       this.currentIndex = currentIndex;
-      this.questions[this.currentIndex] = currentQuestion;
-      this.showStats = false;
+    },
+    onReset: function onReset() {
+      this.currentIndex = 0;
+      this.completed = false;
+      this.setDefault();
     }
   }
 });
@@ -48659,30 +48682,48 @@ var render = function() {
               _vm._v("Quiz - " + _vm._s(_vm.subject.name))
             ]),
             _vm._v(" "),
-            _c("question-stats-component", {
-              attrs: {
-                "default-questions": _vm.questions,
-                "default-stats": _vm.showStats,
-                "default-current-index": _vm.currentIndex
-              }
-            })
+            !_vm.completed
+              ? _c("question-stats-component", {
+                  attrs: {
+                    "default-questions": _vm.questions,
+                    "default-current-index": _vm.currentIndex,
+                    "default-current-question": _vm.currentQuestion
+                  },
+                  on: { questionChanged: _vm.onQuestionChanged }
+                })
+              : _vm._e()
           ],
           1
         )
       ]),
       _vm._v(" "),
-      _c("quiz-question-component", {
-        attrs: {
-          "default-questions": _vm.questions,
-          "default-topic": _vm.topic
-        },
-        on: {
-          questionSubmitted: _vm.onQuestionSubmitted,
-          questionNext: _vm.onQuestionNext
-        }
-      }),
+      !_vm.completed
+        ? _c("quiz-question-component", {
+            attrs: {
+              "default-questions": _vm.questions,
+              "default-current-question": _vm.currentQuestion,
+              "default-topic": _vm.topic,
+              "default-current-index": _vm.currentIndex
+            },
+            on: {
+              questionSubmitted: _vm.onQuestionSubmitted,
+              questionNext: _vm.onQuestionNext
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _vm.showStats ? _c("question-explanation-component") : _vm._e()
+      !_vm.completed
+        ? _c("question-explanation-component", {
+            attrs: { "default-question": _vm.currentQuestion }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.completed
+        ? _c("quiz-result-component", {
+            attrs: { "default-questions": _vm.questions },
+            on: { reset: _vm.onReset }
+          })
+        : _vm._e()
     ],
     1
   )
@@ -48763,24 +48804,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['defaultQuestions'],
+  props: ['defaultQuestion'],
   data: function data() {
     return {
-      questions: []
+      question: {}
     };
   },
   watch: {
-    defaultQuestions: function defaultQuestions() {
+    defaultQuestion: function defaultQuestion() {
       this.setDefault();
     }
   },
   methods: {
     setDefault: function setDefault() {
-      this.questions = this.defaultQuestions;
+      this.question = this.defaultQuestion;
     }
   }
 });
@@ -48793,43 +48832,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-12" }, [
-        _c("div", { staticClass: "box row" }, [
-          _c("h2", [_vm._v("Explanation")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque bibendum elit eget auctor mattis. Suspendisse id tortor nec tellus placerat varius. Sed nec molestie nunc, sit amet posuere nisi. Nulla at tincidunt lectus, a venenatis erat. Aenean in ex quam. Nam diam turpis, rutrum eget mattis non, feugiat vitae sem. Nulla pellentesque egestas aliquet."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Fusce nec odio ipsum. Maecenas pretium sapien tortor. Praesent sagittis efficitur libero, non aliquet orci posuere eu. Fusce pellentesque neque orci, ut hendrerit tortor blandit eget. Nam ultrices mi in fringilla rhoncus. Ut egestas ultrices hendrerit. Quisque odio ipsum, vestibulum sit amet nisi nec, hendrerit rhoncus mauris. Vivamus vitae nisi ac nisl malesuada laoreet id non nulla. Vestibulum mi urna, dignissim ac placerat quis, pellentesque eu nunc. Aenean sagittis justo ut quam porta, eget interdum neque fringilla."
-            )
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "buttons read-btn",
-            attrs: {
-              type: "button",
-              name: "read_chapter",
-              value: "Read Chapter"
-            }
-          })
+  return _vm.question.result != undefined
+    ? _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12" }, [
+          _c("div", { staticClass: "box row" }, [
+            _c("h2", [_vm._v("Explanation")]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(_vm.question.explanation))]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "buttons read-btn",
+              attrs: {
+                type: "button",
+                name: "read_chapter",
+                value: "Read Chapter"
+              }
+            })
+          ])
         ])
       ])
-    ])
-  }
-]
+    : _vm._e()
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48937,35 +48961,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['defaultQuestions', 'defaultStats', 'defaultCurrentIndex'],
+  props: ['defaultQuestions', 'defaultCurrentIndex', 'defaultCurrentQuestion'],
   data: function data() {
     return {
       questions: [],
       currentQuestion: {},
-      showStats: false,
       currentIndex: 0,
       correctPercentage: 0
     };
   },
   watch: {
     defaultQuestions: function defaultQuestions() {
-      console.log('questions');
       this.questions = this.defaultQuestions;
-      this.currentQuestion = this.questions[this.currentIndex];
-    },
-    defaultStats: function defaultStats() {
-      console.log('stats');
-      this.showStats = this.defaultStats;
-
-      if (this.showStats) {
-        this.updateStats();
-      }
     },
     defaultCurrentIndex: function defaultCurrentIndex() {
-      console.log('index');
       this.currentIndex = this.defaultCurrentIndex;
-      this.currentQuestion = this.questions[this.currentIndex];
+    },
+    defaultCurrentQuestion: function defaultCurrentQuestion() {
+      this.currentQuestion = this.defaultCurrentQuestion;
+      this.updateStats();
     }
+  },
+  mounted: function mounted() {
+    this.questions = this.defaultQuestions;
+    this.currentIndex = this.defaultCurrentIndex;
+    this.currentQuestion = this.defaultCurrentQuestion;
   },
   methods: {
     changeQuestionColour: function changeQuestionColour(question) {
@@ -48996,13 +49016,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     changeQuestionClick: function changeQuestionClick(question, index) {
       this.currentIndex = index;
-      this.currentQuestion = this.questions[this.currentIndex + 1];
+      this.currentQuestion = question;
+
+      this.$emit('questionChanged', this.currentQuestion, index);
     },
     updateStats: function updateStats() {
       var _this = this;
 
       this.currentQuestion.answers.forEach(function (answer, index) {
-        var answered = parseInt(answer.students.length / _this.currentQuestion.totalAnswers * 100);
+        var answered = 0;
+
+        if (_this.currentQuestion.totalAnswers != 0) {
+          answered = parseInt(answer.students.length / _this.currentQuestion.totalAnswers * 100);
+        }
 
         if (answer.correct) {
           _this.correctPercentage = answered;
@@ -49043,7 +49069,7 @@ var render = function() {
             },
             [
               _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _vm._v("\n            " + _vm._s(index) + "\n          ")
+                _vm._v("\n            " + _vm._s(index + 1) + "\n          ")
               ])
             ]
           )
@@ -49053,7 +49079,7 @@ var render = function() {
     _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
-    _vm.showStats
+    _vm.currentQuestion.result != undefined
       ? _c("div", { staticClass: "box q-stats col-lg-6" }, [
           _c("h2", [_vm._v("Question Stats")]),
           _vm._v(" "),
@@ -49207,47 +49233,68 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['defaultQuestions', 'defaultTopic'],
+  props: ['defaultQuestions', 'defaultCurrentQuestion', 'defaultCurrentIndex', 'defaultTopic'],
   data: function data() {
     return {
       questions: [],
       currentQuestion: {},
-      currentIndex: 0,
-      submitted: false,
-      selected: false
+      currentIndex: 0
     };
   },
   watch: {
     defaultQuestions: function defaultQuestions() {
-      this.setDefault();
+      this.questions = this.defaultQuestions;
+    },
+    defaultCurrentQuestion: function defaultCurrentQuestion() {
+      this.currentQuestion = this.defaultCurrentQuestion;
+    },
+    defaultCurrentIndex: function defaultCurrentIndex() {
+      this.currentIndex = this.defaultCurrentIndex;
     }
   },
+  mounted: function mounted() {
+    this.questions = this.defaultQuestions;
+    this.currentQuestion = this.defaultCurrentQuestion;
+    this.currentIndex = this.defaultCurrentIndex;
+  },
   methods: {
-    setDefault: function setDefault() {
-      this.questions = this.defaultQuestions;
-      this.currentQuestion = this.questions[this.currentIndex];
-    },
     questionSubmitted: function questionSubmitted(answer) {
-      if (!this.submitted) {
+      if (!this.currentQuestion.submitted) {
         return;
       }
 
-      return answer.correct ? 'correct' : 'wrong';
+      if (answer.correct) {
+        return 'correct';
+      }
+
+      if (this.currentQuestion.selected == answer.id) {
+        return 'wrong';
+      }
+
+      return '';
+    },
+    onAnswerClick: function onAnswerClick(e) {
+      if (this.currentQuestion.submitted) {
+        e.preventDefault();
+      }
     },
     onSubmitClick: function onSubmitClick() {
       var _this = this;
 
-      if (!this.selected) {
+      if (!this.currentQuestion.selected || this.currentQuestion.submitted) {
         return;
       }
 
-      this.submitted = true;
+      this.currentQuestion.submitted = true;
       var result = null;
 
       this.currentQuestion.answers.forEach(function (answer) {
-        if (answer.id == _this.selected) {
+        if (answer.id == _this.currentQuestion.selected) {
           if (answer.correct == true) {
             result = true;
           } else {
@@ -49257,17 +49304,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       Vue.set(this.currentQuestion, 'result', result);
-      this.$emit('questionSubmitted', this.currentIndex, this.currentQuestion);
+      this.$emit('questionSubmitted', this.currentQuestion, this.currentQuestion.selected);
     },
-    onNextClick: function onNextClick() {
-      if (!this.submitted) {
+    onNextClick: function onNextClick(finalQuestion) {
+      if (!this.currentQuestion.submitted) {
         return;
       }
 
       if (this.currentIndex < this.questions.length) {
-        this.currentIndex++;
-        this.currentQuestion = this.questions[this.currentIndex];
-        this.$emit('questionNext', this.currentIndex, this.currentQuestion);
+        this.$emit('questionNext', finalQuestion);
       }
     }
   }
@@ -49312,8 +49357,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.selected,
-                    expression: "selected"
+                    value: _vm.currentQuestion.selected,
+                    expression: "currentQuestion.selected"
                   }
                 ],
                 attrs: {
@@ -49323,11 +49368,14 @@ var render = function() {
                 },
                 domProps: {
                   value: answer.id,
-                  checked: _vm._q(_vm.selected, answer.id)
+                  checked: _vm._q(_vm.currentQuestion.selected, answer.id)
                 },
                 on: {
+                  click: function($event) {
+                    _vm.onAnswerClick($event)
+                  },
                   change: function($event) {
-                    _vm.selected = answer.id
+                    _vm.$set(_vm.currentQuestion, "selected", answer.id)
                   }
                 }
               }),
@@ -49352,11 +49400,25 @@ var render = function() {
           on: { click: _vm.onSubmitClick }
         }),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "buttons next-btn",
-          attrs: { type: "button", name: "next", value: "Next" },
-          on: { click: _vm.onNextClick }
-        })
+        _vm.currentIndex + 1 < _vm.questions.length
+          ? _c("input", {
+              staticClass: "buttons next-btn",
+              attrs: { type: "button", name: "next", value: "Next" },
+              on: {
+                click: function($event) {
+                  _vm.onNextClick(false)
+                }
+              }
+            })
+          : _c("input", {
+              staticClass: "buttons next-btn",
+              attrs: { type: "button", name: "submit", value: "Submit" },
+              on: {
+                click: function($event) {
+                  _vm.onNextClick(true)
+                }
+              }
+            })
       ])
     ])
   ])
@@ -49382,6 +49444,232 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(6)
+/* script */
+var __vue_script__ = __webpack_require__(239)
+/* template */
+var __vue_template__ = __webpack_require__(240)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuizResultComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6c5cf487", Component.options)
+  } else {
+    hotAPI.reload("data-v-6c5cf487", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 239 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultQuestions'],
+  data: function data() {
+    return {
+      questions: [],
+      score: 0
+    };
+  },
+  mounted: function mounted() {
+    this.questions = this.defaultQuestions;
+    this.calculateScore();
+  },
+  methods: {
+    changeClassResult: function changeClassResult(question) {
+      if (question.result) {
+        return 'correct';
+      } else {
+        return 'wrong';
+      }
+    },
+    calculateScore: function calculateScore() {
+      var _this = this;
+
+      if (this.questions.length == 0) {
+        return;
+      }
+
+      this.questions.forEach(function (question, index) {
+        if (question.result) {
+          _this.score += 1;
+        }
+      });
+
+      this.score = parseInt(this.score / this.questions.length * 100);
+    },
+    onReset: function onReset() {
+      this.$emit('reset');
+    }
+  }
+});
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-sm-12" }, [
+    _c("div", { staticClass: "box results text-center" }, [
+      _c("h2", [_vm._v("Results")]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("You have scored " + _vm._s(_vm.score) + "%")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "q-links col-md-6 offset-md-3" }, [
+        _c(
+          "ol",
+          _vm._l(_vm.questions, function(question, index) {
+            return _c(
+              "li",
+              {
+                key: index,
+                staticClass: "review-1",
+                class: _vm.changeClassResult(question)
+              },
+              [
+                _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                  _vm._v(
+                    "\n            " + _vm._s(index + 1) + " \n            "
+                  )
+                ])
+              ]
+            )
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "buttons reattempt-btn",
+        attrs: { type: "button", name: "re-attempt", value: "Attempt Again" },
+        on: { click: _vm.onReset }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6c5cf487", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

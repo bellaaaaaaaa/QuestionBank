@@ -14,12 +14,22 @@ class AnswerServices extends TransformerService{
     $this->studentServices = $studentServices;
   }
 
+  public function getStudents($answer) {
+    $students =  $this->studentServices->transformCollection($answer->students);
+
+    if(!$students) {
+      return [];
+    }
+
+    return $students;
+  }
+
 	public function transform($answer){
 		return [
       'id' => $answer->id,
       'description' => $answer->description,
       'correct' => $answer->correct,
-      'students' => $this->studentServices->transformCollection($answer->students)
+      'students' => $this->getStudents($answer)
 		];
 	}
 }

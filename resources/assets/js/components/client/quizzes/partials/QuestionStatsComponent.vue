@@ -3,25 +3,25 @@
     <h2>Legend</h2>
     <div class="q-links col-sm-12">
         <ol> 
-          <li class="review-1" :class="changeQuestionColour(question)" v-for="(question, index) in questions" v-bind:key="index" @click="changeQuestionClick(question, index)"> <!--add class correct/wrong for different outcome-->
+          <li class="review-1" :class="changeQuestionColour(question)" v-for="(question, index) in questions" v-bind:key="index" @click="changeQuestionClick(question, index)"> 
             <a href="javascript:void(0)">
-              {{ index }}
+              {{ index + 1 }}
             </a>           
           </li>
         </ol>
       </div>
       <div class="q-revsec col-sm-12">
-          <div>
-            <span class="wpProQuiz_reviewColor correct">&nbsp;</span>
-            <span class="wpProQuiz_reviewText">Correct</span>
-          </div>
+        <div>
+          <span class="wpProQuiz_reviewColor correct">&nbsp;</span>
+          <span class="wpProQuiz_reviewText">Correct</span>
+        </div>
 
-          <div>
-            <span class="wpProQuiz_reviewColor wrong">&nbsp;</span>
-            <span class="wpProQuiz_reviewText">Wrong</span>
-          </div>      
+        <div>
+          <span class="wpProQuiz_reviewColor wrong">&nbsp;</span>
+          <span class="wpProQuiz_reviewText">Wrong</span>
+        </div>      
     </div>
-    <div class="box q-stats col-lg-6" v-if="showStats">
+    <div class="box q-stats col-lg-6" v-if="currentQuestion.result != undefined">
       <h2>Question Stats</h2>
       <ul>
         <li v-for="(answer, index) in currentQuestion.answers" v-bind:key="index">
@@ -43,35 +43,31 @@
 
 <script>
   export default{
-    props: ['defaultQuestions', 'defaultStats', 'defaultCurrentIndex'],
+    props: ['defaultQuestions', 'defaultCurrentIndex', 'defaultCurrentQuestion'],
     data: function(){
       return {
         questions: [],
         currentQuestion: {},
-        showStats: false,
         currentIndex: 0,
         correctPercentage: 0
       };
     },
     watch: {
       defaultQuestions: function() {
-        console.log('questions')
         this.questions = this.defaultQuestions;
-        this.currentQuestion = this.questions[this.currentIndex];
-      },
-      defaultStats: function() {
-        console.log('stats')
-        this.showStats = this.defaultStats;
-
-        if(this.showStats) {
-          this.updateStats();
-        }
       },
       defaultCurrentIndex: function() {
-        console.log('index')
         this.currentIndex = this.defaultCurrentIndex;
-        this.currentQuestion = this.questions[this.currentIndex];
+      },
+      defaultCurrentQuestion: function() {
+        this.currentQuestion = this.defaultCurrentQuestion;
+        this.updateStats();
       }
+    },
+    mounted: function() {
+      this.questions = this.defaultQuestions;
+      this.currentIndex = this.defaultCurrentIndex;
+      this.currentQuestion = this.defaultCurrentQuestion;
     },
     methods: {
       changeQuestionColour: function(question) {
@@ -102,12 +98,18 @@
       },
       changeQuestionClick: function(question, index) {
         this.currentIndex = index;
-        this.currentQuestion = this.questions[this.currentIndex + 1];
+        this.currentQuestion = question;
+
+        this.$emit('questionChanged', this.currentQuestion, index);
       },
       updateStats: function() {
         this.currentQuestion.answers.forEach((answer, index) => {
-          var answered = parseInt(answer.students.length / this.currentQuestion.totalAnswers * 100);
+          var answered = 0;
           
+          if(this.currentQuestion.totalAnswers != 0) {
+            answered = parseInt(answer.students.length / this.currentQuestion.totalAnswers * 100);
+          }
+           
           if(answer.correct) {
             this.correctPercentage = answered;
           }
