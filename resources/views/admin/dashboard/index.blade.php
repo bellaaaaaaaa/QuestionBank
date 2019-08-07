@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-5">
 					<div class="icon-big text-left ml-2">
-						<i class="fa fa-telegram" aria-hidden="true" style="color:#0077be"></i>
+						<i class="fab fa-telegram" aria-hidden="true" style="color:#0077be"></i>
 					</div>
 				</div>
 				<div class="col-7">

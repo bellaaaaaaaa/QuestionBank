@@ -29201,10 +29201,39 @@ select.selectpicker {
   border: 1px solid #036635;
 }
 
-.btn-info:hover {
-  background-color: #036635;
+.btn-info:hover,
+.btn-info:active,
+.btn-info:focus {
+  background-color: #036635 !important;
   border: 1px solid #036635;
   opacity: 0.8;
+}
+
+.form-check {
+  border: none;
+  padding: 5px 0;
+  margin: 0;
+}
+
+.form-check:hover {
+  background-color: transparent !important;
+}
+
+.form-check .form-check-sign::before,
+.form-check .form-check-sign::after {
+  font-family: 'Font Awesome 5 Free' !important;
+  color: #036635 !important;
+  font-size: 30px !important;
+  margin-left: -22px;
+}
+
+.form-check .form-check-sign::before {
+  content: "\F0C8" !important;
+}
+
+.form-check .form-check-sign::after {
+  content: "\F14A" !important;
+  position: relative !important;
 }
 
 .footer {

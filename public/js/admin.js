@@ -67420,7 +67420,7 @@ var render = function() {
       [
         _vm._l(_vm.answers, function(answer, index) {
           return !answer.deleted
-            ? _c("div", { staticClass: "row" }, [
+            ? _c("div", { staticClass: "row mb-3" }, [
                 _c("div", { staticClass: "col-12 col-md-9" }, [
                   _c("input", {
                     directives: [
@@ -67502,7 +67502,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "btn btn-primary",
+                      staticClass: "btn btn-primary btn-info",
                       on: {
                         click: function($event) {
                           _vm.deleteClick(index)
@@ -67545,7 +67545,7 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-info",
                 on: {
                   click: function($event) {
                     _vm.onClick()
