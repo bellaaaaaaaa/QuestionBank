@@ -78,21 +78,71 @@ $(document).ready(function() {
 
 	//payment checked
 
-	// if($(".form-check-input").attr('checked')) {
- //        $(".form-check").addClass("checked");
- //    }else{
- //    	$(".form-check").removeClass("checked");
- //    }
+	if($(".form-check-input").is(':checked')){
+	 	$(this).parent(".form-check").addClass("selected");  // checked
+	}else {
+	    $(".form-check").removeClass("selected");  // unchecked	
+	}
 
-	//  if($(".form-check-input").is(':checked'))
-	//     $(".form-check").addClass("checked");  // checked
-	// else
-	//     $(".form-check").removeClass("checked");  // unchecked
+	//payment currency
+	function displayVals() {
+		var currencyVal = $( "#currency" ).val();
+		$( "span.currency" ).html( currencyVal );
+	}
 
-	// $(".form-check-input").click(function() {
-	// 	(".form-check").removeClass("checked");
-	// 	$(this).parent(".form-check").addClass("checked");  // checked
-	// });
+	$( "select" ).change( displayVals );
+	displayVals();
+
+	function usd_onemonth() {
+	  var myr = $( "#1month" ).val();
+	  var usd = myr * 0.24;
+	  document.getElementById("amount1").innerHTML = usd;
+	}
+
+	function usd_twomonth() {
+	  var myr = $( "#2months" ).val();
+	  var usd = myr * 0.24;
+	  document.getElementById("amount2").innerHTML = usd;
+	}
+
+	function usd_threemonth() {
+	  var myr = $( "#3months" ).val();
+	  var usd = myr * 0.24;
+	  document.getElementById("amount3").innerHTML = usd;
+	}
+
+    $('#currency').change(function(){
+	  if($(this).val() == 'USD'){
+	  	usd_onemonth();
+	  	usd_twomonth();
+	  	usd_threemonth();
+	  }
+	});
+
+	function myr_onemonth() {
+	  var myr = $( "#1month" ).val();
+	  document.getElementById("amount1").innerHTML = myr;
+	}
+
+	function myr_twomonth() {
+	  var myr = $( "#2months" ).val();
+	  document.getElementById("amount2").innerHTML = myr;
+	}
+
+	function myr_threemonth() {
+	  var myr = $( "#3months" ).val();
+	  document.getElementById("amount3").innerHTML = myr;
+	}
+
+
+	$('#currency').change(function(){
+	  if($(this).val() == 'MYR'){
+	  	myr_onemonth();
+	  	myr_twomonth();
+	  	myr_threemonth();
+	  }
+	});
+	    
 });
 
 const files = require.context('./../components/', true, /\.vue$/i);
