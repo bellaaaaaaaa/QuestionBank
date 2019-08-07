@@ -46,11 +46,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-      // return parent::render($request, $exception);
-      if(strpos($request->getRequestUri(), 'admin/')) {
-        return redirect()->route('admin.login.show');
-      }else {
-        return redirect()->route('client.login.show');
-      }
+      return parent::render($request, $exception);
     }
 }

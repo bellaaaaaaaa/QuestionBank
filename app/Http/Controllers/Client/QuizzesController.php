@@ -27,7 +27,8 @@ class QuizzesController extends Controller {
   public function showQuestions(Topic $topic) {
     $subject = json_encode(get_student_subject());
     $questions = json_encode($this->quizServices->getQuestions($topic));
+    $topic = json_encode($this->quizServices->transform($topic));
 
-    return view($this->path . 'question', ['subject' => $subject, 'questions' => $questions]);
+    return view($this->path . 'question', ['subject' => $subject, 'topic' => $topic, 'questions' => $questions]);
   }
 }

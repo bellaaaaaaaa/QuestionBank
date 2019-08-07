@@ -3,40 +3,10 @@
     <h2>Legend</h2>
     <div class="q-links col-sm-12">
         <ol> 
-          <li class="review-1 active"> <!--add class correct/wrong for different outcome-->
+          <li class="review-1" :class="changeQuestionColour(question)" v-for="(question, index) in questions" v-bind:key="index" @click="changeQuestionClick(question, index)"> <!--add class correct/wrong for different outcome-->
             <a href="javascript:void(0)">
-                1 
-              </a>           
-          </li>
-        <li class="review-2">
-            <a href="javascript:void(0)">
-                2 
-              </a>           
-          </li>
-          <li class="review-3">
-            <a href="javascript:void(0)">
-                3 
-              </a>           
-          </li>
-          <li class="review-4">
-            <a href="javascript:void(0)">
-                4 
-              </a>           
-          </li>
-          <li class="review-5">
-            <a href="javascript:void(0)">
-                5 
-              </a>           
-          </li>
-          <li class="review-6">
-            <a href="javascript:void(0)">
-                6 
-              </a>           
-          </li>
-          <li class="review-7">
-            <a href="javascript:void(0)">
-                7 
-              </a>           
+              {{ index }}
+            </a>           
           </li>
         </ol>
       </div>
@@ -57,45 +27,16 @@
         <li v-for="(answer, index) in currentQuestion.answers" v-bind:key="index">
           <div class="row stats-col">
             <div class="col-md-10 bar-col">
-              <div class="progress-bar progress-bar-correct" role="progressbar" :aria-valuenow="answer.answered" aria-valuemin="0" aria-valuemax="100" :style="{ width: answer.answered + '%'}">
+              <div class="progress-bar" :class="changeProgressBar(answer)" role="progressbar" :aria-valuenow="answer.answered" aria-valuemin="0" aria-valuemax="100" :style="{ width: answer.answered + '%'}">
                 %
               </div>
             </div>
             <div class="col-md-2">{{ answer.answered }}%</div>
           </div>
         </li>
-
-        <!-- <div class="row stats-col">
-          <div class="col-md-1">B</div>
-          <div class="col-md-9 bar-col">
-            <div class="progress-bar progress-bar-wrong" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width:8%">
-              %
-            </div>
-          </div>
-          <div class="col-md-2 col-xl-1">8%</div>
-        </div>
-        <div class="row stats-col">
-          <div class="col-md-1">C</div>
-          <div class="col-md-9 bar-col">
-            <div class="progress-bar progress-bar-wrong" role="progressbar" aria-valuenow="16" aria-valuemin="0" aria-valuemax="100" style="width:16%">
-              %
-            </div>
-          </div>
-          <div class="col-md-2">16%</div>
-        </div>
-        <div class="row stats-col">
-          <div class="col-md-1">D</div>
-          <div class="col-md-9 bar-col">
-            <div class="progress-bar progress-bar-wrong" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100" style="width:4%">
-              %
-            </div>
-          </div>
-          <div class="col-md-2">4%</div>
-        </div> -->
       </ul>
 
-      <p>72% of users answered this question correctly</p>
-
+      <p>{{ correctPercentage }}% of users answered this question correctly</p>
     </div>
   </div>
 </template>
@@ -109,30 +50,68 @@
         currentQuestion: {},
         showStats: false,
         currentIndex: 0,
+        correctPercentage: 0
       };
     },
     watch: {
       defaultQuestions: function() {
-        this.setDefault();
+        console.log('questions')
+        this.questions = this.defaultQuestions;
+        this.currentQuestion = this.questions[this.currentIndex];
       },
       defaultStats: function() {
-        this.setDefault();
+        console.log('stats')
+        this.showStats = this.defaultStats;
+
+        if(this.showStats) {
+          this.updateStats();
+        }
       },
       defaultCurrentIndex: function() {
-        this.setDefault();
+        console.log('index')
+        this.currentIndex = this.defaultCurrentIndex;
+        this.currentQuestion = this.questions[this.currentIndex];
       }
     },
     methods: {
-      setDefault: function() {
-        this.questions = this.defaultQuestions;
-        this.showStats = this.defaultStats;
-        this.currentIndex = this.defaultCurrentIndex;
-        this.currentQuestion = this.questions[this.currentIndex];
-        this.updateStats();
+      changeQuestionColour: function(question) {
+        if(question.id == this.currentQuestion.id) {
+          return 'active';
+        } 
+        
+        var questionClass = '';
+
+        switch(question.result) {
+          case true:
+          questionClass = 'correct';
+          break;
+
+          case false:
+          questionClass = 'wrong';
+          break;
+
+          default:
+          questionClass = '';
+          break;
+        }
+
+        return questionClass;
+      },
+      changeProgressBar: function(answer) {
+        return answer.correct ? 'progress-bar-correct' : 'progress-bar-wrong';
+      },
+      changeQuestionClick: function(question, index) {
+        this.currentIndex = index;
+        this.currentQuestion = this.questions[this.currentIndex + 1];
       },
       updateStats: function() {
         this.currentQuestion.answers.forEach((answer, index) => {
-          var answered = answer.students.length / this.currentQuestion.totalAnswers * 100;
+          var answered = parseInt(answer.students.length / this.currentQuestion.totalAnswers * 100);
+          
+          if(answer.correct) {
+            this.correctPercentage = answered;
+          }
+
           Vue.set(this.currentQuestion.answers[index], 'answered', answered);
         });
       }

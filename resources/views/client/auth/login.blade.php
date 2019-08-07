@@ -4,7 +4,7 @@
 <div class="login-register">
 	<div class="container">
 		<div class="row">
-        {!! Form::open(['route' => 'client.login', 'id' => 'form-validation', 'class' => 'col-10 col-sm-8 col-lg-4 login-register-form']) !!}
+        {!! Form::open(['route' => 'login', 'id' => 'form-validation', 'class' => 'col-10 col-sm-8 col-lg-4 login-register-form']) !!}
 				<div class=" card-login">
 					<div class="text-center">
 						<h4 class="header text-center">Welcome back</h4>
