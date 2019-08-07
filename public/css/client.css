@@ -15096,26 +15096,51 @@ body {
   width: 100%;
 }
 
-.form-check {
+@media (min-width: 1500px) {
+  .card-payment .payment-plan {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.card-payment select:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(3, 102, 53, 0.25);
+          box-shadow: 0 0 0 0.2rem rgba(3, 102, 53, 0.25);
+}
+
+.card-payment .form-check {
+  padding: 0;
+}
+
+.card-payment .form-check input {
+  visibility: hidden;
+  width: 100%;
+}
+
+.card-payment .form-group > label {
+  font-weight: bold;
+}
+
+.card-payment input[type=radio] ~ label {
   margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #000;
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
   padding: 10px;
+  text-align: center;
+  width: 100%;
 }
 
-.form-check input {
-  display: none;
-}
-
-.form-check.active,
-.form-check:hover {
+.card-payment input[type=radio] ~ label.active,
+.card-payment input[type=radio] ~ label:hover {
   background: #036635;
   color: #fff;
   cursor: pointer;
 }
 
-.form-group > label {
-  font-weight: bold;
+.card-payment input[type=radio]:checked ~ label {
+  background: #036635;
+  color: #fff;
 }
 
 .box {
