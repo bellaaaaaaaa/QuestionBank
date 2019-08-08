@@ -48615,6 +48615,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['defaultSubject', 'defaultTopic', 'defaultQuestions'],
   data: function data() {
     return {
+      title: 'Quiz',
       questions: [],
       subject: {},
       topic: {},
@@ -48629,6 +48630,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     setDefault: function setDefault() {
+      if (window.location.href.indexOf('/trials') > -1) {
+        this.title = 'Trial';
+      }
+
       this.subject = JSON.parse(this.defaultSubject);
       this.topic = JSON.parse(this.defaultTopic);
       this.questions = JSON.parse(this.defaultQuestions);
@@ -48682,7 +48687,7 @@ var render = function() {
           { staticClass: "col-sm-12" },
           [
             _c("h1", { staticClass: "my-3 mb-sm-0 mb-sm-5" }, [
-              _vm._v("Quiz - " + _vm._s(_vm.subject.name))
+              _vm._v(_vm._s(_vm.title) + " - " + _vm._s(_vm.subject.name))
             ]),
             _vm._v(" "),
             !_vm.completed

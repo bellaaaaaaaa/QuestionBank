@@ -2,7 +2,7 @@
   <div class="page-container m-3 m-sm-5">
     <div class="row">
       <div class="col-sm-12">
-        <h1 class="my-3 mb-sm-0 mb-sm-5">Quiz - {{ subject.name }}</h1>
+        <h1 class="my-3 mb-sm-0 mb-sm-5">{{ title }} - {{ subject.name }}</h1>
         <question-stats-component :default-questions="questions" :default-current-index="currentIndex" :default-current-question="currentQuestion" @questionChanged="onQuestionChanged" v-if="!completed"></question-stats-component>
       </div>
     </div>
@@ -20,6 +20,7 @@
     props: ['defaultSubject', 'defaultTopic' , 'defaultQuestions'],
     data: function(){
       return {
+        title: 'Quiz',
         questions: [],
         subject: {},
         topic: {},
@@ -33,6 +34,10 @@
     },
     methods: {
       setDefault: function() {
+        if(window.location.href.indexOf('/trials') > -1) {
+          this.title = 'Trial';
+        }
+
         this.subject = JSON.parse(this.defaultSubject);
         this.topic = JSON.parse(this.defaultTopic);
         this.questions = JSON.parse(this.defaultQuestions);
