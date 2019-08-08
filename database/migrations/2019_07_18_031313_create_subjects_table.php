@@ -18,9 +18,9 @@ class CreateSubjectsTable extends Migration
             $table->string('teacher_id')->nullable();
             $table->string('name');
             $table->string('description');
-            $table->double('1_month_price');
-            $table->double('2_month_price');
-            $table->double('3_month_price');
+            $table->double('one_month_price');
+            $table->double('two_month_price');
+            $table->double('three_month_price');
             $table->timestamps();
         });
     }

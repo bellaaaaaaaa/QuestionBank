@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('topic_id')->nullable();
             $table->text('description')->nullable();
             $table->text('explanation')->nullable();
+            $table->boolean('image')->default(false);
             $table->timestamps();
         });
     }

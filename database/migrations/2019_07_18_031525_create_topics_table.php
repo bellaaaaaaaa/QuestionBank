@@ -17,6 +17,7 @@ class CreateTopicsTable extends Migration
             $table->increments('id');
             $table->string('subject_id')->nullable();
             $table->string('name')->nullable();
+            $table->string('abbreviation')->nullable();
             $table->timestamps();
         });
     }
