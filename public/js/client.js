@@ -47402,8 +47402,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
   data: function data() {
     return {
       question: {},
-      name: '',
-      answers: [{ name: '', correct: false }, { name: '', correct: false }],
+      description: '',
+      answers: [{ description: '', correct: false }, { description: '', correct: false }],
       newAnswer: '',
 
       topic: ''
@@ -47420,7 +47420,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
       }
 
       this.question = JSON.parse(this.defaultQuestion);
-      this.name = this.question.name;
+      this.description = this.question.description;
       this.answers = this.question.answers;
       // this.topic = this.question.topic;
     },
@@ -47440,7 +47440,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
     onClick: function onClick() {
       if (this.newAnswer != '') {
-        this.answers.push({ name: this.newAnswer, correct: false });
+        this.answers.push({ description: this.newAnswer, correct: false });
       };
       this.newAnswer = '';
     },
@@ -47512,7 +47512,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
       }
 
       var fields = {
-        'name': this.name,
+        'description': this.description,
         'answers': this.answers,
         'topic': this.topic
       };
@@ -47567,19 +47567,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.name,
-                expression: "name"
+                value: _vm.description,
+                expression: "description"
               }
             ],
             staticClass: "form-control",
             attrs: { placeholder: "Enter a question..." },
-            domProps: { value: _vm.name },
+            domProps: { value: _vm.description },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.name = $event.target.value
+                _vm.description = $event.target.value
               }
             }
           })
@@ -47613,19 +47613,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: answer.name,
-                        expression: "answer.name"
+                        value: answer.description,
+                        expression: "answer.description"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: { type: "text", name: "answers" },
-                    domProps: { value: answer.name },
+                    domProps: { value: answer.description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(answer, "name", $event.target.value)
+                        _vm.$set(answer, "description", $event.target.value)
                       }
                     }
                   })
@@ -47714,7 +47714,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", name: "name" },
+              attrs: { type: "text", name: "description" },
               domProps: { value: _vm.newAnswer },
               on: {
                 input: function($event) {
@@ -48518,11 +48518,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 var map = {
 	"./Admin/QuestionsComponent.vue": 40,
-	"./client/quizzes/QuizComponent.vue": 170,
-	"./client/quizzes/partials/QuestionExplanationComponent.vue": 173,
-	"./client/quizzes/partials/QuestionStatsComponent.vue": 176,
-	"./client/quizzes/partials/QuizQuestionComponent.vue": 179,
-	"./client/quizzes/partials/QuizResultComponent.vue": 182
+	"./Client/quizzes/QuizComponent.vue": 170,
+	"./Client/quizzes/partials/QuestionExplanationComponent.vue": 173,
+	"./Client/quizzes/partials/QuestionStatsComponent.vue": 176,
+	"./Client/quizzes/partials/QuizQuestionComponent.vue": 179,
+	"./Client/quizzes/partials/QuizResultComponent.vue": 182
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -48566,7 +48566,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/QuizComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/quizzes/QuizComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48575,9 +48575,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-259ccd02", Component.options)
+    hotAPI.createRecord("data-v-31acc4c2", Component.options)
   } else {
-    hotAPI.reload("data-v-259ccd02", Component.options)
+    hotAPI.reload("data-v-31acc4c2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48742,7 +48742,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-259ccd02", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-31acc4c2", module.exports)
   }
 }
 
@@ -48772,7 +48772,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuestionExplanationComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/quizzes/partials/QuestionExplanationComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48781,9 +48781,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-26874e44", Component.options)
+    hotAPI.createRecord("data-v-741c0604", Component.options)
   } else {
-    hotAPI.reload("data-v-26874e44", Component.options)
+    hotAPI.reload("data-v-741c0604", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48867,7 +48867,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-26874e44", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-741c0604", module.exports)
   }
 }
 
@@ -48897,7 +48897,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuestionStatsComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/quizzes/partials/QuestionStatsComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48906,9 +48906,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-29ce44d0", Component.options)
+    hotAPI.createRecord("data-v-9437cc90", Component.options)
   } else {
-    hotAPI.reload("data-v-29ce44d0", Component.options)
+    hotAPI.reload("data-v-9437cc90", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49161,7 +49161,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-29ce44d0", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-9437cc90", module.exports)
   }
 }
 
@@ -49191,7 +49191,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuizQuestionComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/quizzes/partials/QuizQuestionComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -49200,9 +49200,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f4b470c4", Component.options)
+    hotAPI.createRecord("data-v-d71af104", Component.options)
   } else {
-    hotAPI.reload("data-v-f4b470c4", Component.options)
+    hotAPI.reload("data-v-d71af104", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49437,7 +49437,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f4b470c4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-d71af104", module.exports)
   }
 }
 
@@ -49467,7 +49467,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuizResultComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/quizzes/partials/QuizResultComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -49476,9 +49476,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6c5cf487", Component.options)
+    hotAPI.createRecord("data-v-85cfa732", Component.options)
   } else {
-    hotAPI.reload("data-v-6c5cf487", Component.options)
+    hotAPI.reload("data-v-85cfa732", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49609,7 +49609,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6c5cf487", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-85cfa732", module.exports)
   }
 }
 

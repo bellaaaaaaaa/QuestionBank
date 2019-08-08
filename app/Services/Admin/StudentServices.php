@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 use App\Services\TransformerService;
 
@@ -15,19 +16,29 @@ class StudentServices extends TransformerService{
 		$offset = $request->offset ? $request->offset : 0;
 		$query = $request->search ? $request->search : '';
 
-    $students = Student::where('name', 'like', "%{$query}%")->orderBy($sort, $order);
-    $listCount = $students->count();
+		$students = Student::whereHas('owner', function($student) use ($query) { 
+			$student->where('name', 'like', "%{$query}%");
+		})->orderBy($sort, $order);
 
-    $students = $students->limit($limit)->offset($offset)->get();
+		// $students = Student::where('name', 'like', "%{$query}%")->orderBy($sort, $order);
+		$listCount = $students->count();
 
-    return respond(['rows' => $students, 'total' => $listCount]);
+		$students = $students->limit($limit)->offset($offset)->get();
+
+    return respond(['rows' => $this->transformCollection($students), 'total' => $listCount]);
 	}
 
 	public function transform($student){
+
+		// if($student instanceof User){
+		// 	$student = $student->owner;
+		// }
 		return [
 			'id' => $student->id,
-			'name' => $student->name,
-			'email' => $student->email,
+			'name' =>$student->owner->name,
+			'email'=> $student->owner->email,
+			'nric' => $student->nric,
+			'age' => $student->age
 		];
 	}
 }

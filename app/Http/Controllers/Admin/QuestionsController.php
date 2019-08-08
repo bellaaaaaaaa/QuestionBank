@@ -21,7 +21,6 @@ class QuestionsController extends Controller{
     if ($request->isJson()) {
       return $this->questionServices->all($request);
     }
-
     return view($this->path . 'index');
   }
   
