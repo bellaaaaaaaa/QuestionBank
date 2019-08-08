@@ -72,8 +72,7 @@ class AuthController extends Controller{
       $student = current_user()->owner;
       $student->login_to = $subject->id;
       $student->save();
-
-      // Auth::logoutOtherDevices($request->password);
+      
 	    return redirect()->route('home');
 	  }else{
 	    return redirect()->back()->withErrors(['message' => 'Email or password is incorrect']);
