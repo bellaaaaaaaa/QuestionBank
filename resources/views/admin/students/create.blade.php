@@ -16,13 +16,25 @@
           <label>Name
             <star class="star">*</star>
           </label>
-          {{ Form::text('name', null, [ 'class'=>'form-control', 'required']) }}
+          {{ Form::text('name', $user->name, [ 'class'=>'form-control', 'required']) }}
         </div>
         <div class="form-group has-label">
           <label>Email
             <star class="star">*</star>
           </label>
-          {{ Form::text('email', null, ['class' => 'form-control', 'required']) }}
+          {{ Form::text('email', $user->name, ['class' => 'form-control', 'required']) }}
+        </div>
+        <div class ="form-group has-label">
+          <label>NRIC
+            <star class="star">*</star>
+          </label>
+          {{ Form::text('nric',null, ['class' => 'form-control', 'required']) }}
+        </div>
+        <div class = "form-group has-label">
+          <label>Age
+            <star class="star">*</star>
+          </label>
+          {{ Form::text('age',null, ['class' => 'form-control', 'required']) }}
         </div>
 
         <div class="card-category form-category">

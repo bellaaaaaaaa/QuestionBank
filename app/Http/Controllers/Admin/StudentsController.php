@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Student;
-use Session;
 use App\Services\Admin\StudentServices;
+use App\Student;
+use App\User;
+use Session;
 
 class StudentsController extends Controller
 {
-    protected $path = 'admin.students.';
+  protected $path = 'admin.students.';
 	protected $studentServices;
 
 	public function __construct(StudentServices $studentServices){
@@ -18,45 +19,56 @@ class StudentsController extends Controller
 	}
   public function index(Request $request){
 		if ($request->isJson()) {
-			return $this->studentServices->all($request);
+      return $this->studentServices->all($request);
 		}
 		return view($this->path . 'index');
   }
 
-  public function create(){
-		return view($this->path . 'create');
+  public function create(User $user){
+    return view($this->path . 'create', ['user'=> $user]);
   }
 
-
-  public function store(Request $request){
+  public function store(Request $request, Student $student){
 		$this->validate($request, [
-			"email" => "required|email|unique:students|unique:guardians",
-			// unique:tablename
-			"name" => "required",
-		]);
+      "name" => "required",
+			"email" => "required|email|unique:users",
+      "nric" => "required|unique:students",
+      "age" => "required"
+    ]);
+    
+    $student = Student::create([
+      'nric' => $request->nric,
+      'age' => $request->age
+    ]);
 
-		$student = new Student();
-		$student->name = $request->name;
-		$student->email = $request->email;
-		$student->password = bcrypt('secret');;
-		$student->save();
-
-        Session::flash('success','Successfully saved!');
+    $user = User::create([
+      'name' => $request->name,
+      'email' => $request->email
+    ]);
+      
+    $student->owner()->save($user);
+   
+    Session::flash('success','Successfully saved!');
 		return redirect()->route('students.index');
   }
-  public function edit(Student $student){
-		return view($this->path . 'edit',['student'=>$student]);
+
+  public function edit(Student $student, User $user){
+		return view($this->path . 'edit', ['student'=> $student, 'user'=>$user]);
   }
   
   public function update(Student $student, Request $request){
-	  $student->name = $request->name;
-	  $student->email = $request->email;
-	  $student->save();
+    $user = $student->owner;
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $student->nric = $request->nric;
+    $student->age = $request->age;
+    $student->save();
+    $user->save();
 
-	  Session::flash('success','Successfully saved!');
+	Session::flash('success','Successfully saved!');
   return redirect()->route('students.index');  
   }
-
+ 
   public function destroy(Student $student){
     $student->delete();
 
