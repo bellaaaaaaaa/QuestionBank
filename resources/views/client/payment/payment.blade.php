@@ -23,25 +23,25 @@
 				          	</label> 
 							<div class="form-group col-12">
 								<select class="form-control" id="currency">
-								  <option value="MYR">MYR</option>
+								  <option value="MYR" selected>MYR</option>
 								  <option value="USD">USD</option>
 								</select>
 							</div>
 							<div class="payment-plan justify-content-between col-12">
 					          	<div class="form-check">
-								  <input class="form-check-input" type="radio" id="1month" value="123">
+								  <input class="form-check-input" name="payment_plan" type="radio" id="1month" value="123">
 								  <label class="form-check-label" for="1month">
 								    1 Month <br> <span class="currency"></span><span id="amount1">123</span>
 								  </label>
 								</div>
 								<div class="form-check">
-								  <input class="form-check-input" type="radio" id="2months" value="230">
+								  <input class="form-check-input" name="payment_plan" type="radio" id="2months" value="230">
 								  <label class="form-check-label" for="2months">
 								    2 Months <br> <span class="currency"></span><span id="amount2">230</span>
 								  </label>
 								</div>
 								<div class="form-check">
-								  <input class="form-check-input" type="radio" id="3months" value="350">
+								  <input class="form-check-input" name="payment_plan" type="radio" id="3months" value="350">
 								  <label class="form-check-label" for="3months">
 								    3 Months <br> <span class="currency"></span><span id="amount3">350</span>
 								  </label>

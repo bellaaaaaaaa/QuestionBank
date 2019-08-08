@@ -96,19 +96,22 @@ $(document).ready(function() {
 	function usd_onemonth() {
 	  var myr = $( "#1month" ).val();
 	  var usd = myr * 0.24;
-	  document.getElementById("amount1").innerHTML = usd;
+	  var roundoff = usd.toFixed(2);
+	  document.getElementById("amount1").innerHTML = roundoff;
 	}
 
 	function usd_twomonth() {
 	  var myr = $( "#2months" ).val();
 	  var usd = myr * 0.24;
-	  document.getElementById("amount2").innerHTML = usd;
+	  var roundoff = usd.toFixed(2); 
+	  document.getElementById("amount2").innerHTML = roundoff;
 	}
 
 	function usd_threemonth() {
 	  var myr = $( "#3months" ).val();
 	  var usd = myr * 0.24;
-	  document.getElementById("amount3").innerHTML = usd;
+	  var roundoff = usd.toFixed(2);
+	  document.getElementById("amount3").innerHTML = roundoff;
 	}
 
     $('#currency').change(function(){
