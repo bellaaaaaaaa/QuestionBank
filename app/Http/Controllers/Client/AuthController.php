@@ -66,14 +66,12 @@ class AuthController extends Controller{
     if(!$subject) {
       return redirect()->back()->withInput()->with('error', 'Subject not found.');
     }
-	  
+    
 	  if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'owner_type' => 'Student'])) {
-      Auth::logoutOtherDevices($request->password);
-
       $student = current_user()->owner;
       $student->login_to = $subject->id;
       $student->save();
-
+      
 	    return redirect()->route('home');
 	  }else{
 	    return redirect()->back()->withErrors(['message' => 'Email or password is incorrect']);

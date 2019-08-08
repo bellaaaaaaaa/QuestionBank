@@ -68,8 +68,11 @@ Route::middleware('client.auth')->group(function(){
 
   Route::get('logout', 'Client\AuthController@logout')->name('client.logout');
 
+  Route::get('trials', 'Client\QuizzesController@showTrials')->name('trials.questions');
+
   Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');
   Route::get('quizzes/topics/{topic}', 'Client\QuizzesController@showQuestions')->name('quizzes.questions');
+  Route::post('quizzes/topics/answer', 'Client\QuizzesController@answer')->name('quizzes.answer');
 });
 
 //added by Pat to view the frontend pages

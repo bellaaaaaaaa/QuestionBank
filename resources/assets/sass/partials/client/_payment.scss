@@ -4,27 +4,53 @@
 	}
 }
 
-.form-check{
-	margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #000;
-    padding: 10px;
+.card-payment{
 
-	input{
-		display:none;
+	@media (min-width: 1500px){
+		.payment-plan{
+			display:flex;
+		}	
+	}
+	
+
+	select:focus{
+		box-shadow: 0 0 0 0.2rem rgba($brand-color, 0.25);
+	}
+	.form-check{
+		padding:0;	
+		input{
+			visibility:hidden;
+			width:100%;
+		}
 	}
 
-	&.active, &:hover{
+	.form-group>label{
+		font-weight: bold;	
+	}
+
+	input[type=radio] ~ label{
+		margin: 10px 0;
+	    border-radius: 0.25rem;
+	    border: 1px solid #ced4da;
+	    padding: 10px;
+	    text-align: center;
+	    width:100%;
+	    background: #fff;
+    	color: #000;
+    	min-width: 120px;
+
+	    &.active, &:hover{
+			background:$brand-color;
+			color:#fff;
+			cursor:pointer;
+		}
+
+	}
+
+	input[type=radio]:checked ~ label{
 		background:$brand-color;
 		color:#fff;
-		cursor:pointer;
 	}
-}
-
-.form-group>label{
-	font-weight: bold;
-}
-
-.form-check-input:checked{
 
 }
+

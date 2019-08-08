@@ -31,4 +31,15 @@ class QuizzesController extends Controller {
 
     return view($this->path . 'question', ['subject' => $subject, 'topic' => $topic, 'questions' => $questions]);
   }
+
+  public function showTrials() {
+    $subject = get_student_subject();
+    $firstTopic = $subject->topics->first();
+
+    return $this->showQuestions($firstTopic);
+  }
+
+  public function answer(Request $reqeust) {
+    return $this->quizServices->saveAnswer($reqeust);
+  }
 }
