@@ -85,10 +85,10 @@ class ImportQuestions implements ShouldQueue {
       unlink($file_url);
   }
 
-  public function createAnswer($question, $answer1, $correctAnswer, $value) {
+  public function createAnswer($question, $answer, $correctAnswer, $value) {
     Answer::create([
       'question_id' => $question->id,
-      'description' => $answer1,
+      'description' => $answer,
       'correct' => $this->getAnswer($correctAnswer, $value)
     ]);
   }
@@ -99,6 +99,8 @@ class ImportQuestions implements ShouldQueue {
     }elseif($value == 2 && $correctAnswer == 'B') {
       return 1;
     }elseif($value == 3 && $correctAnswer == 'C') {
+      return 1;
+    }elseif($value == 4 && $correctAnswer == 'D') {
       return 1;
     }else {
       return 0;
