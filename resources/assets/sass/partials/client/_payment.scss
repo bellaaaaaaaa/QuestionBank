@@ -35,6 +35,9 @@
 	    padding: 10px;
 	    text-align: center;
 	    width:100%;
+	    background: #fff;
+    	color: #000;
+    	min-width: 120px;
 
 	    &.active, &:hover{
 			background:$brand-color;

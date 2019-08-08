@@ -15141,6 +15141,9 @@ body {
   padding: 10px;
   text-align: center;
   width: 100%;
+  background: #fff;
+  color: #000;
+  min-width: 120px;
 }
 
 .card-payment input[type=radio] ~ label.active,
@@ -15369,6 +15372,10 @@ body {
 
 .q-stats {
   margin-top: 40px;
+}
+
+.q-stats ul {
+  list-style-type: upper-latin;
 }
 
 .stats-col {
