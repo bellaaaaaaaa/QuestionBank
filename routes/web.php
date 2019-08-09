@@ -14,41 +14,38 @@
 
 //Admin Routes
 Route::prefix('admin')->group(function(){
+  Route::get('login','Admin\AuthController@viewLogin')->name('admin.login.show');
+  Route::post('login','Admin\AuthController@login')->name('admin.login');
 
-//register
-Route::middleware('register.access')->group(function(){
-Route::get('register', "Admin\AuthController@viewRegister")->name('admin.register.show');
-Route::post('register', "Admin\AuthController@register")->name('admin.register');
-});
-//login
-Route::get('login','Admin\AuthController@viewLogin')->name('admin.login.show');
-Route::post('login','Admin\AuthController@login')->name('admin.login');
+  Route::middleware('register.access')->group(function(){
+    Route::get('register', "Admin\AuthController@viewRegister")->name('admin.register.show');
+    Route::post('register', "Admin\AuthController@register")->name('admin.register');
+  });
 
-Route::middleware('admin.auth')->group(function(){
+  Route::middleware('admin.auth')->group(function(){
 
-Route::get('/', 'Admin\DashboardController@dashboard');
-//dashboard
-Route::get('dashboard', 'Admin\DashboardController@dashboard')->name('admin.dashboard');
+    Route::get('/', 'Admin\DashboardController@dashboard');
+    Route::get('dashboard', 'Admin\DashboardController@dashboard')->name('admin.dashboard');
 
-//create, delete, and view all Admins team
-Route::resource('teams', 'Admin\TeamsController');
-Route::resource('subjects', 'Admin\SubjectsController');
-Route::resource('topics', 'Admin\TopicsController');
-Route::resource('questions', 'Admin\QuestionsController');
-Route::resource('guardians', 'Admin\GuardiansController');
-Route::resource('students', 'Admin\StudentsController');
-Route::resource('answers', 'Admin\AnswersController');
+    Route::resource('teams', 'Admin\TeamsController');
+    Route::resource('subjects', 'Admin\SubjectsController');
 
-//delete and view all Users ( client )
-// Route::resource('clients','Admin\ClientsController', ['only' => ['index','destroy']]);
+    Route::resource('topics', 'Admin\TopicsController');
+    Route::post('subject/{subject}/topics/import', 'Admin\TopicsController@import')->name('topics.import');
 
-Route::get('logout', 'Admin\AuthController@logout')->name('admin.logout');
+    Route::resource('questions', 'Admin\QuestionsController');
+    Route::post('subject/{subject}/questions/import', 'Admin\QuestionsController@import')->name('questions.import');
 
-//Settings
-Route::get('settings', "Admin\AccountSettingsController@viewAccount")->name("admin.account.show");
-Route::post('settings', "Admin\AccountSettingsController@updateAccount")->name("admin.account.update");
-Route::put('settings/password', "Admin\AccountSettingsController@updatePassword")->name("admin.password.change");
-});
+    Route::resource('guardians', 'Admin\GuardiansController');
+    Route::resource('students', 'Admin\StudentsController');
+    Route::resource('answers', 'Admin\AnswersController');
+    
+    Route::get('settings', "Admin\AccountSettingsController@viewAccount")->name("admin.account.show");
+    Route::post('settings', "Admin\AccountSettingsController@updateAccount")->name("admin.account.update");
+    Route::put('settings/password', "Admin\AccountSettingsController@updatePassword")->name("admin.password.change");
+
+    Route::get('logout', 'Admin\AuthController@logout')->name('admin.logout');
+  });
 });
 
 
@@ -67,6 +64,8 @@ Route::middleware('client.auth')->group(function(){
   Route::get('mcq-exam', 'Client\QuestionsController@showQuestion')->name('show.questions');
 
   Route::get('logout', 'Client\AuthController@logout')->name('client.logout');
+
+  Route::get('trials', 'Client\QuizzesController@showTrials')->name('trials.questions');
 
   Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');
   Route::get('quizzes/topics/{topic}', 'Client\QuizzesController@showQuestions')->name('quizzes.questions');

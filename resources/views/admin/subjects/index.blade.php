@@ -6,7 +6,7 @@
     <div class="card-body table-full-width">
       <div class="toolbar">
         <a href="{{ route('subjects.create') }}" class="ml-1">
-          <button class="btn btn-outline" style="border-radius: 30px">
+          <button class="btn btn-outline">
             <i class="glyphicon fa fa-plus"></i> Add New
           </button>
         </a>
@@ -26,9 +26,9 @@
   <script type="text/javascript">
     function operateFormatter(value, row, index) {
       return [
-        // '<a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action edit" href="javascript:void(0)">',
-        // '<i class="fas fa-edit"></i> Edit',
-        // '</a>',
+        '<a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action edit" href="javascript:void(0)">',
+        '<i class="fas fa-edit"></i> Edit',
+        '</a>',
 				'<a rel="tooltip" title="Delete" class="btn btn-link btn-danger table-action remove" href="javascript:void(0)">',
         '<i class="fas fa-times"></i> Delete',
         '</a>'

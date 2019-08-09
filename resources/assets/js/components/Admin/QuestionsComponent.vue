@@ -9,7 +9,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-12">
-          <textarea class="form-control" v-model="name" placeholder="Enter a question..."></textarea>
+          <textarea class="form-control" v-model="description" placeholder="Enter a question..."></textarea>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="container">
         <div class="row mb-3" v-for="(answer, index) in answers" v-if="!answer.deleted">
           <div class="col-12 col-md-9">
-            <input type="text" name="answers" class="form-control" v-model="answer.name"> 
+            <input type="text" name="answers" class="form-control" v-model="answer.description"> 
           </div>
           
           <div class="col-12 col-md-1">
@@ -43,7 +43,7 @@
 
         <div class="row">
           <div class="col-12 col-md-10">
-            <input type="text" class="form-control" name="name" v-model="newAnswer">
+            <input type="text" class="form-control" name="description" v-model="newAnswer">
           </div>
 
           <div class="col-12 col-md-2">
@@ -84,10 +84,10 @@
     data: function(){
       return {
         question: {},
-        name: '',
+        description: '',
         answers:[
-          {name: '',correct: false},
-          {name: '',correct: false}
+          {description: '',correct: false},
+          {description: '',correct: false}
         ],
         newAnswer: '',
 
@@ -104,7 +104,7 @@
         }
 
         this.question = JSON.parse(this.defaultQuestion);
-        this.name = this.question.name;
+        this.description = this.question.description;
         this.answers = this.question.answers;
         // this.topic = this.question.topic;
       },
@@ -124,7 +124,7 @@
 
       onClick: function(){
        if(this.newAnswer != ''){
-          this.answers.push({name: this.newAnswer, correct: false})};
+          this.answers.push({description: this.newAnswer, correct: false})};
             this.newAnswer = '';
       },
 
@@ -169,7 +169,7 @@
         }
 
         var fields = {
-          'name': this.name, 
+          'description': this.description, 
           'answers': this.answers,
           'topic': this.topic
         };

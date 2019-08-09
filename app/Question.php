@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model {
   protected $fillable = [
-    'topic_id', 'description'
+    'topic_id', 'description', 'explanation', 'image'
   ];
 
   public function topic() {
@@ -15,5 +15,9 @@ class Question extends Model {
   
   public function answers() {
     return $this->hasMany('App\Answer');
+  }
+
+  public function students(){
+    return $this->belongsToMany('App\Student', 'exams', 'question_id', 'student_id');
   }
 }

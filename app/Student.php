@@ -21,8 +21,8 @@ class Student extends Model {
     return $this->belongsToMany('App\Subject', 'student_subject');
   }
 
-  public function attempts(){
-    return $this->belongsToMany('App\Question', 'question_subject');
+  public function questions(){
+    return $this->belongsToMany('App\Question', 'exams', 'student_id', 'question_id');
   }
 
   public function loginTo(){

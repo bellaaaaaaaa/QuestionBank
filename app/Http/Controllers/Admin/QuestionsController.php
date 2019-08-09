@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Admin\QuestionServices;
 use App\Question;
 use App\Topic;
+use App\Subject;
 use Session;
 
 class QuestionsController extends Controller{
@@ -21,7 +22,6 @@ class QuestionsController extends Controller{
     if ($request->isJson()) {
       return $this->questionServices->all($request);
     }
-
     return view($this->path . 'index');
   }
   
@@ -63,5 +63,9 @@ class QuestionsController extends Controller{
     $question->delete();
 
     return success();
+  }
+
+  public function import(Request $request, Subject $subject){
+    return $this->questionServices->import($request, $subject);  
   }
 }

@@ -67216,8 +67216,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
   data: function data() {
     return {
       question: {},
-      name: '',
-      answers: [{ name: '', correct: false }, { name: '', correct: false }],
+      description: '',
+      answers: [{ description: '', correct: false }, { description: '', correct: false }],
       newAnswer: '',
 
       topic: ''
@@ -67234,7 +67234,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
       }
 
       this.question = JSON.parse(this.defaultQuestion);
-      this.name = this.question.name;
+      this.description = this.question.description;
       this.answers = this.question.answers;
       // this.topic = this.question.topic;
     },
@@ -67254,7 +67254,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
     onClick: function onClick() {
       if (this.newAnswer != '') {
-        this.answers.push({ name: this.newAnswer, correct: false });
+        this.answers.push({ description: this.newAnswer, correct: false });
       };
       this.newAnswer = '';
     },
@@ -67326,7 +67326,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
       }
 
       var fields = {
-        'name': this.name,
+        'description': this.description,
         'answers': this.answers,
         'topic': this.topic
       };
@@ -67381,19 +67381,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.name,
-                expression: "name"
+                value: _vm.description,
+                expression: "description"
               }
             ],
             staticClass: "form-control",
             attrs: { placeholder: "Enter a question..." },
-            domProps: { value: _vm.name },
+            domProps: { value: _vm.description },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.name = $event.target.value
+                _vm.description = $event.target.value
               }
             }
           })
@@ -67427,19 +67427,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: answer.name,
-                        expression: "answer.name"
+                        value: answer.description,
+                        expression: "answer.description"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: { type: "text", name: "answers" },
-                    domProps: { value: answer.name },
+                    domProps: { value: answer.description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(answer, "name", $event.target.value)
+                        _vm.$set(answer, "description", $event.target.value)
                       }
                     }
                   })
@@ -67528,7 +67528,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", name: "name" },
+              attrs: { type: "text", name: "description" },
               domProps: { value: _vm.newAnswer },
               on: {
                 input: function($event) {
@@ -79573,6 +79573,8 @@ __webpack_require__(211);
 
 __webpack_require__(212);
 
+__webpack_require__(213);
+
 // Vue Setup
 window.Vue = __webpack_require__(37);
 
@@ -90070,7 +90072,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     		- The provided value for the option;
     		- A reference to the options object;
     		- The name for the option;
-      	The testing function returns false when an error is detected,
+     	The testing function returns false when an error is detected,
     	or true when everything is OK. It can also modify the option
     	object, to make sure all values can be correctly looped elsewhere. */
 
@@ -106448,25 +106450,25 @@ lbd = {
 /***/ (function(module, exports) {
 
 $().ready(function () {
-  function setFormValidation(id) {
-    $(id).validate({
-      highlight: function highlight(element) {
-        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-        $(element).closest('.form-check').removeClass('has-success').addClass('has-error');
-      },
-      success: function success(element) {
-        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-        $(element).closest('.form-check').removeClass('has-error').addClass('has-success');
-      },
-      errorPlacement: function errorPlacement(error, element) {
-        $(element).closest('.form-group').append(error).addClass('has-error');
-      }
-    });
-  }
+    function setFormValidation(id) {
+        $(id).validate({
+            highlight: function highlight(element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                $(element).closest('.form-check').removeClass('has-success').addClass('has-error');
+            },
+            success: function success(element) {
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                $(element).closest('.form-check').removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function errorPlacement(error, element) {
+                $(element).closest('.form-group').append(error).addClass('has-error');
+            }
+        });
+    }
 
-  setFormValidation('#form-validation');
-  setFormValidation('#account-settings-form');
-  setFormValidation('#change-password-form');
+    setFormValidation('#form-validation');
+    setFormValidation('#account-settings-form');
+    setFormValidation('#change-password-form');
 });
 
 /***/ }),
@@ -106653,6 +106655,17 @@ var _pictureUploader = function _pictureUploader(e) {
 
 $().ready(function () {
 	$('.on__file__change').on('change', _pictureUploader);
+});
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports) {
+
+$().ready(function () {
+  $('.on__file__import').on('change', function (e) {
+    var form = $($(this).data('target'));
+    form.submit();
+  });
 });
 
 /***/ })

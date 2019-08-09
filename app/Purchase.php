@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class StudentSubject extends Pivot {
+class Purchase extends Pivot {
+  protected $table = 'purchases';
+
   protected $fillable = [
     'login_to', 'nric', 'age'
   ];

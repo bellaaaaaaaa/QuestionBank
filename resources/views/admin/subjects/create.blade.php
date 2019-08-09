@@ -12,17 +12,11 @@
       </div>
       <div class="card-body">
         {!! Form::open(['route' => 'subjects.store', 'class' => 'form', 'id' => 'form-validation']) !!}
-        <div class="form-group has-label">
-          <label>Subject
-            <star class="star">*</star>
-          </label>
-          {{ Form::text('name', null, [ 'class'=>'form-control', 'required']) }}
-        </div>
+          @include('admin.subjects.partials.form')
 
-        <div class="card-footer text-right">
-          <button type="submit" class="btn btn-info btn-fill btn-wd">Add</button>
-        </div>
-
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-info btn-fill btn-wd">Add</button>
+          </div>
         {!! Form::close() !!}
       </div>
     </div>

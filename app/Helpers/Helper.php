@@ -58,3 +58,11 @@ function get_student_subject() {
 
   return current_user()->owner->loginTo;
 }
+
+function imports_dir_path($option = ''){
+  return 'imports/' . $option . '/';
+}
+
+function exports_dir_path($option = ''){
+	return 'exports/' . $option . '/';
+}

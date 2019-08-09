@@ -2,8 +2,13 @@
 
 namespace App\Services\Admin;
 
+use App\Subject;
 use App\Answer;
 use App\Question;
+
+use Storage;
+use App\Jobs\ImportQuestions;
+
 use Illuminate\Http\Request;
 use App\Services\TransformerService;
 
@@ -16,7 +21,7 @@ class QuestionServices extends TransformerService{
     $offset = $request->offset ? $request->offset : 0;
     $query = $request->search ? $request->search : '';
 
-    $questions =  Question::where('name', 'like', "%{$query}%")->orderBy($sort, $order);
+    $questions =  Question::where('description', 'like', "%{$query}%")->orderBy($sort, $order);
     $listCount = $questions->count();
 
     $questions = $questions->limit($limit)->offset($offset)->get();
@@ -33,21 +38,21 @@ class QuestionServices extends TransformerService{
 
   public function create(Request $request){
     $request->validate([
-      'name' => 'required|unique:questions',
+      'description' => 'required|unique:questions',
       'answers' => 'required|array|min:2',
       'answers.*.correct' => 'required',
       // 'topic' => 'required|numeric'
     ]);
              
     $question = new Question();
-    $question->name = $request->name;
+    $question->description = $request->description;
     // $question->id = $request->id;
     $question->topic_id = 1;
     $question->save();
         
     foreach($request->answers as $answer){
       $newAnswer = new Answer();
-      $newAnswer->name = $answer['name'];
+      $newAnswer->description = $answer['description'];
       $newAnswer->correct = $answer['correct'];
       $newAnswer->question_id = $question->id;
       $newAnswer->save();
@@ -58,12 +63,12 @@ class QuestionServices extends TransformerService{
 
   public function update(Request $request, Question $question){
     $request->validate([
-      'name'=> 'unique:questions,id,' . $question->id,
+      'description'=> 'unique:questions,id,' . $question->id,
       'answers' => 'required|array|min:2',
       'answers.*.correct' => 'required',
     ]);
 
-    $question->name = $request->name;
+    $question->description = $request->description;
     $question->topic_id = 1;
     $question->save();
 
@@ -85,14 +90,14 @@ class QuestionServices extends TransformerService{
   
   public function updateAnswer($answerExist, $answer){
     
-    $answerExist->name = $answer->name;
+    $answerExist->description = $answer->description;
     $answerExist->correct = $answer->correct;
     $answerExist->save();
   }
 
   public function createAnswer($answer, $question){
     $newAnswer = new Answer();
-    $newAnswer->name = $answer->name;
+    $newAnswer->description = $answer->description;
     $newAnswer->correct = $answer->correct;
     $newAnswer->question_id = $question->id;
     $newAnswer->save();
@@ -102,12 +107,27 @@ class QuestionServices extends TransformerService{
     $answer = Answer::find($answer->id);
     $answer->delete();
   }
+
+  public function import(Request $request, Subject $subject) {
+    $request->validate([
+      'questions' => 'required'
+    ]);
+
+    $file = $request->file('questions');
+    $dirPath = imports_dir_path('questions');
+    $fileName = md5(str_random(30) . time()) . '.csv';
+    Storage::putFileAs($dirPath, $file, $fileName, 'public');
+    $filePath = imports_dir_path('questions') . $fileName;
+    ImportQuestions::dispatch($filePath, $subject);
+
+    return redirect()->back()->with('success', 'Great! Please refresh after a few seconds if you do not see the changes.');
+  }
     
 	public function transform($question){
         
 		return [
       'id' => $question->id,
-      'name' => $question->name,
+      'description' => $question->description,
       // 'name' => $this->transformDate($question->created_at),
       'correct_attempts' =>  $question->number_of_correct_attempts,
       // 'explanation' => $question->explanation,
@@ -115,3 +135,4 @@ class QuestionServices extends TransformerService{
 		];
 	}
 }
+

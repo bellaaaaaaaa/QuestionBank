@@ -47402,8 +47402,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
   data: function data() {
     return {
       question: {},
-      name: '',
-      answers: [{ name: '', correct: false }, { name: '', correct: false }],
+      description: '',
+      answers: [{ description: '', correct: false }, { description: '', correct: false }],
       newAnswer: '',
 
       topic: ''
@@ -47420,7 +47420,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
       }
 
       this.question = JSON.parse(this.defaultQuestion);
-      this.name = this.question.name;
+      this.description = this.question.description;
       this.answers = this.question.answers;
       // this.topic = this.question.topic;
     },
@@ -47440,7 +47440,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
     onClick: function onClick() {
       if (this.newAnswer != '') {
-        this.answers.push({ name: this.newAnswer, correct: false });
+        this.answers.push({ description: this.newAnswer, correct: false });
       };
       this.newAnswer = '';
     },
@@ -47512,7 +47512,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
       }
 
       var fields = {
-        'name': this.name,
+        'description': this.description,
         'answers': this.answers,
         'topic': this.topic
       };
@@ -47567,19 +47567,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.name,
-                expression: "name"
+                value: _vm.description,
+                expression: "description"
               }
             ],
             staticClass: "form-control",
             attrs: { placeholder: "Enter a question..." },
-            domProps: { value: _vm.name },
+            domProps: { value: _vm.description },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.name = $event.target.value
+                _vm.description = $event.target.value
               }
             }
           })
@@ -47613,19 +47613,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: answer.name,
-                        expression: "answer.name"
+                        value: answer.description,
+                        expression: "answer.description"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: { type: "text", name: "answers" },
-                    domProps: { value: answer.name },
+                    domProps: { value: answer.description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(answer, "name", $event.target.value)
+                        _vm.$set(answer, "description", $event.target.value)
                       }
                     }
                   })
@@ -47714,7 +47714,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", name: "name" },
+              attrs: { type: "text", name: "description" },
               domProps: { value: _vm.newAnswer },
               on: {
                 input: function($event) {
@@ -48615,6 +48615,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['defaultSubject', 'defaultTopic', 'defaultQuestions'],
   data: function data() {
     return {
+      title: 'Quiz',
       questions: [],
       subject: {},
       topic: {},
@@ -48629,6 +48630,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     setDefault: function setDefault() {
+      if (window.location.href.indexOf('/trials') > -1) {
+        this.title = 'Trial';
+      }
+
       this.subject = JSON.parse(this.defaultSubject);
       this.topic = JSON.parse(this.defaultTopic);
       this.questions = JSON.parse(this.defaultQuestions);
@@ -48682,7 +48687,7 @@ var render = function() {
           { staticClass: "col-sm-12" },
           [
             _c("h1", { staticClass: "my-3 mb-sm-0 mb-sm-5" }, [
-              _vm._v("Quiz - " + _vm._s(_vm.subject.name))
+              _vm._v(_vm._s(_vm.title) + " - " + _vm._s(_vm.subject.name))
             ]),
             _vm._v(" "),
             !_vm.completed

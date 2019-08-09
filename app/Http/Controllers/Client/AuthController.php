@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\User;
 use App\Student;
 use App\Subject;
@@ -72,8 +71,7 @@ class AuthController extends Controller{
       $student = current_user()->owner;
       $student->login_to = $subject->id;
       $student->save();
-
-      // Auth::logoutOtherDevices($request->password);
+      
 	    return redirect()->route('home');
 	  }else{
 	    return redirect()->back()->withErrors(['message' => 'Email or password is incorrect']);
