@@ -8,7 +8,7 @@ class Exam extends Pivot {
   protected $table = 'exams';
 
   protected $fillable = [
-    'question_id', 'student_id', 'num_of_attempts_left'
+    'question_id', 'student_id', 'answer_id', 'attempt'
   ];
 
   public function question(){
