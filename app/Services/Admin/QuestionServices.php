@@ -131,7 +131,9 @@ class QuestionServices extends TransformerService{
       // 'name' => $this->transformDate($question->created_at),
       'correct_attempts' =>  $question->number_of_correct_attempts,
       // 'explanation' => $question->explanation,
-      'topic' => $question->topic ? $question->topic->name:'-',
+      // 'topic' => $question->topic ? $question->topic->name:'-',
+      'hasImage' => $question->image ? 'Have Image' : 'No Image'
+
 		];
 	}
 }
