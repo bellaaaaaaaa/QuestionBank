@@ -37,7 +37,7 @@
 					</div>
         </div>
         <div class="card-footer mx-auto">
-          <button type="submit" class="btn btn-wd btn-primary">Register</button>
+          <button type="submit" class="btn btn-wd btn-primary btn-info">Register</button>
         </div>
       </div>
     {!! Form::close() !!}

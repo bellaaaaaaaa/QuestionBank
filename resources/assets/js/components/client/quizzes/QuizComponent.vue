@@ -12,6 +12,7 @@
     <quiz-explanation-component :default-question="currentQuestion" v-if="!completed"></quiz-explanation-component>
 
     <quiz-result-component :default-questions="questions" @reset="onReset" v-if="completed"></quiz-result-component>
+
   </div>
 </template>  
 

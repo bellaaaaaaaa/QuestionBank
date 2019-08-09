@@ -66,13 +66,15 @@ Route::middleware('client.auth')->group(function(){
   Route::get('logout', 'Client\AuthController@logout')->name('client.logout');
 
   Route::get('trials', 'Client\QuizzesController@showTrials')->name('trials.questions');
+  
+  Route::middleware('purchased.course')->group(function(){ 
+    Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');
+    Route::get('quizzes/topics/{topic}', 'Client\QuizzesController@showQuestions')->name('quizzes.questions');
+    Route::post('quizzes/topics/answer', 'Client\QuizzesController@answer')->name('quizzes.answer');
 
-  Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');
-  Route::get('quizzes/topics/{topic}', 'Client\QuizzesController@showQuestions')->name('quizzes.questions');
-  Route::post('quizzes/topics/answer', 'Client\QuizzesController@answer')->name('quizzes.answer');
-
-  Route::get('mcq-exam', 'Client\ExamsController@showMCQ')->name('exam.mcq');
-  Route::post('mcq-exam/answer', 'Client\ExamsController@answer')->name('exam.answer');
+    Route::get('mcq-exam', 'Client\ExamsController@showMCQ')->name('exam.mcq');
+    Route::post('mcq-exam/answer', 'Client\ExamsController@answer')->name('exam.answer');
+  });
 });
 
 //added by Pat to view the frontend pages
@@ -81,9 +83,8 @@ Route::view('/mcq-exam-2', '/client/mcq-exam');
 Route::view('/quiz/1', '/client/quiz');
 Route::view('/quiz/topics', '/client/topics');
 
-Route::view('/payment', '/client/payment/payment');
+Route::view('/unauthorized', '/client/unauthorized');
+
+Route::view('/payment', '/client/payment/payment')->name('client.payment');
 Route::view('/payment-gateway', '/client/payment/payment-gateway');
 Route::view('/stripe', '/client/payment/stripe-info');
-
-
-

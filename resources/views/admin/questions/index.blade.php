@@ -14,10 +14,9 @@
       <table id="bootstrap-table" class="table" data-clickable="name" data-url="{{ route('questions.index') }}">
         <thead>
           <th data-field="id" class="text-center" data-sortable="true">ID</th>
-          <th data-field="topic">Topic</th>
-          <th data-field="name">Questions</th>
-          <th data-field="number_of_attempts">Number of Attempts</th>
-          <th data-field="number_of_correct_attempts">Number of Correct Attempts</th>
+          {{-- <th data-field="topic">Topic</th> --}}
+          <th data-field="description">Questions</th>
+          <th data-field="hasImage">Image</th>
           <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
         </thead>
       </table>
@@ -29,9 +28,9 @@
   <script type="text/javascript">
     function operateFormatter(value, row, index) {
       return [
-        // '<a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action edit" href="javascript:void(0)">',
-        // '<i class="fa fa-edit"></i>',
-        // '</a>',
+        '<a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action edit" href="javascript:void(0)">',
+        '<i class="fas fa-edit"></i> Edit',
+        '</a>',
 				'<a rel="tooltip" title="Delete" class="btn btn-link btn-danger table-action remove" href="javascript:void(0)">',
         '<i class="fas fa-times"></i> Delete',
         '</a>'

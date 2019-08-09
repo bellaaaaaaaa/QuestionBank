@@ -14964,6 +14964,7 @@ body {
 #sidebar-wrapper .list-group-item-action {
   background: #036635;
   color: #fff;
+  border: none;
 }
 
 #sidebar-wrapper .list-group-item-action.active,
@@ -15156,6 +15157,35 @@ body {
 .card-payment input[type=radio]:checked ~ label {
   background: #036635;
   color: #fff;
+}
+
+.unauthorized {
+  background: #ddd;
+}
+
+.unauthorized .col-sm-12 {
+  height: 100vh;
+}
+
+.unauthorized .card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.unauthorized .card-header {
+  background: #036635;
+  height: 40px;
+}
+
+.unauthorized .btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: block;
+  margin: 0 auto;
 }
 
 .box {
@@ -15405,11 +15435,11 @@ body {
 
 .topics a {
   color: #fff;
+  text-decoration: none;
 }
 
-.topics a:hover {
-  color: #000;
-  text-decoration: none;
+.topics a:hover li {
+  background-color: #03B35B !important;
 }
 
 .topics a:nth-child(odd) li {
@@ -15529,6 +15559,7 @@ body {
   border: none;
   padding: 5px 20px;
   border: 2px solid transparent;
+  cursor: pointer;
 }
 
 .buttons:hover {
@@ -15562,6 +15593,12 @@ body {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
+}
+
+.notification {
+  background: orange;
+  padding: 10px;
+  color: #fff;
 }
 
 .subjects-title {
@@ -29143,6 +29180,10 @@ select.selectpicker {
 .slider-danger .noUi-connect,
 .slider-danger.noUi-connect {
   background-color: #FB404B;
+}
+
+.full-page:after {
+  background: #036635;
 }
 
 .pt-10vh {

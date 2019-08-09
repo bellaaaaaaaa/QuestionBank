@@ -127,10 +127,10 @@
 
 	a{
 		color:#fff;
+		text-decoration:none;
 
-		&:hover{
-			color:#000;
-			text-decoration:none;
+		&:hover li{
+			background-color:$topics-hover !important;
 		}
 
 		&:nth-child(odd) li{
@@ -255,6 +255,7 @@
     border: none;
     padding: 5px 20px;
     border:2px solid transparent;
+    cursor:pointer;
 
     &:hover{
     	border:2px solid $brand-color;
@@ -281,4 +282,13 @@
 		justify-content: space-between;
 	}
 }
+
+//notification
+.notification{
+	background:orange;
+	padding:10px;
+	color:#fff;
+}
+
+
 

@@ -3,6 +3,11 @@
     <div class="col-sm-12">
       <div class="box questions">
         <h2>Questions</h2>
+        <div class="row">
+          <div class="col-8 offset-2 text-center notification">
+           <i class="fas fa-exclamation-circle"></i> Please submit answer before proceeding.
+          </div>
+        </div>
         <h3>Question {{ currentIndex + 1 }} of {{ this.questions.length }}</h3>
         <p><small>Question Chapter : {{ defaultTopic.name }}</small></p>
 
@@ -14,11 +19,15 @@
             <div class="check"></div>
           </li>
         </ul>
-        <input type="button" name="next" value="Submit Answer" class="buttons submit-btn" @click="onSubmitClick">
+        <div class="row">
+          <div class="col-sm-12 d-flex">
+            <input type="button" name="next" value="Submit Answer" class="buttons submit-btn" @click="onSubmitClick">
 
-        <input type="button" name="next" value="Next" class="buttons next-btn" @click="onNextClick(false)" v-if="currentIndex + 1 < questions.length">
+            <input type="button" name="next" value="Next" class="buttons next-btn" @click="onNextClick(false)" v-if="currentIndex + 1 < questions.length">
 
-        <input type="button" name="submit" value="Submit" class="buttons next-btn" @click="onNextClick(true)" v-else>
+            <input type="button" name="submit" value="Submit" class="buttons next-btn" @click="onNextClick(true)" v-else>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -93,6 +102,7 @@
         this.$emit('questionSubmitted', this.currentQuestion, this.currentQuestion.selected);
       },
       onNextClick: function(finalQuestion) {
+
         if(!this.currentQuestion.submitted) {
           return;
         } 
