@@ -1,0 +1,25 @@
+.unauthorized{
+	background: #ddd;
+	
+	.col-sm-12{
+		height:100vh;
+	}
+
+	.card{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.card-header{
+		background:$brand-color;
+		height: 40px;
+	}
+
+	.btn{
+		width: max-content;
+		display:block;
+		margin:0 auto;
+	}
+}
