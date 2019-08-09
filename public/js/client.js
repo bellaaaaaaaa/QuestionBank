@@ -49244,6 +49244,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['defaultQuestions', 'defaultCurrentQuestion', 'defaultCurrentIndex', 'defaultTopic'],
@@ -49402,31 +49406,35 @@ var render = function() {
           })
         ),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "buttons submit-btn",
-          attrs: { type: "button", name: "next", value: "Submit Answer" },
-          on: { click: _vm.onSubmitClick }
-        }),
-        _vm._v(" "),
-        _vm.currentIndex + 1 < _vm.questions.length
-          ? _c("input", {
-              staticClass: "buttons next-btn",
-              attrs: { type: "button", name: "next", value: "Next" },
-              on: {
-                click: function($event) {
-                  _vm.onNextClick(false)
-                }
-              }
-            })
-          : _c("input", {
-              staticClass: "buttons next-btn",
-              attrs: { type: "button", name: "submit", value: "Submit" },
-              on: {
-                click: function($event) {
-                  _vm.onNextClick(true)
-                }
-              }
-            })
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12 d-flex" }, [
+            _c("input", {
+              staticClass: "buttons submit-btn",
+              attrs: { type: "button", name: "next", value: "Submit Answer" },
+              on: { click: _vm.onSubmitClick }
+            }),
+            _vm._v(" "),
+            _vm.currentIndex + 1 < _vm.questions.length
+              ? _c("input", {
+                  staticClass: "buttons next-btn",
+                  attrs: { type: "button", name: "next", value: "Next" },
+                  on: {
+                    click: function($event) {
+                      _vm.onNextClick(false)
+                    }
+                  }
+                })
+              : _c("input", {
+                  staticClass: "buttons next-btn",
+                  attrs: { type: "button", name: "submit", value: "Submit" },
+                  on: {
+                    click: function($event) {
+                      _vm.onNextClick(true)
+                    }
+                  }
+                })
+          ])
+        ])
       ])
     ])
   ])

@@ -14952,6 +14952,7 @@ body {
 #sidebar-wrapper .list-group-item-action {
   background: #036635;
   color: #fff;
+  border: none;
 }
 
 #sidebar-wrapper .list-group-item-action.active,
@@ -15393,11 +15394,11 @@ body {
 
 .topics a {
   color: #fff;
+  text-decoration: none;
 }
 
-.topics a:hover {
-  color: #000;
-  text-decoration: none;
+.topics a:hover li {
+  background-color: #03B35B !important;
 }
 
 .topics a:nth-child(odd) li {
@@ -15517,6 +15518,7 @@ body {
   border: none;
   padding: 5px 20px;
   border: 2px solid transparent;
+  cursor: pointer;
 }
 
 .buttons:hover {

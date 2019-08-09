@@ -2,6 +2,7 @@
 <div class="border-right" id="sidebar-wrapper">
   <div class="sidebar-heading d-flex"><img src="{{ asset('images/user-default.jpg') }}"><span class="align-self-center">John Doe</span></div>
   <div class="list-group list-group-flush">
+
     <a href="/home" class="list-group-item list-group-item-action {{ is_active('home') }}"><i class="fas fa-chart-pie"></i> Dashboard</a>
 
     <a href="{{ route('trials.questions') }}" class="list-group-item list-group-item-action {{ is_active('trials') }}"><i class="fas fa-bars"></i> Trial</a>
