@@ -3,9 +3,13 @@
     <div class="col-sm-12">
       <div class="box row">
         <h2>Explanation</h2>
-        <p>{{ question.explanation }}</p>
+        <div class="col-sm-12">
+          <p class="my-2">{{ question.explanation }}</p>
+        </div>
+        <div class="col-sm-12 d-flex">
+          <input type="button" name="read_chapter" value="Read Chapter" class="buttons read-btn">
+        </div>
 
-        <input type="button" name="read_chapter" value="Read Chapter" class="buttons read-btn">
       </div>
     </div>
   </div>

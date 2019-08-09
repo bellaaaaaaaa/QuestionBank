@@ -25,7 +25,7 @@
 					</div>
         </div>
         <div class="card-footer mx-auto">
-          <button type="submit" class="btn btn-wd btn-primary">Login</button>
+          <button type="submit" class="btn btn-wd btn-primary btn-info">Login</button>
         </div>
       </div>
     {!! Form::close() !!}

@@ -15147,6 +15147,35 @@ body {
   color: #fff;
 }
 
+.unauthorized {
+  background: #ddd;
+}
+
+.unauthorized .col-sm-12 {
+  height: 100vh;
+}
+
+.unauthorized .card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.unauthorized .card-header {
+  background: #036635;
+  height: 40px;
+}
+
+.unauthorized .btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: block;
+  margin: 0 auto;
+}
+
 .box {
   margin: 20px 0;
   border: 1px solid #000;
@@ -15552,6 +15581,12 @@ body {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
+}
+
+.notification {
+  background: orange;
+  padding: 10px;
+  color: #fff;
 }
 
 .subjects-title {

@@ -48610,6 +48610,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['defaultSubject', 'defaultTopic', 'defaultQuestions'],
@@ -48812,6 +48813,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['defaultQuestion'],
@@ -48846,22 +48851,31 @@ var render = function() {
           _c("div", { staticClass: "box row" }, [
             _c("h2", [_vm._v("Explanation")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.question.explanation))]),
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("p", { staticClass: "my-2" }, [
+                _vm._v(_vm._s(_vm.question.explanation))
+              ])
+            ]),
             _vm._v(" "),
-            _c("input", {
-              staticClass: "buttons read-btn",
-              attrs: {
-                type: "button",
-                name: "read_chapter",
-                value: "Read Chapter"
-              }
-            })
+            _vm._m(0)
           ])
         ])
       ])
     : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12 d-flex" }, [
+      _c("input", {
+        staticClass: "buttons read-btn",
+        attrs: { type: "button", name: "read_chapter", value: "Read Chapter" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -49248,6 +49262,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['defaultQuestions', 'defaultCurrentQuestion', 'defaultCurrentIndex', 'defaultTopic'],
@@ -49319,6 +49338,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$emit('questionSubmitted', this.currentQuestion, this.currentQuestion.selected);
     },
     onNextClick: function onNextClick(finalQuestion) {
+
       if (!this.currentQuestion.submitted) {
         return;
       }
@@ -49342,6 +49362,8 @@ var render = function() {
     _c("div", { staticClass: "col-sm-12" }, [
       _c("div", { staticClass: "box questions" }, [
         _c("h2", [_vm._v("Questions")]),
+        _vm._v(" "),
+        _vm._m(0),
         _vm._v(" "),
         _c("h3", [
           _vm._v(
@@ -49439,7 +49461,19 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-8 offset-2 text-center notification" }, [
+        _c("i", { staticClass: "fas fa-exclamation-circle" }),
+        _vm._v(" Please submit answer before proceeding.\n        ")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

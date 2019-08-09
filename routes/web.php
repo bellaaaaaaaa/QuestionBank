@@ -78,6 +78,8 @@ Route::view('/mcq-exam', '/client/mcq-exam');
 Route::view('/quiz/1', '/client/quiz');
 Route::view('/quiz/topics', '/client/topics');
 
+Route::view('/unauthorized', '/client/unauthorized');
+
 Route::view('/payment', '/client/payment/payment');
 Route::view('/payment-gateway', '/client/payment/payment-gateway');
 Route::view('/stripe', '/client/payment/stripe-info');

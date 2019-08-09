@@ -3,6 +3,11 @@
     <div class="col-sm-12">
       <div class="box questions">
         <h2>Questions</h2>
+        <div class="row">
+          <div class="col-8 offset-2 text-center notification">
+           <i class="fas fa-exclamation-circle"></i> Please submit answer before proceeding.
+          </div>
+        </div>
         <h3>Question {{ currentIndex + 1 }} of {{ this.questions.length }}</h3>
         <p><small>Question Chapter : {{ defaultTopic.name }}</small></p>
 
@@ -97,6 +102,7 @@
         this.$emit('questionSubmitted', this.currentQuestion, this.currentQuestion.selected);
       },
       onNextClick: function(finalQuestion) {
+
         if(!this.currentQuestion.submitted) {
           return;
         } 

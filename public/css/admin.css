@@ -15159,6 +15159,35 @@ body {
   color: #fff;
 }
 
+.unauthorized {
+  background: #ddd;
+}
+
+.unauthorized .col-sm-12 {
+  height: 100vh;
+}
+
+.unauthorized .card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.unauthorized .card-header {
+  background: #036635;
+  height: 40px;
+}
+
+.unauthorized .btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: block;
+  margin: 0 auto;
+}
+
 .box {
   margin: 20px 0;
   border: 1px solid #000;
@@ -15564,6 +15593,12 @@ body {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
+}
+
+.notification {
+  background: orange;
+  padding: 10px;
+  color: #fff;
 }
 
 .subjects-title {
@@ -23319,7 +23354,7 @@ License - nucleoapp.com/license/
 @font-face {
   font-family: 'nucleo-icons';
   src: url(/fonts/nucleo-icons.eot?8224e0160e362e117cbe00495919e2af);
-  src: url(/fonts/nucleo-icons.eot?8224e0160e362e117cbe00495919e2af) format("embedded-opentype"), url(/fonts/nucleo-icons.woff2?ff208b8d733e61a630992ee2b72c9c1c) format("woff2"), url(/fonts/nucleo-icons.woff?861720fa94b80958075f620b2c6e8fb9) format("woff"), url(/fonts/nucleo-icons.ttf?b0dc05d015e91e7d28d79cd0056fe555) format("truetype"), url(/fonts/nucleo-icons.svg?ae42fa524981a56f3f289447cff36eb1) format("svg");
+  src: url(/fonts/nucleo-icons.eot?8224e0160e362e117cbe00495919e2af) format("embedded-opentype"), url(/fonts/nucleo-icons.woff2?ff208b8d733e61a630992ee2b72c9c1c) format("woff2"), url(/fonts/nucleo-icons.woff?861720fa94b80958075f620b2c6e8fb9) format("woff"), url(/fonts/nucleo-icons.ttf?b0dc05d015e91e7d28d79cd0056fe555) format("truetype"), url(/fonts/nucleo-icons.svg?dc0cdfac3187d5fe800b249201cdf9b0) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -28957,8 +28992,8 @@ select.selectpicker {
   border-radius: 3px;
   background: #FFF;
   cursor: default;
-  -webkit-box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
-          box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
+  -webkit-box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
+          box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
   -webkit-transition: 300ms ease 0s;
   -moz-transition: 300ms ease 0s;
   -ms-transition: 300ms ease 0s;
@@ -29145,6 +29180,10 @@ select.selectpicker {
 .slider-danger .noUi-connect,
 .slider-danger.noUi-connect {
   background-color: #FB404B;
+}
+
+.full-page:after {
+  background: #036635;
 }
 
 .pt-10vh {

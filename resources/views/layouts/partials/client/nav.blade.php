@@ -1,6 +1,6 @@
 <!-- Sidebar -->
 <div class="border-right" id="sidebar-wrapper">
-  <div class="sidebar-heading d-flex"><img src="{{ asset('images/user-default.jpg') }}"><span class="align-self-center">John Doe</span></div>
+  <div class="sidebar-heading d-flex"><a href="/edit-profile" style="color:#fff;text-decoration:none;"><img src="{{ asset('images/user-default.jpg') }}"><span class="align-self-center">John Doe</span></a></div>
   <div class="list-group list-group-flush">
 
     <a href="/home" class="list-group-item list-group-item-action {{ is_active('home') }}"><i class="fas fa-chart-pie"></i> Dashboard</a>
@@ -16,7 +16,7 @@
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-dark front-navbar">
-  <a class="navbar-brand" href="#"><img src="{{ asset('images/user-default.jpg') }}"><span>John Doe</span></a>
+  <a class="navbar-brand" href="#" style="color:#fff;text-decoration:none;"><img src="{{ asset('images/user-default.jpg') }}"><span>John Doe</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
