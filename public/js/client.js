@@ -48518,11 +48518,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 var map = {
 	"./Admin/QuestionsComponent.vue": 40,
-	"./client/quizzes/QuizComponent.vue": 170,
-	"./client/quizzes/partials/QuestionExplanationComponent.vue": 173,
-	"./client/quizzes/partials/QuestionStatsComponent.vue": 176,
-	"./client/quizzes/partials/QuizQuestionComponent.vue": 179,
-	"./client/quizzes/partials/QuizResultComponent.vue": 182
+	"./Client/exams/ExamComponent.vue": 275,
+	"./Client/exams/partials/ExamQuestionComponent.vue": 278,
+	"./Client/exams/partials/ExamResultComponent.vue": 281,
+	"./Client/quizzes/QuizComponent.vue": 242,
+	"./Client/quizzes/partials/QuizExplanationComponent.vue": 248,
+	"./Client/quizzes/partials/QuizQuestionComponent.vue": 251,
+	"./Client/quizzes/partials/QuizResultComponent.vue": 254,
+	"./Client/quizzes/partials/QuizStatsComponent.vue": 257
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -48541,15 +48544,97 @@ module.exports = webpackContext;
 webpackContext.id = 169;
 
 /***/ }),
-/* 170 */
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(171)
+var __vue_script__ = __webpack_require__(243)
 /* template */
-var __vue_template__ = __webpack_require__(172)
+var __vue_template__ = __webpack_require__(244)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48566,7 +48651,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/QuizComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/quizzes/QuizComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48575,9 +48660,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-259ccd02", Component.options)
+    hotAPI.createRecord("data-v-31acc4c2", Component.options)
   } else {
-    hotAPI.reload("data-v-259ccd02", Component.options)
+    hotAPI.reload("data-v-31acc4c2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48588,7 +48673,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 171 */
+/* 243 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48670,7 +48755,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 172 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48691,7 +48776,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             !_vm.completed
-              ? _c("question-stats-component", {
+              ? _c("quiz-stats-component", {
                   attrs: {
                     "default-questions": _vm.questions,
                     "default-current-index": _vm.currentIndex,
@@ -48721,7 +48806,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       !_vm.completed
-        ? _c("question-explanation-component", {
+        ? _c("quiz-explanation-component", {
             attrs: { "default-question": _vm.currentQuestion }
           })
         : _vm._e(),
@@ -48742,20 +48827,23 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-259ccd02", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-31acc4c2", module.exports)
   }
 }
 
 /***/ }),
-/* 173 */
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(174)
+var __vue_script__ = __webpack_require__(249)
 /* template */
-var __vue_template__ = __webpack_require__(175)
+var __vue_template__ = __webpack_require__(250)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48772,7 +48860,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuestionExplanationComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/quizzes/partials/QuizExplanationComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48781,9 +48869,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-26874e44", Component.options)
+    hotAPI.createRecord("data-v-40b1646d", Component.options)
   } else {
-    hotAPI.reload("data-v-26874e44", Component.options)
+    hotAPI.reload("data-v-40b1646d", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48794,7 +48882,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 174 */
+/* 249 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48833,7 +48921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 175 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48867,20 +48955,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-26874e44", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-40b1646d", module.exports)
   }
 }
 
 /***/ }),
-/* 176 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(177)
+var __vue_script__ = __webpack_require__(252)
 /* template */
-var __vue_template__ = __webpack_require__(178)
+var __vue_template__ = __webpack_require__(253)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48897,7 +48985,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuestionStatsComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/quizzes/partials/QuizQuestionComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48906,9 +48994,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-29ce44d0", Component.options)
+    hotAPI.createRecord("data-v-d71af104", Component.options)
   } else {
-    hotAPI.reload("data-v-29ce44d0", Component.options)
+    hotAPI.reload("data-v-d71af104", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48919,7 +49007,455 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 177 */
+/* 252 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultQuestions', 'defaultCurrentQuestion', 'defaultCurrentIndex', 'defaultTopic'],
+  data: function data() {
+    return {
+      questions: [],
+      currentQuestion: {},
+      currentIndex: 0
+    };
+  },
+  watch: {
+    defaultQuestions: function defaultQuestions() {
+      this.questions = this.defaultQuestions;
+    },
+    defaultCurrentQuestion: function defaultCurrentQuestion() {
+      this.currentQuestion = this.defaultCurrentQuestion;
+    },
+    defaultCurrentIndex: function defaultCurrentIndex() {
+      this.currentIndex = this.defaultCurrentIndex;
+    }
+  },
+  mounted: function mounted() {
+    this.questions = this.defaultQuestions;
+    this.currentQuestion = this.defaultCurrentQuestion;
+    this.currentIndex = this.defaultCurrentIndex;
+  },
+  methods: {
+    questionSubmitted: function questionSubmitted(answer) {
+      if (!this.currentQuestion.submitted) {
+        return;
+      }
+
+      if (answer.correct) {
+        return 'correct';
+      }
+
+      if (this.currentQuestion.selected == answer.id) {
+        return 'wrong';
+      }
+
+      return '';
+    },
+    onAnswerClick: function onAnswerClick(e) {
+      if (this.currentQuestion.submitted) {
+        e.preventDefault();
+      }
+    },
+    onSubmitClick: function onSubmitClick() {
+      var _this = this;
+
+      if (!this.currentQuestion.selected || this.currentQuestion.submitted) {
+        return;
+      }
+
+      this.currentQuestion.submitted = true;
+      var result = null;
+
+      this.currentQuestion.answers.forEach(function (answer) {
+        if (answer.id == _this.currentQuestion.selected) {
+          if (answer.correct == true) {
+            result = true;
+          } else {
+            result = false;
+          }
+        }
+      });
+
+      Vue.set(this.currentQuestion, 'result', result);
+      this.$emit('questionSubmitted', this.currentQuestion, this.currentQuestion.selected);
+    },
+    onNextClick: function onNextClick(finalQuestion) {
+      if (!this.currentQuestion.submitted) {
+        return;
+      }
+
+      if (this.currentIndex < this.questions.length) {
+        this.$emit('questionNext', finalQuestion);
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-sm-12" }, [
+      _c("div", { staticClass: "box questions" }, [
+        _c("h2", [_vm._v("Questions")]),
+        _vm._v(" "),
+        _c("h3", [
+          _vm._v(
+            "Question " +
+              _vm._s(_vm.currentIndex + 1) +
+              " of " +
+              _vm._s(this.questions.length)
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _c("small", [
+            _vm._v("Question Chapter : " + _vm._s(_vm.defaultTopic.name))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.currentQuestion.description))]),
+        _vm._v(" "),
+        _c(
+          "ul",
+          _vm._l(_vm.currentQuestion.answers, function(answer, index) {
+            return _c("li", { key: index }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.currentQuestion.selected,
+                    expression: "currentQuestion.selected"
+                  }
+                ],
+                attrs: {
+                  type: "radio",
+                  name: "selector",
+                  id: index + "-option"
+                },
+                domProps: {
+                  value: answer.id,
+                  checked: _vm._q(_vm.currentQuestion.selected, answer.id)
+                },
+                on: {
+                  click: function($event) {
+                    _vm.onAnswerClick($event)
+                  },
+                  change: function($event) {
+                    _vm.$set(_vm.currentQuestion, "selected", answer.id)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  class: _vm.questionSubmitted(answer),
+                  attrs: { for: index + "-option" }
+                },
+                [_vm._v(_vm._s(answer.description))]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "check" })
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "buttons submit-btn",
+          attrs: { type: "button", name: "next", value: "Submit Answer" },
+          on: { click: _vm.onSubmitClick }
+        }),
+        _vm._v(" "),
+        _vm.currentIndex + 1 < _vm.questions.length
+          ? _c("input", {
+              staticClass: "buttons next-btn",
+              attrs: { type: "button", name: "next", value: "Next" },
+              on: {
+                click: function($event) {
+                  _vm.onNextClick(false)
+                }
+              }
+            })
+          : _c("input", {
+              staticClass: "buttons next-btn",
+              attrs: { type: "button", name: "submit", value: "Submit" },
+              on: {
+                click: function($event) {
+                  _vm.onNextClick(true)
+                }
+              }
+            })
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d71af104", module.exports)
+  }
+}
+
+/***/ }),
+/* 254 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(255)
+/* template */
+var __vue_template__ = __webpack_require__(256)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Client/quizzes/partials/QuizResultComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-85cfa732", Component.options)
+  } else {
+    hotAPI.reload("data-v-85cfa732", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 255 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultQuestions'],
+  data: function data() {
+    return {
+      questions: [],
+      score: 0
+    };
+  },
+  mounted: function mounted() {
+    this.questions = this.defaultQuestions;
+    this.calculateScore();
+  },
+  methods: {
+    changeClassResult: function changeClassResult(question) {
+      if (question.result) {
+        return 'correct';
+      } else {
+        return 'wrong';
+      }
+    },
+    calculateScore: function calculateScore() {
+      var _this = this;
+
+      if (this.questions.length == 0) {
+        return;
+      }
+
+      this.questions.forEach(function (question, index) {
+        if (question.result) {
+          _this.score += 1;
+        }
+      });
+
+      this.score = parseInt(this.score / this.questions.length * 100);
+    },
+    onReset: function onReset() {
+      this.$emit('reset');
+    }
+  }
+});
+
+/***/ }),
+/* 256 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-sm-12" }, [
+    _c("div", { staticClass: "box results text-center" }, [
+      _c("h2", [_vm._v("Results")]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("You have scored " + _vm._s(_vm.score) + "%")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "q-links col-md-6 offset-md-3" }, [
+        _c(
+          "ol",
+          _vm._l(_vm.questions, function(question, index) {
+            return _c(
+              "li",
+              {
+                key: index,
+                staticClass: "review-1",
+                class: _vm.changeClassResult(question)
+              },
+              [
+                _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                  _vm._v(
+                    "\n            " + _vm._s(index + 1) + " \n            "
+                  )
+                ])
+              ]
+            )
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "buttons reattempt-btn",
+        attrs: { type: "button", name: "re-attempt", value: "Attempt Again" },
+        on: { click: _vm.onReset }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-85cfa732", module.exports)
+  }
+}
+
+/***/ }),
+/* 257 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(258)
+/* template */
+var __vue_template__ = __webpack_require__(259)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Client/quizzes/partials/QuizStatsComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1f34ff32", Component.options)
+  } else {
+    hotAPI.reload("data-v-1f34ff32", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 258 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49049,7 +49585,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 178 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49161,20 +49697,35 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-29ce44d0", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1f34ff32", module.exports)
   }
 }
 
 /***/ }),
-/* 179 */
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(180)
+var __vue_script__ = __webpack_require__(276)
 /* template */
-var __vue_template__ = __webpack_require__(181)
+var __vue_template__ = __webpack_require__(277)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -49191,7 +49742,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuizQuestionComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/exams/ExamComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -49200,9 +49751,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f4b470c4", Component.options)
+    hotAPI.createRecord("data-v-d219ded4", Component.options)
   } else {
-    hotAPI.reload("data-v-f4b470c4", Component.options)
+    hotAPI.reload("data-v-d219ded4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49213,11 +49764,197 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 180 */
+/* 276 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultSubject', 'defaultQuestions'],
+  data: function data() {
+    return {
+      title: 'Quiz',
+      questions: [],
+      subject: {},
+      currentQuestion: {},
+      currentIndex: 0,
+      completed: false
+    };
+  },
+  mounted: function mounted() {
+    this.setDefault();
+  },
+
+  methods: {
+    setDefault: function setDefault() {
+      this.subject = JSON.parse(this.defaultSubject);
+      this.questions = JSON.parse(this.defaultQuestions);
+      this.currentQuestion = this.questions[this.currentIndex];
+    },
+    onQuestionBack: function onQuestionBack() {
+      this.currentIndex -= 1;
+      this.currentQuestion = this.questions[this.currentIndex];
+    },
+    onQuestionSubmitted: function onQuestionSubmitted(currentQuestion) {
+      var _this = this;
+
+      var self = this;
+      var data = {
+        question_id: currentQuestion.id,
+        answer_id: currentQuestion.selected
+      };
+
+      axios.post('/mcq-exam/answer', data).then(function (_ref) {
+        var data = _ref.data;
+
+        if (self.currentIndex + 1 < self.questions.length) {
+          self.questions[self.currentIndex] = currentQuestion;
+          self.currentIndex += 1;
+          self.currentQuestion = _this.questions[self.currentIndex];
+        } else {
+          self.completed = true;
+        }
+      }, function (error) {
+        console.log(error);
+      });
+    },
+    onQuestionSkip: function onQuestionSkip() {
+      this.currentIndex += 1;
+      this.currentQuestion = this.questions[this.currentIndex];
+    },
+    onQuestionChanged: function onQuestionChanged(currentQuestion, currentIndex) {
+      this.currentQuestion = currentQuestion;
+      this.currentIndex = currentIndex;
+    }
+  }
+});
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "page-container m-3 m-sm-5" },
+    [
+      _c("div", { staticClass: "row my-3 mb-sm-0 mb-sm-5" }, [
+        _c("div", { staticClass: "col-sm-12" }, [
+          _c("h1", {}, [_vm._v("MCQ - " + _vm._s(this.subject.name))]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(this.subject.description))])
+        ])
+      ]),
+      _vm._v(" "),
+      !_vm.completed
+        ? _c("exam-question-component", {
+            attrs: {
+              questions: _vm.questions,
+              "default-current-question": _vm.currentQuestion,
+              "current-index": _vm.currentIndex
+            },
+            on: {
+              questionBack: _vm.onQuestionBack,
+              questionSubmitted: _vm.onQuestionSubmitted,
+              questionSkip: _vm.onQuestionSkip
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.completed
+        ? _c("exam-result-component", {
+            attrs: { "default-questions": _vm.questions }
+          })
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d219ded4", module.exports)
+  }
+}
+
+/***/ }),
+/* 278 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(279)
+/* template */
+var __vue_template__ = __webpack_require__(280)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Client/exams/partials/ExamQuestionComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3ff07593", Component.options)
+  } else {
+    hotAPI.reload("data-v-3ff07593", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 279 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -49246,50 +49983,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['defaultQuestions', 'defaultCurrentQuestion', 'defaultCurrentIndex', 'defaultTopic'],
+  props: ['questions', 'defaultCurrentQuestion', 'currentIndex'],
   data: function data() {
     return {
-      questions: [],
-      currentQuestion: {},
-      currentIndex: 0
+      currentQuestion: {}
     };
   },
   watch: {
-    defaultQuestions: function defaultQuestions() {
-      this.questions = this.defaultQuestions;
-    },
     defaultCurrentQuestion: function defaultCurrentQuestion() {
       this.currentQuestion = this.defaultCurrentQuestion;
-    },
-    defaultCurrentIndex: function defaultCurrentIndex() {
-      this.currentIndex = this.defaultCurrentIndex;
     }
   },
   mounted: function mounted() {
-    this.questions = this.defaultQuestions;
     this.currentQuestion = this.defaultCurrentQuestion;
-    this.currentIndex = this.defaultCurrentIndex;
   },
   methods: {
-    questionSubmitted: function questionSubmitted(answer) {
-      if (!this.currentQuestion.submitted) {
-        return;
-      }
-
-      if (answer.correct) {
-        return 'correct';
-      }
-
-      if (this.currentQuestion.selected == answer.id) {
-        return 'wrong';
-      }
-
-      return '';
-    },
-    onAnswerClick: function onAnswerClick(e) {
-      if (this.currentQuestion.submitted) {
+    onAnswerClick: function onAnswerClick(e, answer) {
+      if (this.currentQuestion.submitted == answer.id) {
         e.preventDefault();
+      } else {
+        this.currentQuestion.submitted = false;
       }
+    },
+    onBackClick: function onBackClick(e) {
+      this.$emit('questionBack');
     },
     onSubmitClick: function onSubmitClick() {
       var _this = this;
@@ -49312,22 +50029,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       Vue.set(this.currentQuestion, 'result', result);
-      this.$emit('questionSubmitted', this.currentQuestion, this.currentQuestion.selected);
+      this.$emit('questionSubmitted', this.currentQuestion);
     },
-    onNextClick: function onNextClick(finalQuestion) {
-      if (!this.currentQuestion.submitted) {
-        return;
-      }
-
+    onSkipClick: function onSkipClick() {
       if (this.currentIndex < this.questions.length) {
-        this.$emit('questionNext', finalQuestion);
+        this.$emit('questionSkip');
       }
     }
   }
 });
 
 /***/ }),
-/* 181 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49344,15 +50057,13 @@ var render = function() {
             "Question " +
               _vm._s(_vm.currentIndex + 1) +
               " of " +
-              _vm._s(this.questions.length)
+              _vm._s(_vm.questions.length)
           )
         ]),
         _vm._v(" "),
-        _c("p", [
-          _c("small", [
-            _vm._v("Question Chapter : " + _vm._s(_vm.defaultTopic.name))
-          ])
-        ]),
+        _vm.currentQuestion.submitted
+          ? _c("h4", [_vm._v("Submitted")])
+          : _vm._e(),
         _vm._v(" "),
         _c("p", [_vm._v(_vm._s(_vm.currentQuestion.description))]),
         _vm._v(" "),
@@ -49369,18 +50080,14 @@ var render = function() {
                     expression: "currentQuestion.selected"
                   }
                 ],
-                attrs: {
-                  type: "radio",
-                  name: "selector",
-                  id: index + "-option"
-                },
+                attrs: { type: "radio", id: index + "-option" },
                 domProps: {
                   value: answer.id,
                   checked: _vm._q(_vm.currentQuestion.selected, answer.id)
                 },
                 on: {
                   click: function($event) {
-                    _vm.onAnswerClick($event)
+                    _vm.onAnswerClick($event, answer)
                   },
                   change: function($event) {
                     _vm.$set(_vm.currentQuestion, "selected", answer.id)
@@ -49388,45 +50095,50 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c(
-                "label",
-                {
-                  class: _vm.questionSubmitted(answer),
-                  attrs: { for: index + "-option" }
-                },
-                [_vm._v(_vm._s(answer.description))]
-              ),
+              _c("label", { attrs: { for: index + "-option" } }, [
+                _vm._v(_vm._s(answer.description))
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "check" })
             ])
           })
         ),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "buttons submit-btn",
-          attrs: { type: "button", name: "next", value: "Submit Answer" },
-          on: { click: _vm.onSubmitClick }
-        }),
-        _vm._v(" "),
-        _vm.currentIndex + 1 < _vm.questions.length
-          ? _c("input", {
-              staticClass: "buttons next-btn",
-              attrs: { type: "button", name: "next", value: "Next" },
-              on: {
-                click: function($event) {
-                  _vm.onNextClick(false)
+        _c("div", { staticClass: "pagination-buttons" }, [
+          _vm.currentIndex != 0
+            ? _c("input", {
+                staticClass: "buttons back-btn",
+                attrs: { type: "button", name: "back", value: "Back" },
+                on: {
+                  click: function($event) {
+                    _vm.onBackClick()
+                  }
                 }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "buttons submit-btn",
+            attrs: { type: "button", name: "submit", value: "Submit" },
+            on: {
+              click: function($event) {
+                _vm.onSubmitClick()
               }
-            })
-          : _c("input", {
-              staticClass: "buttons next-btn",
-              attrs: { type: "button", name: "submit", value: "Submit" },
-              on: {
-                click: function($event) {
-                  _vm.onNextClick(true)
+            }
+          }),
+          _vm._v(" "),
+          _vm.currentIndex + 1 < _vm.questions.length
+            ? _c("input", {
+                staticClass: "buttons skip-btn",
+                attrs: { type: "button", name: "skip", value: "Skip" },
+                on: {
+                  click: function($event) {
+                    _vm.onSkipClick()
+                  }
                 }
-              }
-            })
+              })
+            : _vm._e()
+        ])
       ])
     ])
   ])
@@ -49437,20 +50149,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f4b470c4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3ff07593", module.exports)
   }
 }
 
 /***/ }),
-/* 182 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(183)
+var __vue_script__ = __webpack_require__(282)
 /* template */
-var __vue_template__ = __webpack_require__(184)
+var __vue_template__ = __webpack_require__(283)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -49467,7 +50179,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/client/quizzes/partials/QuizResultComponent.vue"
+Component.options.__file = "resources/assets/js/components/Client/exams/partials/ExamResultComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -49476,9 +50188,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6c5cf487", Component.options)
+    hotAPI.createRecord("data-v-2df49bbc", Component.options)
   } else {
-    hotAPI.reload("data-v-6c5cf487", Component.options)
+    hotAPI.reload("data-v-2df49bbc", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49489,11 +50201,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 183 */
+/* 282 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -49553,53 +50267,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.score = parseInt(this.score / this.questions.length * 100);
     },
     onReset: function onReset() {
-      this.$emit('reset');
+      location.reload();
     }
   }
 });
 
 /***/ }),
-/* 184 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-sm-12" }, [
-    _c("div", { staticClass: "box results text-center" }, [
-      _c("h2", [_vm._v("Results")]),
-      _vm._v(" "),
-      _c("h3", [_vm._v("You have scored " + _vm._s(_vm.score) + "%")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "q-links col-md-6 offset-md-3" }, [
-        _c(
-          "ol",
-          _vm._l(_vm.questions, function(question, index) {
-            return _c(
-              "li",
-              {
-                key: index,
-                staticClass: "review-1",
-                class: _vm.changeClassResult(question)
-              },
-              [
-                _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                  _vm._v(
-                    "\n            " + _vm._s(index + 1) + " \n            "
-                  )
-                ])
-              ]
-            )
-          })
-        )
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "buttons reattempt-btn",
-        attrs: { type: "button", name: "re-attempt", value: "Attempt Again" },
-        on: { click: _vm.onReset }
-      })
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-sm-12" }, [
+      _c("div", { staticClass: "box results text-center" }, [
+        _c("h2", [_vm._v("Results")]),
+        _vm._v(" "),
+        _c("h3", [_vm._v("You have scored " + _vm._s(_vm.score) + "%")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "q-links col-md-6 offset-md-3" }, [
+          _c(
+            "ol",
+            _vm._l(_vm.questions, function(question, index) {
+              return _c(
+                "li",
+                {
+                  key: index,
+                  staticClass: "review-1",
+                  class: _vm.changeClassResult(question)
+                },
+                [
+                  _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(index + 1) +
+                        "\n              "
+                    )
+                  ])
+                ]
+              )
+            })
+          )
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "buttons reattempt-btn",
+          attrs: { type: "button", name: "re-attempt", value: "Attempt Again" },
+          on: { click: _vm.onReset }
+        })
+      ])
     ])
   ])
 }
@@ -49609,21 +50327,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6c5cf487", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2df49bbc", module.exports)
   }
 }
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

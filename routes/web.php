@@ -70,11 +70,14 @@ Route::middleware('client.auth')->group(function(){
   Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');
   Route::get('quizzes/topics/{topic}', 'Client\QuizzesController@showQuestions')->name('quizzes.questions');
   Route::post('quizzes/topics/answer', 'Client\QuizzesController@answer')->name('quizzes.answer');
+
+  Route::get('mcq-exam', 'Client\ExamsController@showMCQ')->name('exam.mcq');
+  Route::post('mcq-exam/answer', 'Client\ExamsController@answer')->name('exam.answer');
 });
 
 //added by Pat to view the frontend pages
 Route::view('/edit-profile', '/client/edit-profile');
-Route::view('/mcq-exam', '/client/mcq-exam');
+Route::view('/mcq-exam-2', '/client/mcq-exam');
 Route::view('/quiz/1', '/client/quiz');
 Route::view('/quiz/topics', '/client/topics');
 

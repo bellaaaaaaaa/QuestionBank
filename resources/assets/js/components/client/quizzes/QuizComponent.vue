@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-sm-12">
         <h1 class="my-3 mb-sm-0 mb-sm-5">{{ title }} - {{ subject.name }}</h1>
-        <question-stats-component :default-questions="questions" :default-current-index="currentIndex" :default-current-question="currentQuestion" @questionChanged="onQuestionChanged" v-if="!completed"></question-stats-component>
+        <quiz-stats-component :default-questions="questions" :default-current-index="currentIndex" :default-current-question="currentQuestion" @questionChanged="onQuestionChanged" v-if="!completed"></quiz-stats-component>
       </div>
     </div>
 
     <quiz-question-component :default-questions="questions" :default-current-question="currentQuestion" :default-topic="topic" :default-current-index="currentIndex" @questionSubmitted="onQuestionSubmitted" @questionNext="onQuestionNext" v-if="!completed"></quiz-question-component>
 
-    <question-explanation-component :default-question="currentQuestion" v-if="!completed"></question-explanation-component>
+    <quiz-explanation-component :default-question="currentQuestion" v-if="!completed"></quiz-explanation-component>
 
     <quiz-result-component :default-questions="questions" @reset="onReset" v-if="completed"></quiz-result-component>
   </div>
