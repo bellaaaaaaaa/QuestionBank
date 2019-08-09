@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Guardian;
+use App\GuardianStudent;
 use App\Services\Admin\GuardianServices;
+use App\User;
 use Session;
 
 class GuardiansController extends Controller
@@ -28,37 +30,21 @@ class GuardiansController extends Controller
 		return view($this->path . 'create');
   }
 
-
   public function store(Request $request){
-		$this->validate($request, [
-			"email" => "required|email|unique:guardians",
-			"name" => "required",
-		]);
+    return $this->guardianServices->store($request);
+  }  
+  
 
-		$guardian = new Guardian();
-		$guardian->name = $request->name;
-		$guardian->email = $request->email;
-		$guardian->password = bcrypt('secret');;
-		$guardian->save();
-
-    Session::flash('success','Successfully saved!');
-		return redirect()->route('guardians.index');
-  }
 	public function edit(Guardian $guardian){
-		return view($this->path . 'edit',['guardian'=>$guardian]);
-	}
+    return view($this->path . 'edit', ['guardian' => $guardian]);
+  }
+  
 	public function update(Guardian $guardian, Request $request){
-		$guardian->name = $request->name;
-		$guardian->email = $request->email;
-		$guardian->save();
-	
-	Session::flash('success','Successfully saved!');
-		return redirect()->route('guardians.index');
-
-	}
+		return $this->guardianServices->update($request, $guardian);
+  }
+  
  	public function destroy(Guardian $guardian){
     $guardian->delete();
-
 		return success();
   }
 }

@@ -24,8 +24,13 @@
               <star class="star">*</star>
             </label>
             {{ Form::email('email', null, ['class' => 'form-control','required'=>true]) }}
-          </div>
-
+        </div>
+        <div class = "form-group has-label">
+          <label>Password
+            <star class="star">*</star>
+          </label>
+          {{ Form::text('password', null, ['class' => 'form-control','required'=>true]) }}
+        </div>
         <div class="card-category form-category">
           <star class="star">*</star> Required fields
 				</div>
