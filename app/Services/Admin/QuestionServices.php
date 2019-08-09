@@ -2,8 +2,13 @@
 
 namespace App\Services\Admin;
 
+use App\Subject;
 use App\Answer;
 use App\Question;
+
+use Storage;
+use App\Jobs\ImportQuestions;
+
 use Illuminate\Http\Request;
 use App\Services\TransformerService;
 
@@ -102,6 +107,21 @@ class QuestionServices extends TransformerService{
     $answer = Answer::find($answer->id);
     $answer->delete();
   }
+
+  public function import(Request $request, Subject $subject) {
+    $request->validate([
+      'questions' => 'required'
+    ]);
+
+    $file = $request->file('questions');
+    $dirPath = imports_dir_path('questions');
+    $fileName = md5(str_random(30) . time()) . '.csv';
+    Storage::putFileAs($dirPath, $file, $fileName, 'public');
+    $filePath = imports_dir_path('questions') . $fileName;
+    ImportQuestions::dispatch($filePath, $subject);
+
+    return redirect()->back()->with('success', 'Great! Please refresh after a few seconds if you do not see the changes.');
+  }
     
 	public function transform($question){
         
@@ -115,3 +135,4 @@ class QuestionServices extends TransformerService{
 		];
 	}
 }
+
