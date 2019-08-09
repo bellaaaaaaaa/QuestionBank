@@ -14,11 +14,15 @@
             <div class="check"></div>
           </li>
         </ul>
-        <input type="button" name="next" value="Submit Answer" class="buttons submit-btn" @click="onSubmitClick">
+        <div class="row">
+          <div class="col-sm-12 d-flex">
+            <input type="button" name="next" value="Submit Answer" class="buttons submit-btn" @click="onSubmitClick">
 
-        <input type="button" name="next" value="Next" class="buttons next-btn" @click="onNextClick(false)" v-if="currentIndex + 1 < questions.length">
+            <input type="button" name="next" value="Next" class="buttons next-btn" @click="onNextClick(false)" v-if="currentIndex + 1 < questions.length">
 
-        <input type="button" name="submit" value="Submit" class="buttons next-btn" @click="onNextClick(true)" v-else>
+            <input type="button" name="submit" value="Submit" class="buttons next-btn" @click="onNextClick(true)" v-else>
+          </div>
+        </div>
       </div>
     </div>
   </div>
