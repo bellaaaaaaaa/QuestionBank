@@ -11,31 +11,34 @@
         </div>
       </div>
     
-  
       <div class="card-body">
         {!! Form::open(['route' => 'guardians.store', 'class' => 'form', 'id' => 'form-validation']) !!}
-        <div class="form-group has-label">
-          <label>Name
-            <star class="star">*</star>
-          </label>
-          {{ Form::text('name', null, [ 'class'=>'form-control', 'required']) }}
-        </div>
-        <div class="form-group has-label">
-          <label>Email
-            <star class="star">*</star>
-          </label>
-          {{ Form::text('email', null, ['class' => 'form-control', 'required']) }}
-        </div>
-        <div class="card-category form-category">
-          <star class="star">*</star> Required fields
-        </div>
+          <div class="form-group has-label">
+            <label>Name
+              <star class="star">*</star>
+            </label>
+            {{ Form::text('name', null, [ 'class'=>'form-control', 'required']) }}
+          </div>
+          <div class="form-group has-label">
+            <label>Email
+              <star class="star">*</star>
+            </label>
+            {{ Form::text('email', null, ['class' => 'form-control', 'required']) }}
+          </div>
+          <div class="form-group has-label">
+            <label>Password
+              <star class="star">*</star>
+            </label>
+            {{ Form::text('password', null , ['class' =>'form-control', 'required']) }}
+          </div>
+          <div class="card-category form-category">
+            <star class="star">*</star> Required fields
+          </div>
+          <div class="card-footer text-right">
+              <button type="submit" class="btn btn-info btn-fill btn-wd">Submit</button>
+          </div>
         {!! Form::close() !!}
       </div>
-
-      <div class="card-footer text-right">
-        <button type="submit" class="btn btn-info btn-fill btn-wd">Submit</button>
-      </div>
     </div>
-  
   </div>
-  @endsection
+@endsection

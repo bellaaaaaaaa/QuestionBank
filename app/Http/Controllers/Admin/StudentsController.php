@@ -16,7 +16,8 @@ class StudentsController extends Controller
 
 	public function __construct(StudentServices $studentServices){
 		$this->studentServices = $studentServices;
-	}
+  }
+  
   public function index(Request $request){
 		if ($request->isJson()) {
       return $this->studentServices->all($request);
@@ -69,8 +70,9 @@ class StudentsController extends Controller
   return redirect()->route('students.index');  
   }
  
-  public function destroy(Student $student){
+  public function destroy(Student $student, User $user){
     $student->delete();
+    $student->owner()->delete($user);
 
 		return success();
   }
