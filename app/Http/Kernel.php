@@ -62,5 +62,6 @@ class Kernel extends HttpKernel
 				'admin.auth' => \App\Http\Middleware\Admin\AdminAuth::class,
         'register.access' => \App\Http\Middleware\Admin\RegisterAccess::class,
         'client.auth' => \App\Http\Middleware\Client\ClientAuth::class,
+        'purchased.course' => \App\Http\Middleware\Client\PurchasedCourse::class,
     ];
 }
