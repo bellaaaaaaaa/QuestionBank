@@ -1,20 +1,11 @@
 <div class="sidebar">
-  <div class="logo">
-		<a href="{{ route('admin.dashboard') }}" class="simple-text logo-mini">
-      QB
-    </a>
-    <a href="{{ route('admin.dashboard') }}" class="simple-text logo-normal">
-      Question Bank
-    </a>
-  </div>
-
   <div class="sidebar-wrapper">
     <div class="logo">
       <a href="{{ route('admin.dashboard') }}" class="simple-text logo-mini">
-        TH
+        QB
       </a>
       <a href="{{ route('admin.dashboard') }}" class="simple-text logo-normal">
-        The Techy Hub
+        Question Bank
       </a>
     </div>
 

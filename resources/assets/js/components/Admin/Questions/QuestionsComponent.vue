@@ -19,10 +19,10 @@
       <label>Answers
         <star class="star">*</star>
       </label> 
-    </div>
+    </div> 
 
     <div class="container">
-        <div class="row mb-3" v-for="(answer, index) in answers" v-if="!answer.deleted">
+        <div class="row mb-3" v-for="(answer, index) in answers" :key="index" v-if="!answer.deleted">
           <div class="col-12 col-md-9">
             <input type="text" name="answers" class="form-control" v-model="answer.description"> 
           </div>
