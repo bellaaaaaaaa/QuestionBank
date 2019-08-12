@@ -11,8 +11,6 @@
       </div>
     </div>
 
-    <table-component></table-component>
-
     <questions-component></questions-component>
   </div>
 </div>

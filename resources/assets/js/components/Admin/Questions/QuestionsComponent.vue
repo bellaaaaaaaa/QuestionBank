@@ -65,6 +65,8 @@
           <select class="form-control" v-model="topic"></select>
         </div>
 
+        <table-component :default-tables="question.tables" @tableChanged="onTableChanged" ref="tableChild"></table-component>
+
         <br>
 
         <div class="card-category form-category">
@@ -95,10 +97,10 @@
       };
     },
     mounted() {
-      this.default();
+      this.setDefault();
     },
     methods: {  
-      default: function() {
+      setDefault: function() {
         if(!this.defaultQuestion) {
           return;
         }
@@ -108,20 +110,9 @@
         this.answers = this.question.answers;
         // this.topic = this.question.topic;
       },
-
-      // getAnswers: function(){
-      //   axios.get('/admin/answers')
-      //   .then(({ data }) => {
-      //     if(data.length > 0) {
-      //       this.answers = data;
-      //     } else {
-      //       this.answers.push({name: '', correct: false});
-      //     }
-      //   }, (error) => {
-      //     console.log(error);
-      //   });
-      // },
-
+      onTableChanged: function(tables) {
+        this.question.tables = tables;
+      },
       onClick: function(){
        if(this.newAnswer != ''){
           this.answers.push({description: this.newAnswer, correct: false})};
@@ -129,9 +120,6 @@
       },
 
       deleteClick: function(index){
-        // if(this.answers.length > 2){
-      // this.answers.splice(index, 1)};
-        // this.answers[index].deleted = true;
         if(this.answers[index].id) {
           Vue.set(this.answers[index], 'deleted', true); 
         }else {
@@ -168,10 +156,13 @@
           url = url + '/' + this.question.id;
         }
 
+        var table = JSON.stringify(this.$refs.tableChild.tables);
+
         var fields = {
           'description': this.description, 
           'answers': this.answers,
-          'topic': this.topic
+          'topic': this.topic,
+          'tables': table
         };
 
         axios({
@@ -184,13 +175,6 @@
         }, (error) => {
           console.log(error);
         });
-
-        // axios.post('/admin/questions', fields)
-        // .then (({ data }) => {
-        //   location.href = data
-        // }, (error) => {
-        //   console.log(error);
-        // });
       }
     }
   }

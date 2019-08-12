@@ -5,6 +5,7 @@ namespace App\Services\Admin;
 use App\Subject;
 use App\Answer;
 use App\Question;
+use App\Table;
 
 use Storage;
 use App\Jobs\ImportQuestions;
@@ -26,15 +27,8 @@ class QuestionServices extends TransformerService{
 
     $questions = $questions->limit($limit)->offset($offset)->get();
 
-    // return respond(['rows' => $questions, 'total' => $listCount]);
     return respond(['rows' => $this->transformCollection($questions), 'total' => $listCount]);
 	}
-
-    // public function transformDate($date) {
-
-        
-    //     return $date;
-    // }
 
   public function create(Request $request){
     $request->validate([
@@ -46,8 +40,8 @@ class QuestionServices extends TransformerService{
              
     $question = new Question();
     $question->description = $request->description;
-    // $question->id = $request->id;
     $question->topic_id = 1;
+    $question->image = 1;
     $question->save();
         
     foreach($request->answers as $answer){
@@ -56,6 +50,17 @@ class QuestionServices extends TransformerService{
       $newAnswer->correct = $answer['correct'];
       $newAnswer->question_id = $question->id;
       $newAnswer->save();
+    }
+
+    if($request->tables) {
+      $tables = json_decode($request->tables);
+
+      foreach($tables as $table) {
+        Table::create([
+          'question_id' => $question->id,
+          'content' => json_encode($table->content)
+        ]);    
+      }
     }
 
     return route('questions.index');
@@ -84,6 +89,22 @@ class QuestionServices extends TransformerService{
         $this->createAnswer($answer, $question);
       }     
     }
+
+    if($request->tables) {
+      $tables = json_decode($request->tables);
+
+      foreach($tables as $table) {
+        dd($table);
+        $tableExist = Table::find($table->id);
+        
+        $tableExist->content = json_encode($table->content);
+        $tableExist->save();
+        // Table::create([
+        //   'question_id' => $question->id,
+        //   'content' => json_encode($table)
+        // ]);    
+      }
+    }    
 
     return route('questions.index');  
   }

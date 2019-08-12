@@ -79059,6 +79059,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['defaultQuestion'],
@@ -79073,11 +79075,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
     };
   },
   mounted: function mounted() {
-    this.default();
+    this.setDefault();
   },
 
   methods: {
-    default: function _default() {
+    setDefault: function setDefault() {
       if (!this.defaultQuestion) {
         return;
       }
@@ -79087,20 +79089,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
       this.answers = this.question.answers;
       // this.topic = this.question.topic;
     },
-
-    // getAnswers: function(){
-    //   axios.get('/admin/answers')
-    //   .then(({ data }) => {
-    //     if(data.length > 0) {
-    //       this.answers = data;
-    //     } else {
-    //       this.answers.push({name: '', correct: false});
-    //     }
-    //   }, (error) => {
-    //     console.log(error);
-    //   });
-    // },
-
+    onTableChanged: function onTableChanged(tables) {
+      this.question.tables = tables;
+    },
     onClick: function onClick() {
       if (this.newAnswer != '') {
         this.answers.push({ description: this.newAnswer, correct: false });
@@ -79109,9 +79100,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
     },
 
     deleteClick: function deleteClick(index) {
-      // if(this.answers.length > 2){
-      // this.answers.splice(index, 1)};
-      // this.answers[index].deleted = true;
       if (this.answers[index].id) {
         Vue.set(this.answers[index], 'deleted', true);
       } else {
@@ -79174,10 +79162,13 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         url = url + '/' + this.question.id;
       }
 
+      var table = JSON.stringify(this.$refs.tableChild.tables);
+
       var fields = {
         'description': this.description,
         'answers': this.answers,
-        'topic': this.topic
+        'topic': this.topic,
+        'tables': table
       };
 
       axios({
@@ -79191,13 +79182,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
       }, function (error) {
         console.log(error);
       });
-
-      // axios.post('/admin/questions', fields)
-      // .then (({ data }) => {
-      //   location.href = data
-      // }, (error) => {
-      //   console.log(error);
-      // });
     }
   }
 });
@@ -79449,6 +79433,12 @@ var render = function() {
             }
           })
         ]),
+        _vm._v(" "),
+        _c("table-component", {
+          ref: "tableChild",
+          attrs: { "default-tables": _vm.question.tables },
+          on: { tableChanged: _vm.onTableChanged }
+        }),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
@@ -106830,11 +106820,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['defaultTable'],
+  props: ['defaultTables'],
   data: function data() {
     return {
       tables: []
     };
+  },
+  watch: {
+    defaultTables: function defaultTables() {
+      this.setDefault();
+    }
   },
   mounted: function mounted() {
     this.setDefault();
@@ -106842,31 +106837,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     setDefault: function setDefault() {
-      if (!this.defaultTable) {
+      if (!this.defaultTables) {
         this.onNewTable();
         return;
       }
 
-      this.tables = JSON.parse(this.defaultTable);
+      this.tables = _.cloneDeep(this.defaultTables);
+      this.tables.forEach(function (table) {
+        table.content = JSON.parse(table.content);
+      });
     },
     onNewTable: function onNewTable() {
       this.tables.push({
-        headings: [{
-          content: 'Heading 1',
-          colspan: 1
-        }, {
-          content: 'Heading 2',
-          colspan: 1
-        }],
-        rows: [{
-          cols: [{
-            content: 'Col 1'
+        content: {
+          headings: [{
+            content: 'Heading 1',
+            colspan: 1
           }, {
-            content: 'Col 2'
-          }, {
-            content: 'Col 2'
+            content: 'Heading 2',
+            colspan: 1
+          }],
+          rows: [{
+            cols: [{
+              content: 'New Content'
+            }, {
+              content: 'New Content'
+            }]
           }]
-        }]
+        }
       });
     },
     onNewHeading: function onNewHeading(table) {
@@ -106940,7 +106938,7 @@ var render = function() {
             staticClass: "btn btn-primary btn-info",
             on: {
               click: function($event) {
-                _vm.onNewHeading(table)
+                _vm.onNewHeading(table.content)
               }
             }
           },
@@ -106953,7 +106951,7 @@ var render = function() {
             staticClass: "btn btn-primary btn-info",
             on: {
               click: function($event) {
-                _vm.onNewRow(table)
+                _vm.onNewRow(table.content)
               }
             }
           },
@@ -106966,7 +106964,7 @@ var render = function() {
             staticClass: "btn btn-primary btn-info",
             on: {
               click: function($event) {
-                _vm.onNewColumn(table)
+                _vm.onNewColumn(table.content)
               }
             }
           },
@@ -106978,11 +106976,11 @@ var render = function() {
             _c(
               "tr",
               [
-                _c("th", { attrs: { colspan: "1" } }),
+                _c("td", { attrs: { colspan: "1" } }),
                 _vm._v(" "),
-                _vm._l(table.headings, function(heading, headingIndex) {
+                _vm._l(table.content.headings, function(heading, headingIndex) {
                   return _c(
-                    "th",
+                    "td",
                     { key: headingIndex, attrs: { colspan: heading.colspan } },
                     [
                       _c("input", {
@@ -107012,7 +107010,11 @@ var render = function() {
                         attrs: { "aria-hidden": "true" },
                         on: {
                           click: function($event) {
-                            _vm.onRemoveItem(table, headingIndex, "headings")
+                            _vm.onRemoveItem(
+                              table.content,
+                              headingIndex,
+                              "headings"
+                            )
                           }
                         }
                       }),
@@ -107022,7 +107024,7 @@ var render = function() {
                         attrs: { "aria-hidden": "true" },
                         on: {
                           click: function($event) {
-                            _vm.onLinkHeading(table, heading, -1)
+                            _vm.onLinkHeading(table.content, heading, -1)
                           }
                         }
                       }),
@@ -107032,7 +107034,7 @@ var render = function() {
                         attrs: { "aria-hidden": "true" },
                         on: {
                           click: function($event) {
-                            _vm.onLinkHeading(table, heading, 1)
+                            _vm.onLinkHeading(table.content, heading, 1)
                           }
                         }
                       })
@@ -107046,7 +107048,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(table.rows, function(row, rowIndex) {
+            _vm._l(table.content.rows, function(row, rowIndex) {
               return _c(
                 "tr",
                 { key: rowIndex },
@@ -107057,7 +107059,7 @@ var render = function() {
                       attrs: { "aria-hidden": "true" },
                       on: {
                         click: function($event) {
-                          _vm.onRemoveItem(table, rowIndex, "rows")
+                          _vm.onRemoveItem(table.content, rowIndex, "rows")
                         }
                       }
                     })
@@ -107092,7 +107094,12 @@ var render = function() {
                         attrs: { "aria-hidden": "true" },
                         on: {
                           click: function($event) {
-                            _vm.onRemoveItem(table, colIndex, "cols", rowIndex)
+                            _vm.onRemoveItem(
+                              table.content,
+                              colIndex,
+                              "cols",
+                              rowIndex
+                            )
                           }
                         }
                       })
