@@ -63,7 +63,11 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('questions-component', require('../components/Admin/QuestionsComponent.vue'));
+// Vue.component('questions-component', require('../components/Admin/QuestionsComponent.vue'));
+
+const files = require.context('./../components/Admin', true, /\.vue$/i);
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)));
+
 
 const app = new Vue({
     el: '#admin-app',
