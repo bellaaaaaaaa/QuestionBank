@@ -20,4 +20,16 @@ class Question extends Model {
   public function students(){
     return $this->belongsToMany('App\Student', 'exams', 'question_id', 'student_id');
   }
+
+  public function tables() {
+    return $this->hasMany('App\Table');
+  }
+
+  public function images() {
+    return $this->hasMany('App\Image');
+  }
+
+  public function paragraphs() {
+    return $this->hasMany('App\Paragraph');
+  }
 }

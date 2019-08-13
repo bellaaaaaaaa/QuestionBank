@@ -39,6 +39,8 @@ class QuestionsController extends Controller{
     $topics = Topic::pluck('name','id');
     $answers = $question->answers;
     $question->setAttribute('answers', $answers);
+    $tables = $question->tables;
+    $question->setAttribute('tables', $tables);
 
     return view($this->path . 'edit',['question' => $question,'topics' => $topics]);
   }
