@@ -24,4 +24,12 @@ class Question extends Model {
   public function tables() {
     return $this->hasMany('App\Table');
   }
+
+  public function images() {
+    return $this->hasMany('App\Image');
+  }
+
+  public function paragraphs() {
+    return $this->hasMany('App\Paragraph');
+  }
 }
