@@ -37,27 +37,16 @@ class QuestionsController extends Controller{
 
   public function edit(Question $question){
     $topics = Topic::pluck('name','id');
-    $answers = $question->answers;
-    $question->setAttribute('answers', $answers);
-    $tables = $question->tables;
-    $question->setAttribute('tables', $tables);
+
+    $question->setAttribute('answers', $question->answers);
+    $question->setAttribute('tables', $question->tables);
+    $question->setAttribute('images', $question->images);
 
     return view($this->path . 'edit',['question' => $question,'topics' => $topics]);
   }
   
   public function update(Request $request, Question $question){
     return $this->questionServices->update($request, $question);
-    // $this->validate($request, [
-    //   'name' => 'required|max:255|unique:questions'
-    // ]);
-
-    // $question->name = $request->name;
-    // $question->explanation = $request->explanation;
-    // $question->topic_id = $request->topic_id;
-    // $question->save();
-
-    // Session::flash('success','This question has been successfully saved!');
-    // return redirect()->route('questions.index');
   }
 
   public function destroy(Question $question){

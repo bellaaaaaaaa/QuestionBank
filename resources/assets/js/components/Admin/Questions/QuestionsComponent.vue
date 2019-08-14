@@ -34,17 +34,21 @@
       </label> 
 
       <div class="container">
-        <select class="form-control" v-model="question.image" @change="onImageSelectChange()">
+        <select class="form-control" v-model="question.image">
           <option disabled value="">Please select one</option>
           <option value="1">True</option>
           <option value="0">False</option>
         </select>
       </div>
     </div>  
-
-    <tables-component :default-tables="question.tables" ref="tableChild" v-if="question.image == 1"></tables-component>
+<!-- 
+    <tables-component :default-tables="question.tables" ref="tableChild" v-if="question.image == 1"></tables-component> -->
 
     <br>
+
+    <content-component :default-question="question" v-if="question.image == 1"></content-component>
+
+    <!-- <images-component :default-images="question.images" ref="imageChild" v-if="question.image == 1"></images-component> -->
 
     <div class="card-category form-category">
       <label class="star">*</label> Required fields
@@ -78,17 +82,11 @@
         this.question = JSON.parse(this.defaultQuestion);
         // this.topic = this.question.topic;
       },
-      onImageSelectChange: function() {
-        this.question.tables.forEach((table) => {
-          table.deleted = true;
-        });
-      },
       onSubmit: function(){
         var count = 0;
         var method = 'POST';
         var url = '/admin/questions';
-        var answers = this.$refs.answerChild.answers
-        var tables = this.question.image == 1 ? JSON.stringify(this.$refs.tableChild.tables) : JSON.stringify(this.question.tables);
+        var answers = this.$refs.answerChild.answers;
 
         answers.forEach(function(answer) { 
           if(answer.correct == true) {
@@ -101,16 +99,23 @@
         }
 
         if(this.defaultQuestion) {
-          method = 'PUT';
-          url = url + '/' + this.question.id;
+          url = url + '/update/' + this.question.id;
         }
+        
+        var fields = new FormData();
+        fields.append('description', this.question.description);
+        fields.append('answers', JSON.stringify(answers));
+        fields.append('topic', this.topic);
+        fields.append('image', this.question.image);
 
-        var fields = {
-          'description': this.question.description, 
-          'answers': answers,
-          'topic': this.topic,
-          'tables': tables
-        };
+        if(this.question.image == 1) {
+          fields.append('tables', JSON.stringify(this.$refs.tableChild.tables));
+          var images = this.$refs.imageChild.images;
+
+          for (var i = 0; i < images.length; i++) {
+            fields.append('images[]', images[i].file);
+          }
+        }
 
         axios({
           method: method,

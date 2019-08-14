@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model {
   protected $fillable = [
-    'question_id', 'name'
+    'question_id', 'path', 'name'
   ];
 
   public function question() {

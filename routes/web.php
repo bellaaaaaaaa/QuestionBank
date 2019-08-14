@@ -35,6 +35,7 @@ Route::prefix('admin')->group(function(){
 
     Route::resource('questions', 'Admin\QuestionsController');
     Route::post('subject/{subject}/questions/import', 'Admin\QuestionsController@import')->name('questions.import');
+    Route::post('questions/update/{question}', 'Admin\QuestionsController@update')->name('questions.post.update');
 
     Route::resource('guardians', 'Admin\GuardiansController');
     Route::resource('students', 'Admin\StudentsController');

@@ -6,15 +6,22 @@ use App\Subject;
 use App\Answer;
 use App\Question;
 use App\Table;
+use App\Image;
 
 use Storage;
 use App\Jobs\ImportQuestions;
 
 use Illuminate\Http\Request;
+use App\Services\Admin\ImageLibraryServices;
 use App\Services\TransformerService;
 
 class QuestionServices extends TransformerService{
- 
+  protected $imageLibraryServices;
+
+  function __construct(ImageLibraryServices $imageLibraryServices) {
+    $this->imageLibraryServices = $imageLibraryServices;
+  }
+
 	public function all(Request $request){
 		$sort = $request->sort ? $request->sort : 'created_at';
     $order = $request->order ? $request->order : 'desc';
@@ -31,37 +38,52 @@ class QuestionServices extends TransformerService{
 	}
 
   public function create(Request $request){
+    $request = $this->decodeArrayObjects($request);
+
     $request->validate([
       'description' => 'required|unique:questions',
       'answers' => 'required|array|min:2',
       'answers.*.correct' => 'required',
+      'image' => 'required',
+      'images.*' => 'mimes:jpeg,jpg,png|max:2000'
       // 'topic' => 'required|numeric'
+    ]);   
+
+    $question = Question::create([
+      'description' => $request->description,
+      'topic_id' => 1, // $request->topic
+      'image' => $request->image
     ]);
-             
-    $question = new Question();
-    $question->description = $request->description;
-    $question->topic_id = 1;
-    $question->image = 1;
-    $question->save();
         
-    foreach($request->answers as $answer){
-      $newAnswer = new Answer();
-      $newAnswer->description = $answer['description'];
-      $newAnswer->correct = $answer['correct'];
-      $newAnswer->question_id = $question->id;
-      $newAnswer->save();
+    foreach($request->answers as $answer) {
+      Answer::create([
+        'description' => $answer->description,
+        'correct' => $answer->correct,
+        'question_id' => $question->id
+      ]);
     }
 
     if($request->tables) {
-      $tables = json_decode($request->tables);
-
-      foreach($tables as $table) {
+      foreach($request->tables as $table) {
         Table::create([
           'question_id' => $question->id,
           'content' => json_encode($table->content)
         ]);    
       }
     }
+    
+    if($request->file('images')) {
+      foreach($request->file('images') as $image) {
+        $file = $this->imageLibraryServices->create($image, 'questions');
+    
+        Image::create([
+          'question_id' => $question->id,
+          'path' => $file->path,
+          'name' => $file->name
+        ]);    
+      }
+    }
+    
 
     return route('questions.index');
 }
@@ -142,6 +164,15 @@ class QuestionServices extends TransformerService{
     ImportQuestions::dispatch($filePath, $subject);
 
     return redirect()->back()->with('success', 'Great! Please refresh after a few seconds if you do not see the changes.');
+  }
+
+  public function decodeArrayObjects(Request $request){
+    return $request->merge([
+      'description' => $request->description,
+      'answers' => json_decode($request->answers),
+      'topic' => $request->topic,
+      'tables' => json_decode($request->tables)
+    ]);
   }
     
 	public function transform($question){
