@@ -3,9 +3,9 @@
     <label>Contents</label> 
 
     <div v-for="(content, index) in contents" :key="index">
-      <table-component :default-table="content.table" ref="tableChild" v-if="content.type == 'table'"></table-component>
+      <table-component :default-table="content.table" :default-index="index" ref="tableChild" v-if="content.type == 'table'"></table-component>
 
-      <images-component :default-image="content.image" ref="imageChild" v-if="content.type == 'image'"></images-component>
+      <image-component :default-image="content.image" :default-index="index" ref="imageChild" @fileChange="onFileChange" v-if="content.type == 'image'"></image-component>
     </div>
 
     <div class="dropdown">
@@ -14,8 +14,8 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" @click="onNewTable()">Add New Table</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <a class="dropdown-item" @click="onNewImage()">Add New Image</a>
+        <a class="dropdown-item" href="#">Add New Paragraph</a>
       </div>
     </div>
   </div>
@@ -70,6 +70,19 @@
             ]
           }
         });
+      },
+      onNewImage: function() {
+        this.contents.push({
+          type: 'image',
+          image: {
+            file: null,
+            name: 'hi', // for testing
+            preview: ''
+          }
+        });
+      },
+      onFileChange: function(image, index) {
+        // this.contents[index].image = image;
       }
     }
   }

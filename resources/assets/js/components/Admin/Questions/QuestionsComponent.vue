@@ -46,7 +46,7 @@
 
     <br>
 
-    <content-component :default-question="question" v-if="question.image == 1"></content-component>
+    <content-component :default-question="question" ref="contentChild" v-if="question.image == 1"></content-component>
 
     <!-- <images-component :default-images="question.images" ref="imageChild" v-if="question.image == 1"></images-component> -->
 
@@ -109,12 +109,16 @@
         fields.append('image', this.question.image);
 
         if(this.question.image == 1) {
-          fields.append('tables', JSON.stringify(this.$refs.tableChild.tables));
-          var images = this.$refs.imageChild.images;
+          var contents = this.$refs.contentChild.contents;
+          fields.append('contents', JSON.stringify(contents));
+          // fields.append('tables', JSON.stringify(this.$refs.tableChild.tables));
+          // var images = this.$refs.imageChild.images;
 
-          for (var i = 0; i < images.length; i++) {
-            fields.append('images[]', images[i].file);
-          }
+          contents.forEach((content, index) => {
+            if(content.type == 'image') {
+              fields.append(`images[][${content.image.name}]`, content.image.file);
+            }
+          });
         }
 
         axios({

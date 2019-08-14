@@ -13,13 +13,16 @@ use App\Jobs\ImportQuestions;
 
 use Illuminate\Http\Request;
 use App\Services\Admin\ImageLibraryServices;
+use App\Services\Admin\AnswerServices;
 use App\Services\TransformerService;
 
 class QuestionServices extends TransformerService{
   protected $imageLibraryServices;
+  protected $answerServices;
 
-  function __construct(ImageLibraryServices $imageLibraryServices) {
-    $this->imageLibraryServices = $imageLibraryServices;
+  function __construct(ImageLibraryServices $imageLibraryServices, AnswerServices $answerServices) {
+    $this->imageLibraryServices = $imageLibraryServices; 
+    $this->answerServices = $answerServices;
   }
 
 	public function all(Request $request){
@@ -39,7 +42,13 @@ class QuestionServices extends TransformerService{
 
   public function create(Request $request){
     $request = $this->decodeArrayObjects($request);
+    dd($request);
+    // $image = $request->contents[1]->image->file;
 
+    // $fileName = (integer) round(microtime(true) * 1000) . '.' . $file->extension(); 
+    // Storage::disk('public')->putFileAs($path, $file, $fileName);
+    
+    dd('hi');
     $request->validate([
       'description' => 'required|unique:questions',
       'answers' => 'required|array|min:2',
@@ -84,25 +93,29 @@ class QuestionServices extends TransformerService{
       }
     }
     
-
     return route('questions.index');
-}
+  }
 
   public function update(Request $request, Question $question){
+    $request = $this->decodeArrayObjects($request);
+
     $request->validate([
       'description'=> 'unique:questions,id,' . $question->id,
       'answers' => 'required|array|min:2',
       'answers.*.correct' => 'required',
-    ]);
+      'image' => 'required',
+      'images.*' => 'mimes:jpeg,jpg,png|max:2000'
+      // 'topic' => 'required|numeric'
+    ]); 
 
     $question->description = $request->description;
-    $question->topic_id = 1;
+    $question->topic_id = 1; //$request->topic
+    $question->image = $request->image;
     $question->save();
 
     foreach($request->answers as $answer){
-      $answer = (object) $answer;
       $answerExist = Answer::find($answer->id);
-      //find only needs one parameter!
+      
       if($answerExist && isset($answer->deleted)){
         $this->deleteAnswer($answer);
       } elseif ($answerExist) {
@@ -171,7 +184,8 @@ class QuestionServices extends TransformerService{
       'description' => $request->description,
       'answers' => json_decode($request->answers),
       'topic' => $request->topic,
-      'tables' => json_decode($request->tables)
+      'contents' => json_decode($request->contents)
+      // 'tables' => json_decode($request->tables)
     ]);
   }
     

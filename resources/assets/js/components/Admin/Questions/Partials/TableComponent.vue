@@ -44,7 +44,7 @@
 
 <script>
   export default{
-    props: ['defaultTable'],
+    props: ['defaultTable', 'defaultIndex'],
     data: function(){
       return {
         table: {}
@@ -60,41 +60,12 @@
     },
     methods: {
       setDefault: function() {
-        if(!this.defaultTables) {
-          this.onNewTable();
-          return;
-        }
+        this.table = this.defaultTable;
 
         // this.tables = _.cloneDeep(this.defaultTables);
         // this.tables.forEach((table) => {
         //   table.content = JSON.parse(table.content)
         // });
-      },
-      onNewTable: function() {
-        this.table = {
-            headings: [
-              {
-                content: 'Heading 1',
-                colspan: 1
-              },
-              {
-                content: 'Heading 2',
-                colspan: 1
-              }
-            ],
-            rows: [
-              {
-                cols: [
-                  {
-                    content: 'New Content'
-                  },
-                  {
-                    content: 'New Content'
-                  }
-                ]
-              }
-            ]
-          }
       },
       onNewHeading: function(table) {
         table.headings.push({
