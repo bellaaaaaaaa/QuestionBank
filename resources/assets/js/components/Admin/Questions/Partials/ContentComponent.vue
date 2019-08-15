@@ -2,11 +2,16 @@
   <div class="form-group has-label">
     <label>Contents</label> 
 
-    <div v-for="(content, index) in contents" :key="index">
-      <table-component :default-table="content.item" :default-index="index" ref="tableChild" v-if="content.type == 'Table'"></table-component>
+    <draggable v-model="contents" group="contents" handle=".handle">
+      <div v-for="(content, index) in contents" :key="index">
+        <div class="card p-3">
+          <i class="fa fa-align-justify handle"></i>
+          <table-component :default-table="content.item" :default-index="index" @delete="onDelete" v-if="content.type == 'Table' && !content.deleted"></table-component>
 
-      <image-component :default-image="content.item" :default-index="index" ref="imageChild" v-if="content.type == 'Image'"></image-component>
-    </div>
+          <image-component :default-image="content.item" :default-index="index" @delete="onDelete" v-if="content.type == 'Image' && !content.deleted"></image-component>
+        </div>
+      </div>
+    </draggable>
 
     <div class="dropdown">
       <button class="btn btn-secondary btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,6 +27,8 @@
 </template>
 
 <script>
+  import draggable from 'vuedraggable';
+
   export default {
     props: ['defaultQuestion'],
     data: function(){
@@ -45,6 +52,14 @@
         }
         this.question = this.defaultQuestion;
         this.contents = this.question.contents ? this.question.contents : [];
+
+        if(this.contents.length > 0) {
+          this.contents.forEach((content) => {
+            if(content.type == 'Table') {
+              content.item = JSON.parse(content.item);
+            }
+          });
+        }
       },
       onNewTable: function() {
         this.contents.push({
@@ -79,11 +94,20 @@
         this.contents.push({
           type: 'Image',
           item: {
-            identifier: null, // for testing
+            identifier: null, 
             file: null,
             preview: null
           }
         });
+      },
+      onDelete: function(index) {
+        var content = this.contents[index];
+
+        if(content.id) {
+          Vue.set(this.contents[index], 'deleted', true);
+        }else {
+          this.contents.splice(index, 1);
+        }
       }
     }
   }

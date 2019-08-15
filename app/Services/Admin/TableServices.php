@@ -24,7 +24,9 @@ class TableServices {
 
   public function update($content) {
     $table = Table::find($content->itemId);
-    $table->content = $content->item->content;
+    $table->content = json_encode($content->item);
     $table->save();
+    
+    return $table;
   }
 }

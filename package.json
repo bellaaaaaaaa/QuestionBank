@@ -33,6 +33,8 @@
         "font-awesome": "^4.7.0",
         "jquery-match-height": "^0.7.2",
         "moment": "^2.21.0",
-        "portal-vue": "^1.3.0"
+        "portal-vue": "^1.3.0",
+        "quill": "^1.3.6",
+        "vuedraggable": "^2.23.0"
     }
 }

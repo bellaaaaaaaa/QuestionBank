@@ -24,12 +24,6 @@ class ImageServices {
   }
 
   public function create($request, $content) {
-    $images = $request->file('images');
-    
-    if(!$images[$content->item->identifier]) {
-      return;
-    }
-
     $file = $this->imageLibraryServices->create($images[$content->item->identifier], 'questions');
     
     return Image::create([
@@ -39,13 +33,29 @@ class ImageServices {
   }
 
   public function update($request, $content) {
-    if($content->hasOldImage) {
+    if($content->item->hasOldImage) {
       return;
     }
 
     $images = $request->file('images'); 
     $image = Image::find($content->itemId);
-    $file = $this->imageLibraryServices->update($images[$content->identifier], $image, 'questions');
+    $file = $this->imageLibraryServices->update($images[$content->item->identifier], $image, 'questions');
+
+    $image->path = $file->path;
+    $image->name = $file->name;
+    $image->save();
+
+    return $image;
+  }
+
+  public function findImage(Request $request, $content) {
+    $images = $request->file('images');
+    
+    if(!$images[$content->item->identifier]) {
+      return;
+    }
+
+    return true;
   }
 
   public function getPreview($item) {

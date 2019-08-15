@@ -1,16 +1,20 @@
 <template>
-  <div class="container">
-    <div class="row mb-3">
-      <div>
-        <img :src="image.preview" style="width:300px;height:300px;" v-if="image.preview">
-      </div>
+  <div class="form-group has-label">
+    <label>Image</label> 
+  
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col-12 text-center my-3">
+          <img :src="image.preview" style="width:300px;height:300px;" v-if="image.preview">
+        </div>
 
-      <div class="col-12 col-md-9">
-        <input type="file" class="form-control" v-on:change="onFileInput($event)"/>
-      </div>
-      
-      <div class="col-12 col-md-2">
-        <div class="btn btn-primary btn-info" @click="onDeleteClick()">Delete</div>
+        <div class="col-12 col-md-9">
+          <input type="file" class="form-control" v-on:change="onFileInput($event)"/>
+        </div>
+        
+        <div class="col-12 col-md-2">
+          <div class="btn btn-primary btn-info" @click="onDeleteClick()">Delete</div>
+        </div>
       </div>
     </div>
   </div>
@@ -40,7 +44,7 @@
         this.image = this.defaultImage;
       },
       onDeleteClick: function(){
-        
+        this.$emit('delete', this.defaultIndex);
       },
       onFileInput: function(e) {
         if(!e.target.files[0]) {

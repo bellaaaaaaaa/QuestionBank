@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use App\Services\TransformerService;
 use App\Services\Admin\TableServices;
 use App\Services\Admin\ImageServices;
-use App\Services\Admin\ImageLibraryServices;
 
 class ContentServices extends TransformerService{
   protected $tableServices;
@@ -42,13 +41,14 @@ class ContentServices extends TransformerService{
   }
 
   public function delete($content) {
+    $content = Content::find($content->id);
     $content->item->delete();
     $content->delete();
   }
 
   public function update($request, $content, $order) {
     $contentExist = Content::find($content->id);
-    
+  
     if(!$contentExist) {
       return;
     }
@@ -56,10 +56,18 @@ class ContentServices extends TransformerService{
     $contentExist->order = $order;
     $contentExist->save();
 
-    $item = $this->handleItem($request, $contentExist, 'update');
+    $item = $this->handleItem($request, $content, 'update');
   }
 
   public function create($request, $content, $question, $order) {
+    if($content->type == 'Image') {
+      $imageFound = $this->imageServices->findImage($request, $content);
+
+      if(!$imageFound) {
+        return;
+      }
+    }
+
     $newContent = Content::create([
       'question_id' => $question->id,
       'order' => $order
@@ -101,7 +109,7 @@ class ContentServices extends TransformerService{
   }
 
   public function getContents($question) {
-    $contents = $question->questionContents;
+    $contents = $question->questionContents()->orderBy('order', 'ASC')->get();
 
     if(!$contents) {
       return;

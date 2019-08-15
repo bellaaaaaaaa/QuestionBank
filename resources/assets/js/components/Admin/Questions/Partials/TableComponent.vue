@@ -1,13 +1,13 @@
 <template>
   <div class="form-group has-label">
-    <label>Tables</label>
+    <label>Table</label>
 
     <div class="container">
       <div>
         <div class="btn btn-primary btn-info" @click="onNewHeading(table)">Add Heading</div>
         <div class="btn btn-primary btn-info" @click="onNewRow(table)">Add Row</div>
         <div class="btn btn-primary btn-info" @click="onNewColumn(table)">Add Column</div>
-        <div class="btn btn-primary btn-info" @click="onRemoveTable(table, tableIndex)">Remove Table</div>
+        <div class="btn btn-primary btn-info" @click="onDeleteClick()">Remove Table</div>
         
         <table class="table table-bordered">
           <thead>
@@ -63,6 +63,7 @@
         if(!this.defaultTable) {
           return;
         }
+
         this.table = this.defaultTable;
       },
       onNewHeading: function(table) {
@@ -112,12 +113,8 @@
         }
         table[type].splice(index, 1);
       },
-      onRemoveTable: function(table, index) {
-        if(table.id) {
-          Vue.set(this.tables[index], 'deleted', true);
-          return;
-        }
-        this.tables.splice(index, 1);
+      onDeleteClick: function(){
+        this.$emit('delete', this.defaultIndex);
       }
     }
   }

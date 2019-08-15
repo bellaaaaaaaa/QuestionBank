@@ -76,6 +76,7 @@
     methods: {  
       setDefault: function() {
         if(!this.defaultQuestion) {
+          this.question.contents = [];
           return;
         }
 
