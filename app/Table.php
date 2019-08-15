@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Table extends Model {
   protected $fillable = [
-    'question_id', 'content'
+    'content'
   ];
 
-  public function question() {
-    return $this->belongsTo('App\Question');
+  public function item() {
+    return $this->morphOne('App\Content', 'item');
   }
 }

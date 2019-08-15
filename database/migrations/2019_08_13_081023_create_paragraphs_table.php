@@ -15,7 +15,6 @@ class CreateParagraphsTable extends Migration
     {
         Schema::create('paragraphs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('question_id');
             $table->text('description');
             $table->timestamps();
         });

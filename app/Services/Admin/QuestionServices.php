@@ -12,16 +12,16 @@ use Storage;
 use App\Jobs\ImportQuestions;
 
 use Illuminate\Http\Request;
-use App\Services\Admin\ImageLibraryServices;
 use App\Services\Admin\AnswerServices;
+use App\Services\Admin\ContentServices;
 use App\Services\TransformerService;
 
 class QuestionServices extends TransformerService{
-  protected $imageLibraryServices;
+  protected $contentServices;
   protected $answerServices;
 
-  function __construct(ImageLibraryServices $imageLibraryServices, AnswerServices $answerServices) {
-    $this->imageLibraryServices = $imageLibraryServices; 
+  function __construct(ContentServices $contentServices, AnswerServices $answerServices) {
+    $this->contentServices = $contentServices; 
     $this->answerServices = $answerServices;
   }
 
@@ -42,19 +42,13 @@ class QuestionServices extends TransformerService{
 
   public function create(Request $request){
     $request = $this->decodeArrayObjects($request);
-    dd($request);
-    // $image = $request->contents[1]->image->file;
-
-    // $fileName = (integer) round(microtime(true) * 1000) . '.' . $file->extension(); 
-    // Storage::disk('public')->putFileAs($path, $file, $fileName);
     
-    dd('hi');
     $request->validate([
       'description' => 'required|unique:questions',
       'answers' => 'required|array|min:2',
       'answers.*.correct' => 'required',
       'image' => 'required',
-      'images.*' => 'mimes:jpeg,jpg,png|max:2000'
+      'images.*.*' => 'required|image|max:2000'
       // 'topic' => 'required|numeric'
     ]);   
 
@@ -72,26 +66,7 @@ class QuestionServices extends TransformerService{
       ]);
     }
 
-    if($request->tables) {
-      foreach($request->tables as $table) {
-        Table::create([
-          'question_id' => $question->id,
-          'content' => json_encode($table->content)
-        ]);    
-      }
-    }
-    
-    if($request->file('images')) {
-      foreach($request->file('images') as $image) {
-        $file = $this->imageLibraryServices->create($image, 'questions');
-    
-        Image::create([
-          'question_id' => $question->id,
-          'path' => $file->path,
-          'name' => $file->name
-        ]);    
-      }
-    }
+    $this->contentServices->handleContents($request, $question);
     
     return route('questions.index');
   }
@@ -104,9 +79,9 @@ class QuestionServices extends TransformerService{
       'answers' => 'required|array|min:2',
       'answers.*.correct' => 'required',
       'image' => 'required',
-      'images.*' => 'mimes:jpeg,jpg,png|max:2000'
+      'images.*.*' => 'required|image|max:2000'
       // 'topic' => 'required|numeric'
-    ]); 
+    ]);   
 
     $question->description = $request->description;
     $question->topic_id = 1; //$request->topic
@@ -125,21 +100,7 @@ class QuestionServices extends TransformerService{
       }     
     }
 
-    if($request->tables) {
-      $tables = json_decode($request->tables);
-
-      foreach($tables as $table) {
-        dd($table);
-        $tableExist = Table::find($table->id);
-        
-        $tableExist->content = json_encode($table->content);
-        $tableExist->save();
-        // Table::create([
-        //   'question_id' => $question->id,
-        //   'content' => json_encode($table)
-        // ]);    
-      }
-    }    
+    $this->contentServices->handleContents($request, $question);
 
     return route('questions.index');  
   }
@@ -187,6 +148,13 @@ class QuestionServices extends TransformerService{
       'contents' => json_decode($request->contents)
       // 'tables' => json_decode($request->tables)
     ]);
+  }
+
+  public function getAttributes(Question $question) {
+    $question->setAttribute('answers', $question->answers);
+    $question->setAttribute('contents', $this->contentServices->getContents($question));
+
+    return $question;
   }
     
 	public function transform($question){

@@ -111,12 +111,10 @@
         if(this.question.image == 1) {
           var contents = this.$refs.contentChild.contents;
           fields.append('contents', JSON.stringify(contents));
-          // fields.append('tables', JSON.stringify(this.$refs.tableChild.tables));
-          // var images = this.$refs.imageChild.images;
-
+          
           contents.forEach((content, index) => {
-            if(content.type == 'image') {
-              fields.append(`images[][${content.image.name}]`, content.image.file);
+            if(content.type == 'Image') {
+              fields.append(`images[${content.item.identifier}]`, content.item.file);
             }
           });
         }

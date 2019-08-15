@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model {
   protected $fillable = [
-    'question_id', 'path', 'name'
+    'path', 'name'
   ];
 
-  public function question() {
-    return $this->belongsTo('App\Question');
+  public function item() {
+    return $this->morphOne('App\Content', 'item');
   }
 }

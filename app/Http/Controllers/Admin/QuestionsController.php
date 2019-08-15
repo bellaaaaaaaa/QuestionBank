@@ -37,10 +37,7 @@ class QuestionsController extends Controller{
 
   public function edit(Question $question){
     $topics = Topic::pluck('name','id');
-
-    $question->setAttribute('answers', $question->answers);
-    $question->setAttribute('tables', $question->tables);
-    $question->setAttribute('images', $question->images);
+    $question = $this->questionServices->getAttributes($question);
 
     return view($this->path . 'edit',['question' => $question,'topics' => $topics]);
   }

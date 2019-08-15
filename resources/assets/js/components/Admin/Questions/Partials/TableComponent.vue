@@ -51,7 +51,7 @@
       };
     },
     watch: {
-      defaultTables: function() {
+      defaultTable: function() {
         this.setDefault();
       }
     },
@@ -60,12 +60,10 @@
     },
     methods: {
       setDefault: function() {
+        if(!this.defaultTable) {
+          return;
+        }
         this.table = this.defaultTable;
-
-        // this.tables = _.cloneDeep(this.defaultTables);
-        // this.tables.forEach((table) => {
-        //   table.content = JSON.parse(table.content)
-        // });
       },
       onNewHeading: function(table) {
         table.headings.push({

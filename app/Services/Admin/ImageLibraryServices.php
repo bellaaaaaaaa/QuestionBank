@@ -3,8 +3,7 @@
 namespace App\Services\Admin;
 
 use Storage;
-use Validator;
-use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 
@@ -23,53 +22,21 @@ class ImageLibraryServices {
     ];
   }
 
-  public function update(Request $request, $imageName) {
-    if($request->hasOldImage) {
-      return $imageName;
+  public function update($file, $image, $path = 'media') {
+    if($image) {
+      Storage::delete('public/' . $path . '/' . $image->name);
     }
 
-    if($imageName) {
-      Storage::delete('public/media/' . $imageName);
-    }
-
-    $file = $request->file('image');
-    return $this->storeImage($file);
+    return $this->create($file);
   }
 
-  public function storeImage($file) {
-    if(!$file) {
-      return;
-    }
-    
-    $fileName = Carbon::now()->timestamp . '.' . $file->extension(); 
-    Storage::disk('public')->putFileAs('media', $file, $fileName);
-    
-    return $fileName;
-  }
-
-  public function fullPath($image) {
+  public function fullPath($name, $path = 'media') {
     $baseUrl = url('/');
 
-    if($image) {
-      return $baseUrl . '/storage/media/' . $image;
+    if($name) {
+      return $baseUrl . '/storage/' . $path . '/' . $name;
     }
 
     return '';
-  }
-
-  public function validateImage($file) {
-    $fileArray = ['image' => $file];
-
-    $rules = [
-      'image' => 'nullable|image|max:2000|dimensions:min_width=640,min_height=960'
-    ];
-
-    $validator = Validator::make($fileArray, $rules);
-
-    if($validator->fails()) {
-      return false;
-    }
-
-    return true;
   }
 }

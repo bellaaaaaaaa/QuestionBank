@@ -40,7 +40,7 @@
         this.image = this.defaultImage;
       },
       onDeleteClick: function(){
-        console.log('delete')
+        
       },
       onFileInput: function(e) {
         if(!e.target.files[0]) {
@@ -48,17 +48,13 @@
           return;
         }
         
+        this.image.identifier = Math.floor(Date.now() / 1000);
         this.image.file = e.target.files[0];
         this.image.preview = URL.createObjectURL(e.target.files[0]);
 
-        // var self = this;
-        // var reader = new FileReader();
-        // reader.readAsDataURL(e.target.files[0]);
-        // reader.addEventListener('load', function(e) {
-        //   self.image.file = e.target.result;
-        // });
-
-        // this.$emit('fileChange', image, this.defaultIndex);
+        if(this.image.hasOldImage) {
+          this.image.hasOldImage = false;
+        }
       }
     }
   }
