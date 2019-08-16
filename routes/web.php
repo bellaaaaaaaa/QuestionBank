@@ -30,11 +30,13 @@ Route::prefix('admin')->group(function(){
     Route::resource('teams', 'Admin\TeamsController');
     Route::resource('subjects', 'Admin\SubjectsController');
 
+    Route::post('topics/search', 'Admin\TopicsController@search')->name('topics.search');
     Route::resource('topics', 'Admin\TopicsController');
     Route::post('subject/{subject}/topics/import', 'Admin\TopicsController@import')->name('topics.import');
 
     Route::resource('questions', 'Admin\QuestionsController');
     Route::post('subject/{subject}/questions/import', 'Admin\QuestionsController@import')->name('questions.import');
+    Route::post('questions/update/{question}', 'Admin\QuestionsController@update')->name('questions.post.update');
 
     Route::resource('guardians', 'Admin\GuardiansController');
     Route::resource('students', 'Admin\StudentsController');

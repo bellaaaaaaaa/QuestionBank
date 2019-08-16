@@ -43,13 +43,17 @@ class TopicServices extends TransformerService {
     return redirect()->back()->with('success', 'Great! Please refresh after a few seconds if you do not see the changes.');
   }
 
+  public function search(Request $request) {
+    $topics = Topic::where('name', 'like', "%{$request->search}%");
+    
+    return $this->transformCollection($topics->limit(10)->get());
+  }
+
 	public function transform($topic){
 		return [
       'id' => $topic->id,
       'name' => $topic->name,
       'subject_name' => $topic->subject ? $topic->subject->name : '-'
-      // 'subject_id' => $topic->subject_id
-      // 'name' => $this->transformDate($question->created_at),
 		];
 	}
 }

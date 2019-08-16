@@ -6,6 +6,9 @@
 // Dahsboard Template
 @import '../light-bootstrap-dashboard';
 
+@import "~quill/dist/quill.snow.css";
+
 // Variables
 @import '../partials/admin/variables';
+@import '../partials/admin/vueDropdown';
 @import '../partials/admin/base';

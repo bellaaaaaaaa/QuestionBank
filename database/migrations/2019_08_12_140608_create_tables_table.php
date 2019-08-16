@@ -14,8 +14,7 @@ class CreateTablesTable extends Migration
     public function up()
     {
         Schema::create('tables', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('question_id');
+            $table->increments('id'); 
             $table->longText('content');
             $table->timestamps();
         });

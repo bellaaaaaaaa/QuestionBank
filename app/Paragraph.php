@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paragraph extends Model {
   protected $fillable = [
-    'question_id', 'description'
+    'description'
   ];
 
-  public function question() {
-    return $this->belongsTo('App\Question');
+  public function item() {
+    return $this->morphOne('App\Content', 'item');
   }
 }

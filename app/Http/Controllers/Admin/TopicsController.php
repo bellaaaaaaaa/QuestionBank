@@ -76,4 +76,8 @@ class TopicsController extends Controller {
   public function import(Request $request, Subject $subject){
     return $this->topicServices->import($request, $subject);  
   }
+
+  public function search(Request $request){
+    return $this->topicServices->search($request);  
+  }
 }

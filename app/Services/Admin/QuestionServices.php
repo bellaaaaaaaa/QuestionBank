@@ -6,15 +6,25 @@ use App\Subject;
 use App\Answer;
 use App\Question;
 use App\Table;
+use App\Image;
 
 use Storage;
 use App\Jobs\ImportQuestions;
 
 use Illuminate\Http\Request;
+use App\Services\Admin\AnswerServices;
+use App\Services\Admin\ContentServices;
 use App\Services\TransformerService;
 
 class QuestionServices extends TransformerService{
- 
+  protected $contentServices;
+  protected $answerServices;
+
+  function __construct(ContentServices $contentServices, AnswerServices $answerServices) {
+    $this->contentServices = $contentServices; 
+    $this->answerServices = $answerServices;
+  }
+
 	public function all(Request $request){
 		$sort = $request->sort ? $request->sort : 'created_at';
     $order = $request->order ? $request->order : 'desc';
@@ -31,56 +41,54 @@ class QuestionServices extends TransformerService{
 	}
 
   public function create(Request $request){
+    $request = $this->decodeArrayObjects($request);
+    
     $request->validate([
       'description' => 'required|unique:questions',
       'answers' => 'required|array|min:2',
-      'answers.*.correct' => 'required',
-      // 'topic' => 'required|numeric'
+      'image' => 'required',
+      'images.*.*' => 'required|image|max:2000',
+      'topic' => 'required|numeric'
+    ]);   
+
+    $question = Question::create([
+      'description' => $request->description,
+      'topic_id' => $request->topic,
+      'image' => $request->image
     ]);
-             
-    $question = new Question();
-    $question->description = $request->description;
-    $question->topic_id = 1;
-    $question->image = 1;
-    $question->save();
         
-    foreach($request->answers as $answer){
-      $newAnswer = new Answer();
-      $newAnswer->description = $answer['description'];
-      $newAnswer->correct = $answer['correct'];
-      $newAnswer->question_id = $question->id;
-      $newAnswer->save();
+    foreach($request->answers as $answer) {
+      Answer::create([
+        'description' => $answer->description,
+        'correct' => $answer->correct,
+        'question_id' => $question->id
+      ]);
     }
 
-    if($request->tables) {
-      $tables = json_decode($request->tables);
-
-      foreach($tables as $table) {
-        Table::create([
-          'question_id' => $question->id,
-          'content' => json_encode($table->content)
-        ]);    
-      }
-    }
-
+    $this->contentServices->handleContents($request, $question);
+    
     return route('questions.index');
-}
+  }
 
   public function update(Request $request, Question $question){
+    $request = $this->decodeArrayObjects($request);
+ 
     $request->validate([
       'description'=> 'unique:questions,id,' . $question->id,
       'answers' => 'required|array|min:2',
-      'answers.*.correct' => 'required',
-    ]);
-
+      'image' => 'required',
+      'images.*.*' => 'required|image|max:2000',
+      'topic' => 'required|numeric'
+    ]);   
+    
     $question->description = $request->description;
-    $question->topic_id = 1;
+    $question->topic_id = $request->topic; 
+    $question->image = $request->image;
     $question->save();
 
     foreach($request->answers as $answer){
-      $answer = (object) $answer;
       $answerExist = Answer::find($answer->id);
-      //find only needs one parameter!
+      
       if($answerExist && isset($answer->deleted)){
         $this->deleteAnswer($answer);
       } elseif ($answerExist) {
@@ -90,21 +98,7 @@ class QuestionServices extends TransformerService{
       }     
     }
 
-    if($request->tables) {
-      $tables = json_decode($request->tables);
-
-      foreach($tables as $table) {
-        dd($table);
-        $tableExist = Table::find($table->id);
-        
-        $tableExist->content = json_encode($table->content);
-        $tableExist->save();
-        // Table::create([
-        //   'question_id' => $question->id,
-        //   'content' => json_encode($table)
-        // ]);    
-      }
-    }    
+    $this->contentServices->handleContents($request, $question);
 
     return route('questions.index');  
   }
@@ -143,18 +137,31 @@ class QuestionServices extends TransformerService{
 
     return redirect()->back()->with('success', 'Great! Please refresh after a few seconds if you do not see the changes.');
   }
+
+  public function decodeArrayObjects(Request $request){
+    return $request->merge([
+      'description' => $request->description,
+      'answers' => json_decode($request->answers),
+      'topic' => $request->topic,
+      'contents' => json_decode($request->contents)
+    ]);
+  }
+
+  public function getAttributes(Question $question) {
+    $question->setAttribute('searchTopic', $question->topic->name);
+    $question->setAttribute('answers', $question->answers);
+    $question->setAttribute('contents', $this->contentServices->getContents($question));
+
+    return $question;
+  }
     
 	public function transform($question){
         
 		return [
       'id' => $question->id,
       'description' => $question->description,
-      // 'name' => $this->transformDate($question->created_at),
       'correct_attempts' =>  $question->number_of_correct_attempts,
-      // 'explanation' => $question->explanation,
-      // 'topic' => $question->topic ? $question->topic->name:'-',
       'hasImage' => $question->image ? 'Have Image' : 'No Image'
-
 		];
 	}
 }
