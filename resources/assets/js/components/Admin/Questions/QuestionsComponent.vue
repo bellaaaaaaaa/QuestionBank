@@ -118,7 +118,7 @@
         var fields = new FormData();
         fields.append('description', this.question.description);
         fields.append('answers', JSON.stringify(answers));
-        fields.append('topic', this.question.topic);
+        fields.append('topic', this.question.topic_id);
         fields.append('image', this.question.image);
 
         if(this.question.image == 1) {

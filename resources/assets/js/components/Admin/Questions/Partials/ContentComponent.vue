@@ -10,7 +10,7 @@
 
           <image-component :default-item="content.item" :default-index="index" @delete="onDelete" v-if="content.type == 'Image' && !content.deleted"></image-component>
 
-          <paragraph-component :default-item="content.item" :default-index="index" @delete="onDelete" @change="onChange" v-if="content.type == 'Paragraph' && !content.deleted"></paragraph-component>
+          <paragraph-component :default-identifier="content.identifier" :default-item="content.item" :default-index="index" @delete="onDelete" @change="onChange" v-if="content.type == 'Paragraph' && !content.deleted"></paragraph-component>
         </div>
       </div>
     </draggable>
@@ -69,6 +69,7 @@
       onNewTable: function() {
         this.contents.push({
           type: 'Table',
+          identifier: Math.floor(Date.now() / 1000),
           item: {
             headings: [
               {
@@ -98,6 +99,7 @@
       onNewImage: function() {
         this.contents.push({
           type: 'Image',
+          identifier: Math.floor(Date.now() / 1000),
           item: {
             identifier: null, 
             file: null,
@@ -108,6 +110,7 @@
       onNewParagraph: function() {
         this.contents.push({
           type: 'Paragraph',
+          identifier: Math.floor(Date.now() / 1000),
           item: ''
         })
       },
