@@ -6,9 +6,11 @@
       <div v-for="(content, index) in contents" :key="index">
         <div class="card p-3">
           <i class="fa fa-align-justify handle"></i>
-          <table-component :default-table="content.item" :default-index="index" @delete="onDelete" v-if="content.type == 'Table' && !content.deleted"></table-component>
+          <table-component :default-item="content.item" :default-index="index" @delete="onDelete" v-if="content.type == 'Table' && !content.deleted"></table-component>
 
-          <image-component :default-image="content.item" :default-index="index" @delete="onDelete" v-if="content.type == 'Image' && !content.deleted"></image-component>
+          <image-component :default-item="content.item" :default-index="index" @delete="onDelete" v-if="content.type == 'Image' && !content.deleted"></image-component>
+
+          <paragraph-component :default-item="content.item" :default-index="index" @delete="onDelete" @change="onChange" v-if="content.type == 'Paragraph' && !content.deleted"></paragraph-component>
         </div>
       </div>
     </draggable>
@@ -20,7 +22,7 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" @click="onNewTable()">Add New Table</a>
         <a class="dropdown-item" @click="onNewImage()">Add New Image</a>
-        <a class="dropdown-item" href="#">Add New Paragraph</a>
+        <a class="dropdown-item" @click="onNewParagraph()">Add New Paragraph</a>
       </div>
     </div>
   </div>
@@ -52,10 +54,13 @@
         }
         this.question = this.defaultQuestion;
         this.contents = this.question.contents ? this.question.contents : [];
-
+        this.parseContent();
+      },
+      parseContent: function() {
+        var self = this;
         if(this.contents.length > 0) {
-          this.contents.forEach((content) => {
-            if(content.type == 'Table') {
+          this.contents.forEach((content, index) => {
+            if(content.type == 'Table' || content.type == 'Paragraph') {
               content.item = JSON.parse(content.item);
             }
           });
@@ -100,6 +105,12 @@
           }
         });
       },
+      onNewParagraph: function() {
+        this.contents.push({
+          type: 'Paragraph',
+          item: ''
+        })
+      },
       onDelete: function(index) {
         var content = this.contents[index];
 
@@ -108,6 +119,9 @@
         }else {
           this.contents.splice(index, 1);
         }
+      },
+      onChange: function(index, value) {
+        this.contents[index].item = value;
       }
     }
   }

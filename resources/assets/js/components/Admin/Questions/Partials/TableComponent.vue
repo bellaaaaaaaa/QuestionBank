@@ -44,14 +44,14 @@
 
 <script>
   export default{
-    props: ['defaultTable', 'defaultIndex'],
+    props: ['defaultItem', 'defaultIndex'],
     data: function(){
       return {
         table: {}
       };
     },
     watch: {
-      defaultTable: function() {
+      defaultItem: function() {
         this.setDefault();
       }
     },
@@ -60,11 +60,11 @@
     },
     methods: {
       setDefault: function() {
-        if(!this.defaultTable) {
+        if(!this.defaultItem) {
           return;
         }
 
-        this.table = this.defaultTable;
+        this.table = this.defaultItem;
       },
       onNewHeading: function(table) {
         table.headings.push({

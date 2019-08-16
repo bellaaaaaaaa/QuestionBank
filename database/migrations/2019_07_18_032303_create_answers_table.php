@@ -17,7 +17,7 @@ class CreateAnswersTable extends Migration
             $table->increments('id');
             $table->integer('question_id')->nullable();
             $table->text('description')->nullable();
-            $table->boolean('correct')->nullable();
+            $table->boolean('correct')->default(false);
             $table->timestamps();
         });
     }

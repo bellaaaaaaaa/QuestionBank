@@ -9,17 +9,20 @@ use App\Paragraph;
 use App\Question;
 
 use Illuminate\Http\Request;
-use App\Services\TransformerService;
 use App\Services\Admin\TableServices;
 use App\Services\Admin\ImageServices;
+use App\Services\Admin\ParagraphServices;
+use App\Services\TransformerService;
 
 class ContentServices extends TransformerService{
   protected $tableServices;
   protected $imageServices;
+  protected $paragraphServices;
 
-  function __construct(TableServices $tableServices, ImageServices $imageServices) {
+  function __construct(TableServices $tableServices, ImageServices $imageServices, ParagraphServices $paragraphServices) {
     $this->tableServices = $tableServices;
     $this->imageServices = $imageServices; 
+    $this->paragraphServices = $paragraphServices; 
   }
 
 	public function handleContents(Request $request, Question $question){
@@ -91,7 +94,7 @@ class ContentServices extends TransformerService{
       break;
 
       case 'Paragraph':
-      // $item = $this->paragraphServices->handle($content->item, $type);
+      $item = $this->paragraphServices->handle($content, $type);
       break;
 
       default:
@@ -100,12 +103,6 @@ class ContentServices extends TransformerService{
     }
 
     return $item;
-  }
-
-  public function createParagraph($content) {
-    return Table::create([
-      'content' => json_encode($content->item)
-    ]); 
   }
 
   public function getContents($question) {

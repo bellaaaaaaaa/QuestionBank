@@ -22,14 +22,14 @@
 
 <script>
   export default {
-    props: ['defaultImage', 'defaultIndex'],
+    props: ['defaultItem', 'defaultIndex'],
     data: function(){
       return {
         image: {}
       };
     },
     watch: {
-      defaultAnswers: function() {
+      defaultItem: function() {
         this.setDefault();
       }
     },
@@ -38,10 +38,11 @@
     },
     methods: {  
       setDefault: function() {
-        if(!this.defaultImage) {
+        if(!this.defaultItem) {
           return;
         }
-        this.image = this.defaultImage;
+
+        this.image = this.defaultItem;
       },
       onDeleteClick: function(){
         this.$emit('delete', this.defaultIndex);

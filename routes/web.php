@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function(){
     Route::resource('teams', 'Admin\TeamsController');
     Route::resource('subjects', 'Admin\SubjectsController');
 
+    Route::post('topics/search', 'Admin\TopicsController@search')->name('topics.search');
     Route::resource('topics', 'Admin\TopicsController');
     Route::post('subject/{subject}/topics/import', 'Admin\TopicsController@import')->name('topics.import');
 

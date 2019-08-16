@@ -24,8 +24,20 @@
       </label> 
 
       <div class="container">
-        <select class="form-control" v-model="topic"></select>
-      </div>
+        <input type="text" class="form-control" placeholder="Enter Topic" v-model="searchTopic" v-on-clickaway="closeList" @keyup="onInputChange" @click="onInputChange">
+        
+        <div class="vue-dropdown" v-if="haveData">
+          <div class="dropdown-menu">
+            <div class="dropdown-item text-capitalize" v-for="(topic, index) in topics" :key="index" @click="onSearchClick(topic)">
+              <div class="row">
+                <div class="col-12">
+                  {{ topic.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
     </div>  
 
     <div class="form-group has-label">
@@ -41,14 +53,10 @@
         </select>
       </div>
     </div>  
-<!-- 
-    <tables-component :default-tables="question.tables" ref="tableChild" v-if="question.image == 1"></tables-component> -->
 
     <br>
 
     <content-component :default-question="question" ref="contentChild" v-if="question.image == 1"></content-component>
-
-    <!-- <images-component :default-images="question.images" ref="imageChild" v-if="question.image == 1"></images-component> -->
 
     <div class="card-category form-category">
       <label class="star">*</label> Required fields
@@ -61,13 +69,17 @@
 </template>
 
 <script>
+  import { mixin as clickaway } from 'vue-clickaway';
+
   export default {
+    mixins: [clickaway],
     props: ['defaultQuestion'],
     data: function(){
       return {
         question: {},
-        topic: '',
-        showImage: false
+        topics: [],
+        searchTopic: '',
+        haveData: false
       };
     },
     mounted() {
@@ -81,7 +93,7 @@
         }
 
         this.question = JSON.parse(this.defaultQuestion);
-        // this.topic = this.question.topic;
+        this.searchTopic = this.question.searchTopic;
       },
       onSubmit: function(){
         var count = 0;
@@ -102,11 +114,11 @@
         if(this.defaultQuestion) {
           url = url + '/update/' + this.question.id;
         }
-        
+
         var fields = new FormData();
         fields.append('description', this.question.description);
         fields.append('answers', JSON.stringify(answers));
-        fields.append('topic', this.topic);
+        fields.append('topic', this.question.topic);
         fields.append('image', this.question.image);
 
         if(this.question.image == 1) {
@@ -130,6 +142,37 @@
         }, (error) => {
           console.log(error);
         });
+      },
+      onInputChange: function() {
+        axios.post('/admin/topics/search', {search: this.searchTopic})
+        .then(({data}) => {
+          if(data.length > 0) {
+            this.topics = data;
+            this.openList();
+          }else {
+            this.topics = [];
+            this.topics.push({
+              name: 'No Topics Found',
+              none: true
+            });
+          }
+        }, (error) => {});         
+      },
+      onSearchClick: function(topic) {
+        if(topic.none) {
+          this.question.topic = null;
+          this.searchTopic = null;
+          return;
+        }
+        this.question.topic = topic.id;
+        this.searchTopic = topic.name;
+        this.closeList();
+      },
+      openList: function() {
+        this.haveData = true;
+      },
+      closeList: function() {
+        this.haveData = false;
       }
     }
   }

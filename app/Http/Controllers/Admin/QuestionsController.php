@@ -36,10 +36,9 @@ class QuestionsController extends Controller{
   }  
 
   public function edit(Question $question){
-    $topics = Topic::pluck('name','id');
     $question = $this->questionServices->getAttributes($question);
 
-    return view($this->path . 'edit',['question' => $question,'topics' => $topics]);
+    return view($this->path . 'edit',['question' => $question]);
   }
   
   public function update(Request $request, Question $question){

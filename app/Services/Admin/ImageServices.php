@@ -24,6 +24,7 @@ class ImageServices {
   }
 
   public function create($request, $content) {
+    $images = $request->file('images');
     $file = $this->imageLibraryServices->create($images[$content->item->identifier], 'questions');
     
     return Image::create([

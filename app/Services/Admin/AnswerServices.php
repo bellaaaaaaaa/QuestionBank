@@ -24,17 +24,10 @@ class AnswerServices extends TransformerService{
         return respond(['rows' => $this->transformCollection($answers), 'total' => $listCount]);
 	}
 
-    // public function transformDate($date) {
-
-        
-    //     return $date;
-    // }
-
 	public function transform($answer){
 		return [
             'id' => $answer->id,
             'name' => $answer->name,
-            // 'name' => $this->transformDate($question->created_at),
             'correct' =>  $answer->correct,
             'question' => $answer->question ? $answer->question->name:'-',
             'content' => $answer->name,

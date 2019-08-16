@@ -46,15 +46,14 @@ class QuestionServices extends TransformerService{
     $request->validate([
       'description' => 'required|unique:questions',
       'answers' => 'required|array|min:2',
-      'answers.*.correct' => 'required',
       'image' => 'required',
-      'images.*.*' => 'required|image|max:2000'
-      // 'topic' => 'required|numeric'
+      'images.*.*' => 'required|image|max:2000',
+      'topic' => 'required|numeric'
     ]);   
 
     $question = Question::create([
       'description' => $request->description,
-      'topic_id' => 1, // $request->topic
+      'topic_id' => $request->topic,
       'image' => $request->image
     ]);
         
@@ -73,18 +72,17 @@ class QuestionServices extends TransformerService{
 
   public function update(Request $request, Question $question){
     $request = $this->decodeArrayObjects($request);
-
+ 
     $request->validate([
       'description'=> 'unique:questions,id,' . $question->id,
       'answers' => 'required|array|min:2',
-      'answers.*.correct' => 'required',
       'image' => 'required',
-      'images.*.*' => 'required|image|max:2000'
-      // 'topic' => 'required|numeric'
+      'images.*.*' => 'required|image|max:2000',
+      'topic' => 'required|numeric'
     ]);   
-
+    
     $question->description = $request->description;
-    $question->topic_id = 1; //$request->topic
+    $question->topic_id = $request->topic; 
     $question->image = $request->image;
     $question->save();
 
@@ -146,11 +144,11 @@ class QuestionServices extends TransformerService{
       'answers' => json_decode($request->answers),
       'topic' => $request->topic,
       'contents' => json_decode($request->contents)
-      // 'tables' => json_decode($request->tables)
     ]);
   }
 
   public function getAttributes(Question $question) {
+    $question->setAttribute('searchTopic', $question->topic->name);
     $question->setAttribute('answers', $question->answers);
     $question->setAttribute('contents', $this->contentServices->getContents($question));
 
@@ -162,12 +160,8 @@ class QuestionServices extends TransformerService{
 		return [
       'id' => $question->id,
       'description' => $question->description,
-      // 'name' => $this->transformDate($question->created_at),
       'correct_attempts' =>  $question->number_of_correct_attempts,
-      // 'explanation' => $question->explanation,
-      // 'topic' => $question->topic ? $question->topic->name:'-',
       'hasImage' => $question->image ? 'Have Image' : 'No Image'
-
 		];
 	}
 }
