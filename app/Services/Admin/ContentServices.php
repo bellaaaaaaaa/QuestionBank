@@ -145,8 +145,7 @@ class ContentServices extends TransformerService{
       'id' => $content->id,
       'itemId' => $content->item_id,
       'item' => $this->morphContent($content),
-      'type' => $content->item_type,
-      'identifier' => (integer) round(microtime(true) * 1000)
+      'type' => $content->item_type
 		];
 	}
 }

@@ -5,7 +5,7 @@
       <div class="btn btn-primary btn-info" @click="onDeleteClick()">Delete</div>
     </div>
     <div class="container">
-      <div :id="'editor' + defaultIdentifier" style="height:350px;">
+      <div :id="'editor' + defaultIndex" style="height:350px;">
         <input type="hidden" name="content" id="content-input"/>
       </div>
     </div>
@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    props: ['defaultIdentifier', 'defaultItem', 'defaultIndex'],
+    props: ['defaultItem', 'defaultIndex'],
     data: function(){
       return {
         paragraph: null,
@@ -23,13 +23,13 @@
     },
     watch: {
       defaultItem: function(newVal) {
-        if(newVal && this.paragraph == '') {
+        if(newVal != this.paragraph) {
           this.setDefault();
         }
       }
     },
     mounted() {
-      this.quill = new Quill('#editor' + this.defaultIdentifier, {
+      this.quill = new Quill('#editor' + this.defaultIndex, {
         theme: 'snow',
         placeholder: 'Write the contents of your paragraph here....'
       });
@@ -45,12 +45,17 @@
     },
     methods: {  
       setDefault: function() {
-        if(typeof this.defaultItem == 'object') {
-          this.paragraph = JSON.parse(this.defaultItem);
-        } else {
+        var item = typeof this.defaultItem;
+
+        this.paragraph = this.defaultItem;
+        if(item == 'object') {
           this.paragraph = this.defaultItem;
+        }else if(item == 'string' && this.defaultItem == '') {
+          this.paragraph = this.defaultItem;
+        } else {
+          this.paragraph = JSON.parse(this.defaultItem);
         }
-          this.quill.setContents(this.paragraph);
+        this.quill.setContents(this.paragraph);
       },
       onDeleteClick: function(){
         this.$emit('delete', this.defaultIndex);
