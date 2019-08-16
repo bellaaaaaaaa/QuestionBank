@@ -151,7 +151,7 @@ class QuestionServices extends TransformerService{
     $question->setAttribute('searchTopic', $question->topic->name);
     $question->setAttribute('answers', $question->answers);
     $question->setAttribute('contents', $this->contentServices->getContents($question));
-
+// dd($question);
     return $question;
   }
     

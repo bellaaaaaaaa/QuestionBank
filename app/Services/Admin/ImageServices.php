@@ -51,8 +51,11 @@ class ImageServices {
 
   public function findImage(Request $request, $content) {
     $images = $request->file('images');
+    if(!$images) {
+      return;
+    }
     
-    if(!$images[$content->item->identifier]) {
+    if(!array_key_exists($content->item->identifier, $images)) {
       return;
     }
 

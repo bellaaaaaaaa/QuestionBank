@@ -69,6 +69,7 @@
       onNewTable: function() {
         this.contents.push({
           type: 'Table',
+          identifier: Math.floor(Date.now() / 1000),
           item: {
             headings: [
               {
@@ -98,6 +99,7 @@
       onNewImage: function() {
         this.contents.push({
           type: 'Image',
+          identifier: Math.floor(Date.now() / 1000),
           item: {
             identifier: null, 
             file: null,

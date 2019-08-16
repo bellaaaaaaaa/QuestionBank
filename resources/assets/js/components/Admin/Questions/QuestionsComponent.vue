@@ -110,15 +110,16 @@
         if(count != 1) {
           return;
         }
+        
+        var fields = new FormData();
 
         if(this.defaultQuestion) {
           url = url + '/update/' + this.question.id;
         }
 
-        var fields = new FormData();
         fields.append('description', this.question.description);
         fields.append('answers', JSON.stringify(answers));
-        fields.append('topic', this.question.topic);
+        fields.append('topic', this.question.topic_id);
         fields.append('image', this.question.image);
 
         if(this.question.image == 1) {
@@ -160,16 +161,16 @@
       },
       onSearchClick: function(topic) {
         if(topic.none) {
-          this.question.topic = null;
+          this.question.topic_id = null;
           this.searchTopic = null;
           return;
         }
-        this.question.topic = topic.id;
+        this.question.topic_id = topic.id;
         this.searchTopic = topic.name;
         this.closeList();
       },
       openList: function() {
-        this.haveData = true;
+        this.haveData = true; 
       },
       closeList: function() {
         this.haveData = false;

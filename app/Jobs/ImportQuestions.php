@@ -70,7 +70,7 @@ class ImportQuestions implements ShouldQueue {
                 'topic_id' => $topic->id,
                 'description' => $questionText,
                 'explanation' => $explanation,
-                'image' => $hasImage ? 1 : 0
+                'image' => $hasImage == 'TRUE' ? true : false
               ]);
 
               $this->createAnswer($question, $answer1, $correctAnswer, 1);
