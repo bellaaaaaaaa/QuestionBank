@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <questions-component></questions-component>
+    <question-component></question-component>
   </div>
 </div>
 @endsection

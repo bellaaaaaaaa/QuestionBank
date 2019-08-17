@@ -46,6 +46,7 @@ class QuestionServices extends TransformerService{
     $request->validate([
       'description' => 'required|unique:questions',
       'answers' => 'required|array|min:2',
+      'explanation' => 'required',
       'image' => 'required',
       'images.*.*' => 'required|image|max:2000',
       'topic' => 'required|numeric'
@@ -54,6 +55,7 @@ class QuestionServices extends TransformerService{
     $question = Question::create([
       'description' => $request->description,
       'topic_id' => $request->topic,
+      'explanation' => $request->explanation,
       'image' => $request->image
     ]);
         
@@ -76,6 +78,7 @@ class QuestionServices extends TransformerService{
     $request->validate([
       'description'=> 'unique:questions,id,' . $question->id,
       'answers' => 'required|array|min:2',
+      'explanation' => 'required',
       'image' => 'required',
       'images.*.*' => 'required|image|max:2000',
       'topic' => 'required|numeric'
@@ -83,6 +86,7 @@ class QuestionServices extends TransformerService{
     
     $question->description = $request->description;
     $question->topic_id = $request->topic; 
+    $question->explanation = $request->explanation; 
     $question->image = $request->image;
     $question->save();
 
@@ -151,7 +155,7 @@ class QuestionServices extends TransformerService{
     $question->setAttribute('searchTopic', $question->topic->name);
     $question->setAttribute('answers', $question->answers);
     $question->setAttribute('contents', $this->contentServices->getContents($question));
-// dd($question);
+
     return $question;
   }
     
