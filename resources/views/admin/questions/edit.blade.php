@@ -10,7 +10,7 @@
           </div>
         </div>
       </div>
-      <questions-component default-question="{{ $question }}"></questions-component>
+      <question-component default-question="{{ $question }}"></question-component>
     </div>
   </div>
 @endsection
