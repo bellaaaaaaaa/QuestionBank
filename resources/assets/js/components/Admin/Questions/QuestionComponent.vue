@@ -136,13 +136,16 @@
           return;
         }
         
-        var fields = new FormData();
 
         if(this.defaultQuestion) {
           url = url + '/update/' + this.question.id;
         }
 
-        fields.append('description', this.question.description);
+        var fields = new FormData();
+        // var data = {
+        //   'description' 
+        // }
+        fields.append('description', this.question.description );
         fields.append('answers', JSON.stringify(answers));
         fields.append('explanation', this.question.explanation);
         fields.append('topic', this.question.topic_id);

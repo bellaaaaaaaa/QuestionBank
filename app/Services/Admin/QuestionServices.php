@@ -10,6 +10,7 @@ use App\Image;
 
 use Storage;
 use App\Jobs\ImportQuestions;
+use App\Rules\ValidateUndefined;
 
 use Illuminate\Http\Request;
 use App\Services\Admin\AnswerServices;
@@ -44,12 +45,12 @@ class QuestionServices extends TransformerService{
     $request = $this->decodeArrayObjects($request);
     
     $request->validate([
-      'description' => 'required|unique:questions',
+      'description' => [new ValidateUndefined(), 'unique:questions'],
       'answers' => 'required|array|min:2',
-      'explanation' => 'required',
-      'image' => 'required',
-      'images.*.*' => 'required|image|max:2000',
-      'topic' => 'required|numeric'
+      'explanation' => new ValidateUndefined(),
+      'topic' => [new ValidateUndefined(), 'numeric'],
+      'image' => new ValidateUndefined(),
+      'images.*.*' => 'required|image|max:2000'
     ]);   
 
     $question = Question::create([
@@ -76,12 +77,12 @@ class QuestionServices extends TransformerService{
     $request = $this->decodeArrayObjects($request);
  
     $request->validate([
-      'description'=> 'unique:questions,id,' . $question->id,
+      'description'=> [new ValidateUndefined(), 'unique:questions,description,' . $question->id],
       'answers' => 'required|array|min:2',
-      'explanation' => 'required',
-      'image' => 'required',
-      'images.*.*' => 'required|image|max:2000',
-      'topic' => 'required|numeric'
+      'explanation' => new ValidateUndefined(),
+      'topic' => [new ValidateUndefined(), 'numeric'],
+      'image' => new ValidateUndefined(),
+      'images.*.*' => 'required|image|max:2000'
     ]);   
     
     $question->description = $request->description;
