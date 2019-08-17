@@ -10747,6 +10747,62 @@ module.exports = {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var NewLine = "\n";
+exports.NewLine = NewLine;
+var ListType;
+(function (ListType) {
+    ListType["Ordered"] = "ordered";
+    ListType["Bullet"] = "bullet";
+    ListType["Checked"] = "checked";
+    ListType["Unchecked"] = "unchecked";
+})(ListType || (ListType = {}));
+exports.ListType = ListType;
+var ScriptType;
+(function (ScriptType) {
+    ScriptType["Sub"] = "sub";
+    ScriptType["Super"] = "super";
+})(ScriptType || (ScriptType = {}));
+exports.ScriptType = ScriptType;
+var DirectionType;
+(function (DirectionType) {
+    DirectionType["Rtl"] = "rtl";
+})(DirectionType || (DirectionType = {}));
+exports.DirectionType = DirectionType;
+var AlignType;
+(function (AlignType) {
+    AlignType["Left"] = "left";
+    AlignType["Center"] = "center";
+    AlignType["Right"] = "right";
+    AlignType["Justify"] = "justify";
+})(AlignType || (AlignType = {}));
+exports.AlignType = AlignType;
+var DataType;
+(function (DataType) {
+    DataType["Image"] = "image";
+    DataType["Video"] = "video";
+    DataType["Formula"] = "formula";
+    DataType["Text"] = "text";
+})(DataType || (DataType = {}));
+exports.DataType = DataType;
+;
+var GroupType;
+(function (GroupType) {
+    GroupType["Block"] = "block";
+    GroupType["InlineGroup"] = "inline-group";
+    GroupType["List"] = "list";
+    GroupType["Video"] = "video";
+})(GroupType || (GroupType = {}));
+exports.GroupType = GroupType;
+;
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -10852,62 +10908,6 @@ module.exports = function normalizeComponent (
     options: options
   }
 }
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var NewLine = "\n";
-exports.NewLine = NewLine;
-var ListType;
-(function (ListType) {
-    ListType["Ordered"] = "ordered";
-    ListType["Bullet"] = "bullet";
-    ListType["Checked"] = "checked";
-    ListType["Unchecked"] = "unchecked";
-})(ListType || (ListType = {}));
-exports.ListType = ListType;
-var ScriptType;
-(function (ScriptType) {
-    ScriptType["Sub"] = "sub";
-    ScriptType["Super"] = "super";
-})(ScriptType || (ScriptType = {}));
-exports.ScriptType = ScriptType;
-var DirectionType;
-(function (DirectionType) {
-    DirectionType["Rtl"] = "rtl";
-})(DirectionType || (DirectionType = {}));
-exports.DirectionType = DirectionType;
-var AlignType;
-(function (AlignType) {
-    AlignType["Left"] = "left";
-    AlignType["Center"] = "center";
-    AlignType["Right"] = "right";
-    AlignType["Justify"] = "justify";
-})(AlignType || (AlignType = {}));
-exports.AlignType = AlignType;
-var DataType;
-(function (DataType) {
-    DataType["Image"] = "image";
-    DataType["Video"] = "video";
-    DataType["Formula"] = "formula";
-    DataType["Text"] = "text";
-})(DataType || (DataType = {}));
-exports.DataType = DataType;
-;
-var GroupType;
-(function (GroupType) {
-    GroupType["Block"] = "block";
-    GroupType["InlineGroup"] = "inline-group";
-    GroupType["List"] = "list";
-    GroupType["Video"] = "video";
-})(GroupType || (GroupType = {}));
-exports.GroupType = GroupType;
-;
 
 
 /***/ }),
@@ -11201,7 +11201,7 @@ module.exports = defaults;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var value_types_1 = __webpack_require__(4);
+var value_types_1 = __webpack_require__(3);
 var InsertData_1 = __webpack_require__(11);
 var DeltaInsertOp = (function () {
     function DeltaInsertOp(insertVal, attrs) {
@@ -11337,7 +11337,7 @@ exports.InsertDataCustom = InsertDataCustom;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var value_types_1 = __webpack_require__(4);
+var value_types_1 = __webpack_require__(3);
 var MentionSanitizer_1 = __webpack_require__(55);
 var url = __webpack_require__(56);
 var funcs_html_1 = __webpack_require__(13);
@@ -14589,7 +14589,7 @@ module.exports = Cancel;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var funcs_html_1 = __webpack_require__(13);
-var value_types_1 = __webpack_require__(4);
+var value_types_1 = __webpack_require__(3);
 var obj = __webpack_require__(14);
 var arr = __webpack_require__(7);
 var OpAttributeSanitizer_1 = __webpack_require__(12);
@@ -61425,7 +61425,7 @@ exports.DeltaInsertOp = DeltaInsertOp_1.DeltaInsertOp;
 var InsertData_1 = __webpack_require__(11);
 exports.InsertDataQuill = InsertData_1.InsertDataQuill;
 exports.InsertDataCustom = InsertData_1.InsertDataCustom;
-var value_types_1 = __webpack_require__(4);
+var value_types_1 = __webpack_require__(3);
 exports.NewLine = value_types_1.NewLine;
 exports.ListType = value_types_1.ListType;
 exports.ScriptType = value_types_1.ScriptType;
@@ -61449,7 +61449,7 @@ var group_types_1 = __webpack_require__(8);
 var ListNester_1 = __webpack_require__(60);
 var funcs_html_1 = __webpack_require__(13);
 var obj = __webpack_require__(14);
-var value_types_1 = __webpack_require__(4);
+var value_types_1 = __webpack_require__(3);
 var BrTag = '<br/>';
 var QuillDeltaToHtmlConverter = (function () {
     function QuillDeltaToHtmlConverter(deltaOps, options) {
@@ -61644,7 +61644,7 @@ exports.QuillDeltaToHtmlConverter = QuillDeltaToHtmlConverter;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var DeltaInsertOp_1 = __webpack_require__(10);
-var value_types_1 = __webpack_require__(4);
+var value_types_1 = __webpack_require__(3);
 var InsertData_1 = __webpack_require__(11);
 var OpAttributeSanitizer_1 = __webpack_require__(12);
 var InsertOpDenormalizer_1 = __webpack_require__(57);
@@ -61772,7 +61772,7 @@ exports.sanitize = sanitize;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var value_types_1 = __webpack_require__(4);
+var value_types_1 = __webpack_require__(3);
 var str = __webpack_require__(58);
 var obj = __webpack_require__(14);
 var InsertOpDenormalizer = (function () {
@@ -63015,7 +63015,7 @@ webpackContext.id = 189;
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(191)
 /* template */
@@ -63198,7 +63198,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(194)
 /* template */
@@ -63452,7 +63452,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(197)
 /* template */
@@ -63630,7 +63630,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(200)
 /* template */
@@ -63837,7 +63837,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(203)
 /* template */
@@ -63975,7 +63975,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(206)
 /* template */
@@ -64279,7 +64279,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(209)
 /* template */
@@ -64451,7 +64451,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(212)
 /* template */
