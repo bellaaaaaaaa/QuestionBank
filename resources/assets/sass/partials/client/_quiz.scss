@@ -157,8 +157,41 @@
 		color: $brand-color;
 	}
 
+	img{
+		max-height:400px;
+		width:auto;
+		display: block;
+		margin:0 auto;
+	}
+
+	table{
+		td, tr{
+			border:1px solid #dedede;
+		}
+		td:first-child{
+			font-weight: normal;
+		}
+
+		td.heading{
+			font-weight:bold;
+			vertical-align: middle;
+    		text-align: center;
+    		background-color: $brand-color;
+    		color:#fff;
+		}
+
+		// &.table-striped tr:nth-of-type(odd) {
+		//   background-color: $brand-color;
+
+		//   td{
+		//   	color:#fff;
+		//   }
+		// }
+	}
+
 	ul{
 		list-style-type: upper-latin;
+		padding-left: 25px;
 
 		li{
 			color:#495057;
@@ -176,7 +209,7 @@
 				font-weight: 300;
 				font-size: 1rem;
 				padding: 10px 25px 10px 50px;
-				margin: 10px auto;
+				margin: 10px;
 				z-index: 9;
 				cursor: pointer;
 				-webkit-transition: all 0.25s linear;

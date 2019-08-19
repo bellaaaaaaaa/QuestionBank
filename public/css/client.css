@@ -15220,6 +15220,7 @@ body {
 .box table {
   border-collapse: separate;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .box table td:first-child {
@@ -15451,8 +15452,33 @@ body {
   color: #036635;
 }
 
+.questions img {
+  max-height: 400px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.questions table td,
+.questions table tr {
+  border: 1px solid #dedede;
+}
+
+.questions table td:first-child {
+  font-weight: normal;
+}
+
+.questions table td.heading {
+  font-weight: bold;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #036635;
+  color: #fff;
+}
+
 .questions ul {
   list-style-type: upper-latin;
+  padding-left: 25px;
 }
 
 .questions ul li {
@@ -15472,7 +15498,7 @@ body {
   font-weight: 300;
   font-size: 1rem;
   padding: 10px 25px 10px 50px;
-  margin: 10px auto;
+  margin: 10px;
   z-index: 9;
   cursor: pointer;
   -webkit-transition: all 0.25s linear;
@@ -15640,115 +15666,6 @@ body {
 
 .question-bank-cont .table th {
   vertical-align: middle;
-}
-
-.question-cont .title {
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-@media (min-width: 576px) {
-  .question-cont .title {
-    margin-top: 40px;
-  }
-}
-
-.question-cont .mcq {
-  font-size: 20px;
-  margin-top: 20px;
-}
-
-.question-cont .numbergrp button {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 calc(20% - 10px);
-          flex: 1 0 calc(20% - 10px);
-  background-color: #3490dc;
-  border: 1px solid #3490dc;
-  color: #fff;
-  cursor: pointer;
-  margin: 5px;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.question-cont .numbergrp button::after {
-  content: '';
-  display: block;
-  padding-bottom: 100%;
-}
-
-.question-cont .numbergrp button:hover {
-  background-color: #38c172;
-}
-
-.question-cont .borders {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  border: 1px solid #007bff;
-  padding: 10px;
-}
-
-@media (min-width: 992px) {
-  .question-cont .borders {
-    padding: 25px;
-  }
-}
-
-.question-cont .subt {
-  text-align: center;
-}
-
-@media (min-width: 576px) {
-  .question-cont .subt {
-    text-align: left;
-  }
-}
-
-.question-cont .iden .correct {
-  display: inline-block;
-  margin-top: -10px;
-  width: 25px;
-  margin-right: 10px;
-  background-color: #38c172;
-}
-
-.question-cont .iden .wrong {
-  display: inline-block;
-  background-color: #e3342f;
-  margin-right: 10px;
-  margin-left: 50px;
-  width: 25px;
-}
-
-@media (min-width: 992px) {
-  .question-cont .iden .wrong {
-    margin-left: 100px;
-  }
-}
-
-.question-cont .iden .check {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .navbar-laravel {
