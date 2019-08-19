@@ -113,6 +113,28 @@
 				<p><small>Question Chapter : Chapter 2  - <a href="#">Biology Organisms</a></small></p>
 
 				<p>Which one of the following statements is incorrect?</p>
+
+				<img src="{{ asset('images/placeholder.jpg') }}">
+
+				<table align="center" class="table-striped">
+					<tr>
+						<td class="heading">Heading</td>
+						<td class="heading">Heading</td>
+					</tr>
+					<tr>
+						<td>Data</td>
+						<td>Data</td>
+					</tr>
+					<tr>
+						<td>Data</td>
+						<td>Data</td>
+					</tr>
+					<tr>
+						<td>Data</td>
+						<td>Data</td>
+					</tr>
+				</table>
+
 				<ul>
 					<li><input type="radio" id="a-option" name="selector">
 					    <label for="a-option" class="correct">Viviparity is the productive pattern shown by most mammals</label>
