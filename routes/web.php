@@ -51,32 +51,35 @@ Route::prefix('admin')->group(function(){
 });
 
 
-//Client Login
+//Client Routes
 Route::get('login','Client\AuthController@viewLogin')->name('client.login.show');
 Route::post('login','Client\AuthController@login')->name('login');
 
-//Client register
 Route::get('register', 'Client\AuthController@viewRegister')->name('client.register.show');
 Route::post('register', "Client\AuthController@register")->name('client.register');
 
-Route::middleware('client.auth')->group(function(){  
-  // Client
+Route::middleware('client.auth')->group(function(){ 
+  Route::middleware('course.purchased')->group(function(){
+    Route::get('payments/{subject}', 'Client\PaymentsController@viewPayment')->name('client.payment.show');
+    Route::any('payments/{subject}/{month}/{type}/{complete?}', 'Client\PaymentsController@handlePayment')->name('client.payment.handle');
+  });
+
   Route::get('/', 'Client\HomeController@home')->name('root');
   Route::get('/home', 'Client\HomeController@home')->name('home');
   Route::get('mcq-exam', 'Client\QuestionsController@showQuestion')->name('show.questions');
 
-  Route::get('logout', 'Client\AuthController@logout')->name('client.logout');
-
   Route::get('trials', 'Client\QuizzesController@showTrials')->name('trials.questions');
   
-  Route::middleware('purchased.course')->group(function(){ 
+  Route::middleware('course.not.purchased')->group(function(){ 
     Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');
     Route::get('quizzes/topics/{topic}', 'Client\QuizzesController@showQuestions')->name('quizzes.questions');
     Route::post('quizzes/topics/answer', 'Client\QuizzesController@answer')->name('quizzes.answer');
-
+    
     Route::get('mcq-exam', 'Client\ExamsController@showMCQ')->name('exam.mcq');
     Route::post('mcq-exam/answer', 'Client\ExamsController@answer')->name('exam.answer');
   });
+
+  Route::get('logout', 'Client\AuthController@logout')->name('client.logout');
 });
 
 //added by Pat to view the frontend pages
@@ -87,6 +90,6 @@ Route::view('/quiz/topics', '/client/topics');
 
 Route::view('/unauthorized', '/client/unauthorized');
 
-Route::view('/payment', '/client/payment/payment')->name('client.payment');
-Route::view('/payment-gateway', '/client/payment/payment-gateway');
-Route::view('/stripe', '/client/payment/stripe-info');
+Route::view('/payment', '/client/payments/payment')->name('client.payment');
+Route::view('/payment-gateway', '/client/payments/payment-gateway');
+Route::view('/stripe', '/client/payments/stripe-info');
