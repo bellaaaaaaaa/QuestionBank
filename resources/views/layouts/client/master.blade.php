@@ -8,4 +8,4 @@
       @yield('content')
     </div>
   </div>
-@endsection      
+@endsection

@@ -20,7 +20,7 @@ class PaymentsController extends Controller {
     return view($this->path . 'payment', ['subject' => json_encode($subject)]);
   }
 
-  public function handlePayment(Request $request, Subject $subject, $month, $type, $complete = null) {
-    return $this->paymentServices->handle($request, $subject, $month, $type, $this->path, $complete);
+  public function handlePayment(Request $request, Subject $subject, $type) {
+    return $this->paymentServices->handle($request, $subject, $type);
   }
 }

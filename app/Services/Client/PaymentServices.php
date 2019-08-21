@@ -4,48 +4,43 @@ namespace App\Services\Client;
 
 use App\Subject;
 
+use Illuminate\Http\Request;
 use App\Services\Client\PaypalServices;
 use App\Services\Client\StripeServices;
 
-use Illuminate\Http\Request;
-
 class PaymentServices { 
-  public function handle(Request $request, Subject $subject, $month, $type, $path, $complete) {
+  public function handle(Request $request, Subject $subject, $type) {
     switch($type) {
       case 'paypal':
-      return $this->handlePaypal($request, $subject, $month, $complete);
+      return $this->handlePaypal($request, $subject);
       break;
 
       case 'stripe':
-      // return $this->handleStripe($request, $subject, $complete);
+      return $this->handleStripe($request, $subject);
       break;
 
       default:
-      // return route('show.payment', $token);
+      return redirect()->route('client.payment.show', $subject)->with('error', 'Something went wrong. Please try again.');
       break;
     }
   }
 
-  public function handlePaypal(Request $request, Subject $subject, $month, $complete) {
+  public function handlePaypal(Request $request, Subject $subject) {
     $paypalServices = new PaypalServices();
       
-    if($complete) {
-      return $paypalServices->complete($request, $subject, $month);
+    if($request->complete) {
+      return $paypalServices->complete($request, $subject);
     } 
 
-    return $paypalServices->create($request, $subject, $month);
+    return $paypalServices->create($request, $subject);
   }
 
-  public function handleStripe(Request $request, $subject, $path, $complete) {
-    if($complete == 'create') {
+  public function handleStripe(Request $request, $subject) {
+    if($request->complete) {
       $stripeServices = new StripeServices();
-      return $stripeServices->create($request);
+      return $stripeServices->create($request, $subject);
     }
 
-    if($complete == 'complete') {
-      return view('dashboard.payments.complete', ['success' => 'Payment successful! Generating excel form now.']);
-    } 
-
-    return view($path . 'stripe');
+    return redirect()->route('client.payment.show', $subject)->with('error', 'Something went wrong. Please try again.');
   }
 }

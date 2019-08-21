@@ -61,7 +61,7 @@ Route::post('register', "Client\AuthController@register")->name('client.register
 Route::middleware('client.auth')->group(function(){ 
   Route::middleware('course.purchased')->group(function(){
     Route::get('payments/{subject}', 'Client\PaymentsController@viewPayment')->name('client.payment.show');
-    Route::any('payments/{subject}/{month}/{type}/{complete?}', 'Client\PaymentsController@handlePayment')->name('client.payment.handle');
+    Route::any('payments/{subject}/{type}', 'Client\PaymentsController@handlePayment')->name('client.payment.handle');
   });
 
   Route::get('/', 'Client\HomeController@home')->name('root');

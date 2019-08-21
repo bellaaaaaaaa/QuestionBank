@@ -3,6 +3,9 @@
 namespace App\Services\Client;
 
 use App\Subject;
+use App\Rate;
+
+use Carbon\Carbon;
 
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
@@ -14,13 +17,13 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
 
 use Illuminate\Http\Request;
 
 class PaypalServices {
   protected $apiContext;
-  protected $successRedirect;
-  protected $failRedirect;
 
   public function __construct() {
     $paypal_conf = \Config::get('paypal');
@@ -33,18 +36,29 @@ class PaypalServices {
     $this->apiContext->setConfig($paypal_conf['settings']);
   }
  
-  public function create(Request $request, Subject $subject, $month) {
+  public function create(Request $request, Subject $subject) {
     $payer = new Payer();
     $payer->setPaymentMethod('paypal');
+
+    $price = $this->getPrice($request, $subject);
+    
+    $item1 = new Item();
+    $item1->setName($subject->name . ' course purchase')
+        ->setCurrency($request->currency)
+        ->setQuantity(1) 
+        ->setPrice($price);
+
+    $itemList = new ItemList();
+    $itemList->setItems([$item1]);
     
     $amount = new Amount();
-    $amount->setCurrency('MYR')->setTotal(5000);
+    $amount->setCurrency($request->currency)->setTotal($price);
 
     $transaction = new Transaction();
-    $transaction->setAmount($amount)->setDescription('monthly invoice');
+    $transaction->setAmount($amount)->setItemList($itemList)->setDescription($subject->name . ' course (' . $request->month . 'month)');
 
     $redirect_urls = new RedirectUrls();
-    $redirect_urls->setReturnUrl(route('client.payment.handle', ['subject' => $subject, 'month' => $month, 'type' => 'paypal', 'complete' => 'complete']))->setCancelUrl(route('client.payment.show', $subject));
+    $redirect_urls->setReturnUrl(route('client.payment.handle', ['subject' => $subject, 'type' => 'paypal', 'month' => $request->month, 'currency' => $request->currency, 'complete' => 'complete']))->setCancelUrl(route('client.payment.show', $subject));
     
     $payment = new Payment();
     $payment->setIntent('Sale')->setPayer($payer)->setRedirectUrls($redirect_urls)->setTransactions(array($transaction));
@@ -69,7 +83,7 @@ class PaypalServices {
     return redirect()->route('client.payment.show', $subject)->with('error', 'Something went wrong. Please try again.');
   }
 
-  public function complete(Request $request, Subject $subject, $month) {
+  public function complete(Request $request, Subject $subject) {
     $paymentId = $request->paymentId;
     $payment = Payment::get($paymentId, $this->apiContext);
 
@@ -80,9 +94,11 @@ class PaypalServices {
     $amount = new Amount();
     $details = new Details();
 
-    $details->setSubtotal(5000);
-    $amount->setCurrency('MYR');
-    $amount->setTotal(5000);
+    $price = $this->getPrice($request, $subject);
+
+    $details->setSubtotal($price);
+    $amount->setCurrency($request->currency);
+    $amount->setTotal($price);
     $amount->setDetails($details);
     $transaction->setAmount($amount);
 
@@ -94,5 +110,33 @@ class PaypalServices {
     }
 
     return redirect()->route('root')->with('success', 'Course succesfully purchased!');
+  }
+
+  public function getPrice($request, $subject) {
+    switch($request->month) {
+      case 1:
+      $price = $subject->one_month_price;
+      break;
+
+      case 2:
+      $price = $subject->two_month_price;
+      break;
+
+      case 3:
+      $price = $subject->three_month_price;
+      break;
+
+      default:
+      $price = $subject->one_month_price;
+      break;
+    }
+    
+    if($request->currency != 'MYR') {
+      $rate = Rate::where('currency', $request->currency)->where('month', $request->month)->first();
+      
+      return round($price / $rate->amount, 2);
+    }
+
+    return $price;
   }
 }

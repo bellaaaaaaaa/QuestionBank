@@ -63879,20 +63879,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return url + '/images/' + image;
     },
     onClick: function onClick(type) {
-      console.log(type);
       if (type == 'stripe') {
         this.$emit('submit', type);
         return;
       }
 
-      location.href = '/payments/' + this.defaultSubject.id + '/' + this.defaultMonth + '/paypal';
-      // axios.post('/payments/' + this.defaultSubject.id + '/paypal')
-      // .then(({data}) => {
-      //   console.log(data);
-      // }, (error) => {
-
-      // }); 
-      // paypal handle here 
+      location.href = '/payments/' + this.defaultSubject.id + '/paypal?month=' + this.defaultMonth + '&currency=' + this.defaultCurrency;
     }
   }
 });
@@ -64540,40 +64532,102 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['defaultSubject', 'defaultCurrency', 'defaultMonth'],
   data: function data() {
     return {
-      subject: {},
-      currency: 'MYR',
-      month: 1
+      stripe: null,
+      cardElement: null,
+      cardName: '',
+      error: {
+        show: false,
+        message: ''
+      }
     };
   },
-  watch: {
-    defaultSubject: function defaultSubject() {
-      this.subject = this.defaultSubject;
-    },
-    defaultCurrency: function defaultCurrency() {
-      this.currency = this.defaultCurrency;
-    },
-    defaultMonth: function defaultMonth() {
-      this.month = this.defaultMonth;
-    }
+  mounted: function mounted() {
+    this.setDefault();
   },
   methods: {
-    onCurrencyChange: function onCurrencyChange(currency) {
-      this.currency = currency;
+    setDefault: function setDefault() {
+      this.stripe = Stripe("pk_test_JPU2n1MmfPiIpO2XcXcw0lla00f5zULKw8");
+      var elements = this.stripe.elements();
+      this.cardElement = elements.create('card');
+      this.cardElement.mount('#card-element');
     },
-    onMonthChange: function onMonthChange(month) {
-      this.month = month;
+    onSubmitClick: function onSubmitClick() {
+      var self = this;
+
+      if (this.error.show) {
+        this.hideErrorMessage();
+      }
+
+      this.stripe.createPaymentMethod('card', self.cardElement, {
+        billing_details: { name: self.cardName }
+      }).then(function (result) {
+        if (!result.error) {
+          axios('/payments/' + self.defaultSubject.id + '/stripe?month=' + self.defaultMonth + '&currency=' + self.defaultCurrency + '&complete=create', {
+            method: 'POST',
+            data: { paymentMethodId: result.paymentMethod.id }
+          }).then(function (data) {
+            self.handleServerResponse(data);
+          }, function (error) {
+            self.showErrorMessage(error.response.data);
+          });
+        }
+      });
+    },
+    handleServerResponse: function handleServerResponse(response) {
+      var self = this;
+
+      if (response.data.requires_action) {
+        this.stripe.handleCardAction(response.data.payment_intent_client_secret).then(function (result) {
+          if (result.error) {
+            this.error.showErrorMessage(result.error);
+          } else {
+            axios('/payments/' + self.defaultSubject.id + '/stripe?month=' + self.defaultMonth + '&currency=' + self.defaultCurrency + '&complete=create', {
+              method: 'POST',
+              data: { paymentIntentId: result.paymentIntent.id }
+            }).then(function (data) {
+              self.handleServerResponse(data);
+            }, function (error) {
+              self.showErrorMessage(error.response.data);
+            });
+          }
+        });
+      } else {
+        location.href = response.data;
+      }
+    },
+
+    showErrorMessage: function showErrorMessage(message) {
+      if (this.error.show) {
+        return;
+      }
+
+      this.error.show = true;
+      this.error.message = message;
+    },
+    hideErrorMessage: function hideErrorMessage() {
+      if (!this.error.show) {
+        return;
+      }
+
+      this.error.show = false;
+      this.error.message = '';
     },
     getImagePath: function getImagePath(image) {
       var url = window.location.origin;
       return url + '/images/' + image;
-    },
-    onSubmit: function onSubmit(type) {
-      this[type] = true;
     }
   }
 });
@@ -64589,15 +64643,76 @@ var render = function() {
   return _c("div", { staticClass: "login-register" }, [
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6 col-sm-12 mx-auto" }, [
+          _vm.error.show
+            ? _c(
+                "div",
+                { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+                [
+                  _vm._v(
+                    "\n          " + _vm._s(_vm.error.message) + "\n        "
+                  )
+                ]
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "login-register-form" }, [
-          _c("div", { staticClass: " card-login" }, [
+          _c("div", { staticClass: "card-login" }, [
             _c("div", { staticClass: "text-center" }, [
               _c("h4", { staticClass: "header text-center" }, [
                 _c("img", { attrs: { src: _vm.getImagePath("stripe.png") } })
               ])
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _c("div", { staticClass: "stripe-info" }, [
+              _c("div", { staticClass: "form-group has-label" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.cardName,
+                      expression: "cardName"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "cardholder-name",
+                    type: "text",
+                    required: "required"
+                  },
+                  domProps: { value: _vm.cardName },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.cardName = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "mt-3",
+                  attrs: { id: "card-element" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-center mt-3" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary login-btn",
+                    attrs: { type: "submit" },
+                    on: { click: _vm.onSubmitClick }
+                  },
+                  [_vm._v("Submit")]
+                )
+              ])
+            ])
           ])
         ])
       ])
@@ -64609,29 +64724,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "stripe-info" }, [
-      _c("div", { staticClass: "form-group has-label" }, [
-        _c("label", [
-          _vm._v("Cardholder Name\n                "),
-          _c("span", { staticClass: "star" }, [_vm._v("*")])
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { name: "cardholder-name", type: "text", required: "required" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-center mt-3" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary login-btn",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Submit")]
-        )
-      ])
+    return _c("label", [
+      _vm._v("Cardholder Name\n                "),
+      _c("span", { staticClass: "star" }, [_vm._v("*")])
     ])
   }
 ]

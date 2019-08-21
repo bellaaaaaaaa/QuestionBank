@@ -40,20 +40,12 @@
         return url + '/images/' + image;
       },
       onClick: function(type) {
-        console.log(type)
         if(type == 'stripe') {
           this.$emit('submit', type);
           return;
         }
 
-        location.href = `/payments/${this.defaultSubject.id}/${this.defaultMonth}/paypal`;
-        // axios.post('/payments/' + this.defaultSubject.id + '/paypal')
-        // .then(({data}) => {
-        //   console.log(data);
-        // }, (error) => {
-
-        // }); 
-        // paypal handle here 
+        location.href = `/payments/${this.defaultSubject.id}/paypal?month=${this.defaultMonth}&currency=${this.defaultCurrency}`;
       }
     }
   }
