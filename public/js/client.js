@@ -62511,67 +62511,6 @@ $(document).ready(function () {
 	} else {
 		$(".form-check").removeClass("selected"); // unchecked	
 	}
-
-	//payment currency
-	function displayVals() {
-		var currencyVal = $("#currency").val();
-		$("span.currency").html(currencyVal);
-	}
-
-	$("select").change(displayVals);
-	displayVals();
-
-	function usd_onemonth() {
-		var myr = $("#1month").val();
-		var usd = myr * 0.24;
-		var roundoff = usd.toFixed(2);
-		document.getElementById("amount1").innerHTML = roundoff;
-	}
-
-	function usd_twomonth() {
-		var myr = $("#2months").val();
-		var usd = myr * 0.24;
-		var roundoff = usd.toFixed(2);
-		document.getElementById("amount2").innerHTML = roundoff;
-	}
-
-	function usd_threemonth() {
-		var myr = $("#3months").val();
-		var usd = myr * 0.24;
-		var roundoff = usd.toFixed(2);
-		document.getElementById("amount3").innerHTML = roundoff;
-	}
-
-	$('#currency').change(function () {
-		if ($(this).val() == 'USD') {
-			usd_onemonth();
-			usd_twomonth();
-			usd_threemonth();
-		}
-	});
-
-	function myr_onemonth() {
-		var myr = $("#1month").val();
-		document.getElementById("amount1").innerHTML = myr;
-	}
-
-	function myr_twomonth() {
-		var myr = $("#2months").val();
-		document.getElementById("amount2").innerHTML = myr;
-	}
-
-	function myr_threemonth() {
-		var myr = $("#3months").val();
-		document.getElementById("amount3").innerHTML = myr;
-	}
-
-	$('#currency').change(function () {
-		if ($(this).val() == 'MYR') {
-			myr_onemonth();
-			myr_twomonth();
-			myr_threemonth();
-		}
-	});
 });
 
 var files = __webpack_require__(189);
@@ -64095,12 +64034,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       subject: {},
       month: 1,
-      currency: 'MYR'
+      currency: 'MYR',
+      price: {
+        oneMonth: 0,
+        twoMonth: 0,
+        threeMonth: 0
+      }
     };
   },
   watch: {
     defaultSubject: function defaultSubject() {
       this.subject = this.defaultSubject;
+      this.setDefault();
     },
     defaultCurrency: function defaultCurrency() {
       this.currency = this.defaultCurrency;
@@ -64110,7 +64055,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+    setDefault: function setDefault() {
+      this.price.oneMonth = this.subject.one_month_price;
+      this.price.twoMonth = this.subject.two_month_price;
+      this.price.threeMonth = this.subject.three_month_price;
+    },
     onCurrencyChange: function onCurrencyChange() {
+      if (this.currency == 'MYR') {
+        this.setDefault();
+        return;
+      }
+
+      var self = this;
+
+      axios.get('/rates/' + self.currency).then(function (_ref) {
+        var data = _ref.data;
+
+        if (data.length == 0) {
+          self.setDefault();
+          return;
+        }
+
+        data.forEach(function (rate, index) {
+          switch (rate.month) {
+            case 1:
+              self.price.oneMonth /= rate.amount;
+              break;
+
+            case 2:
+              self.price.twoMonth /= rate.amount;
+              break;
+
+            case 3:
+              self.price.threeMonth /= rate.amount;
+              break;
+
+            default:
+              break;
+          }
+        });
+      }, function (error) {});
+
       this.$emit('currencyChange', this.currency);
     },
     onMonthChange: function onMonthChange(month) {
@@ -64259,7 +64244,13 @@ var render = function() {
                               _vm._v(" "),
                               _c("span", { staticClass: "currency" }),
                               _c("span", { attrs: { id: "amount1" } }, [
-                                _vm._v(_vm._s(_vm.subject.one_month_price))
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.currency +
+                                      " " +
+                                      _vm.price.oneMonth.toFixed(2)
+                                  )
+                                )
                               ])
                             ]
                           )
@@ -64313,7 +64304,13 @@ var render = function() {
                               _vm._v(" "),
                               _c("span", { staticClass: "currency" }),
                               _c("span", { attrs: { id: "amount2" } }, [
-                                _vm._v(_vm._s(_vm.subject.two_month_price))
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.currency +
+                                      " " +
+                                      _vm.price.twoMonth.toFixed(2)
+                                  )
+                                )
                               ])
                             ]
                           )
@@ -64367,7 +64364,13 @@ var render = function() {
                               _vm._v(" "),
                               _c("span", { staticClass: "currency" }),
                               _c("span", { attrs: { id: "amount3" } }, [
-                                _vm._v(_vm._s(_vm.subject.three_month_price))
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.currency +
+                                      " " +
+                                      _vm.price.threeMonth.toFixed(2)
+                                  )
+                                )
                               ])
                             ]
                           )

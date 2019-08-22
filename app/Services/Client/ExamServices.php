@@ -29,7 +29,7 @@ class ExamServices extends TransformerService{
     if($questions) {
       $length = count($questions);
 
-      $questions = $length >= 100 ? $questions->random(100) : $questions->random(3);
+      $questions = $length >= 30 ? $questions->random(30) : $questions->random($length);
      
       return $this->questionServices->transformCollection($questions); 
     }

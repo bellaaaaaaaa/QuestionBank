@@ -21,9 +21,11 @@ use PayPal\Api\Item;
 use PayPal\Api\ItemList;
 
 use Illuminate\Http\Request;
+use App\Services\Client\PurchaseServices;
 
 class PaypalServices {
   protected $apiContext;
+  protected $purchaseServices;
 
   public function __construct() {
     $paypal_conf = \Config::get('paypal');
@@ -34,13 +36,14 @@ class PaypalServices {
     );
 
     $this->apiContext->setConfig($paypal_conf['settings']);
+    $this->purchaseServices = new PurchaseServices();
   }
  
   public function create(Request $request, Subject $subject) {
     $payer = new Payer();
     $payer->setPaymentMethod('paypal');
 
-    $price = $this->getPrice($request, $subject);
+    $price = $this->purchaseServices->getPrice($request, $subject);
     
     $item1 = new Item();
     $item1->setName($subject->name . ' course purchase')
@@ -94,7 +97,7 @@ class PaypalServices {
     $amount = new Amount();
     $details = new Details();
 
-    $price = $this->getPrice($request, $subject);
+    $price = $this->purchaseServices->getPrice($request, $subject);
 
     $details->setSubtotal($price);
     $amount->setCurrency($request->currency);
@@ -109,34 +112,7 @@ class PaypalServices {
       return redirect()->route('client.payment.show', $subject)->with('error', 'Payment unsuccessful. Please try again.');
     }
 
+    $this->purchaseServices->handle($request, $subject);
     return redirect()->route('root')->with('success', 'Course succesfully purchased!');
-  }
-
-  public function getPrice($request, $subject) {
-    switch($request->month) {
-      case 1:
-      $price = $subject->one_month_price;
-      break;
-
-      case 2:
-      $price = $subject->two_month_price;
-      break;
-
-      case 3:
-      $price = $subject->three_month_price;
-      break;
-
-      default:
-      $price = $subject->one_month_price;
-      break;
-    }
-    
-    if($request->currency != 'MYR') {
-      $rate = Rate::where('currency', $request->currency)->where('month', $request->month)->first();
-      
-      return round($price / $rate->amount, 2);
-    }
-
-    return $price;
   }
 }

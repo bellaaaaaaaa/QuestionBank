@@ -82,70 +82,7 @@ $(document).ready(function() {
 	 	$(this).parent(".form-check").addClass("selected");  // checked
 	}else {
 	    $(".form-check").removeClass("selected");  // unchecked	
-	}
-
-	//payment currency
-	function displayVals() {
-		var currencyVal = $( "#currency" ).val();
-		$( "span.currency" ).html( currencyVal );
-	}
-
-	$( "select" ).change( displayVals );
-	displayVals();
-
-	function usd_onemonth() {
-	  var myr = $( "#1month" ).val();
-	  var usd = myr * 0.24;
-	  var roundoff = usd.toFixed(2);
-	  document.getElementById("amount1").innerHTML = roundoff;
-	}
-
-	function usd_twomonth() {
-	  var myr = $( "#2months" ).val();
-	  var usd = myr * 0.24;
-	  var roundoff = usd.toFixed(2); 
-	  document.getElementById("amount2").innerHTML = roundoff;
-	}
-
-	function usd_threemonth() {
-	  var myr = $( "#3months" ).val();
-	  var usd = myr * 0.24;
-	  var roundoff = usd.toFixed(2);
-	  document.getElementById("amount3").innerHTML = roundoff;
-	}
-
-    $('#currency').change(function(){
-	  if($(this).val() == 'USD'){
-	  	usd_onemonth();
-	  	usd_twomonth();
-	  	usd_threemonth();
-	  }
-	});
-
-	function myr_onemonth() {
-	  var myr = $( "#1month" ).val();
-	  document.getElementById("amount1").innerHTML = myr;
-	}
-
-	function myr_twomonth() {
-	  var myr = $( "#2months" ).val();
-	  document.getElementById("amount2").innerHTML = myr;
-	}
-
-	function myr_threemonth() {
-	  var myr = $( "#3months" ).val();
-	  document.getElementById("amount3").innerHTML = myr;
-	}
-
-
-	$('#currency').change(function(){
-	  if($(this).val() == 'MYR'){
-	  	myr_onemonth();
-	  	myr_twomonth();
-	  	myr_threemonth();
-	  }
-	});
-	    
+	}   
 });
 
 const files = require.context('./../components/Client', true, /\.vue$/i);

@@ -36,11 +36,11 @@ class PaymentServices {
   }
 
   public function handleStripe(Request $request, $subject) {
-    if($request->complete) {
+    if($request->complete == 'create') {
       $stripeServices = new StripeServices();
       return $stripeServices->create($request, $subject);
     }
-
+    
     return redirect()->route('client.payment.show', $subject)->with('error', 'Something went wrong. Please try again.');
   }
 }

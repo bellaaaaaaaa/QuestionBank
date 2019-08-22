@@ -18,7 +18,6 @@ class CreatePurchasesTable extends Migration
             $table->string('student_id');
             $table->string('subject_id');
             $table->datetime('expiration_date');
-            $table->integer('num_of_attempts_left');
             $table->timestamps();
         });
     }

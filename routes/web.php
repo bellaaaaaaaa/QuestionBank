@@ -66,9 +66,12 @@ Route::middleware('client.auth')->group(function(){
 
   Route::get('/', 'Client\HomeController@home')->name('root');
   Route::get('/home', 'Client\HomeController@home')->name('home');
+
   Route::get('mcq-exam', 'Client\QuestionsController@showQuestion')->name('show.questions');
 
   Route::get('trials', 'Client\QuizzesController@showTrials')->name('trials.questions');
+
+  Route::get('rates/{currency}', 'Client\RatesController@getRates')->name('rates.get');
   
   Route::middleware('course.not.purchased')->group(function(){ 
     Route::get('quizzes/topics', 'Client\QuizzesController@showTopics')->name('quizzes.topics');

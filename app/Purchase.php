@@ -8,7 +8,7 @@ class Purchase extends Pivot {
   protected $table = 'purchases';
 
   protected $fillable = [
-    'login_to', 'nric', 'age'
+    'student_id', 'subject_id', 'expiration_date'
   ];
 
   public function student() {

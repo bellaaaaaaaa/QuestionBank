@@ -23,7 +23,7 @@ class CoursePurchased {
     $coursePurchase = Purchase::where('student_id', $student->id)->where('subject_id', $subject->id)->whereDate('expiration_date', '>=', Carbon::now())->first();
     
     if($coursePurchase) {
-      return redirect()->back();
+      return redirect()->route('root');
     } else {
       return $next($request);
     }
