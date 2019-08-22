@@ -12,6 +12,9 @@
         <p><small>Question Chapter : {{ defaultTopic.name }}</small></p>
 
         <p>{{ currentQuestion.description }}</p>
+
+        <content-display-component :default-contents="currentQuestion.contents"></content-display-component>
+
         <ul>
           <li v-for="(answer, index) in currentQuestion.answers" v-bind:key="index">
             <input type="radio" name="selector" :id="index + '-option'" :value="answer.id" v-model="currentQuestion.selected" @click="onAnswerClick($event)">

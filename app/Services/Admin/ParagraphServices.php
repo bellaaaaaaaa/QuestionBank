@@ -5,7 +5,6 @@ namespace App\Services\Admin;
 use App\Paragraph;
 
 use Illuminate\Http\Request;
-use App\Services\TransformerService;
 
 class ParagraphServices {
   public function handle($content, $type) {
