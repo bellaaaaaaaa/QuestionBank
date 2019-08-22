@@ -7,6 +7,9 @@
         <h4 v-if="currentQuestion.submitted">Submitted</h4>
 
         <p>{{ currentQuestion.description }}</p>
+
+        <content-display-component :default-contents="currentQuestion.contents"></content-display-component>
+        
         <ul>
           <li v-for="(answer, index) in currentQuestion.answers" v-bind:key="index">
             <input type="radio" :id="index + '-option'" :value="answer.id" v-model="currentQuestion.selected" @click="onAnswerClick($event, answer)">

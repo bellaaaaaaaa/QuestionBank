@@ -5,7 +5,6 @@ namespace App\Services\Admin;
 use App\Table;
 
 use Illuminate\Http\Request;
-use App\Services\TransformerService;
 
 class TableServices {
   public function handle($content, $type) {

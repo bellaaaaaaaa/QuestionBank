@@ -5,8 +5,7 @@ namespace App\Services\Admin;
 use App\Image;
 
 use Illuminate\Http\Request;
-use App\Services\TransformerService;
-use App\Services\Admin\ImageLibraryServices;
+use App\Services\ImageLibraryServices;
 
 class ImageServices {
   protected $imageLibraryServices;

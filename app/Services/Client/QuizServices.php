@@ -27,7 +27,7 @@ class QuizServices extends TransformerService{
   public function getQuestions(Topic $topic) {
     return $this->questionServices->transformCollection($topic->questions);
   }
-
+ 
   public function saveAnswer(Request $request) {
     $request->validate([
 	    "answer_id" => "required"

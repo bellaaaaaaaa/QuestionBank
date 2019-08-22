@@ -62924,6 +62924,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./contents/ContentDisplayComponent.vue": 312,
+	"./contents/partials/ParagraphDisplayComponent.vue": 324,
+	"./contents/partials/TableDisplayComponent.vue": 315,
 	"./exams/ExamComponent.vue": 190,
 	"./exams/partials/ExamQuestionComponent.vue": 193,
 	"./exams/partials/ExamResultComponent.vue": 196,
@@ -63218,6 +63221,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['questions', 'defaultCurrentQuestion', 'currentIndex'],
@@ -63286,97 +63292,106 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-sm-12" }, [
-      _c("div", { staticClass: "box questions" }, [
-        _c("h2", [_vm._v("Questions")]),
-        _vm._v(" "),
-        _c("h3", [
-          _vm._v(
-            "Question " +
-              _vm._s(_vm.currentIndex + 1) +
-              " of " +
-              _vm._s(_vm.questions.length)
-          )
-        ]),
-        _vm._v(" "),
-        _vm.currentQuestion.submitted
-          ? _c("h4", [_vm._v("Submitted")])
-          : _vm._e(),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.currentQuestion.description))]),
-        _vm._v(" "),
-        _c(
-          "ul",
-          _vm._l(_vm.currentQuestion.answers, function(answer, index) {
-            return _c("li", { key: index }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.currentQuestion.selected,
-                    expression: "currentQuestion.selected"
-                  }
-                ],
-                attrs: { type: "radio", id: index + "-option" },
-                domProps: {
-                  value: answer.id,
-                  checked: _vm._q(_vm.currentQuestion.selected, answer.id)
-                },
-                on: {
-                  click: function($event) {
-                    _vm.onAnswerClick($event, answer)
-                  },
-                  change: function($event) {
-                    _vm.$set(_vm.currentQuestion, "selected", answer.id)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: index + "-option" } }, [
-                _vm._v(_vm._s(answer.description))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "check" })
-            ])
-          })
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "pagination-buttons" }, [
-          _vm.currentIndex != 0
-            ? _c("input", {
-                staticClass: "buttons back-btn",
-                attrs: { type: "button", name: "back", value: "Back" },
-                on: {
-                  click: function($event) {
-                    _vm.onBackClick()
-                  }
-                }
-              })
+      _c(
+        "div",
+        { staticClass: "box questions" },
+        [
+          _c("h2", [_vm._v("Questions")]),
+          _vm._v(" "),
+          _c("h3", [
+            _vm._v(
+              "Question " +
+                _vm._s(_vm.currentIndex + 1) +
+                " of " +
+                _vm._s(_vm.questions.length)
+            )
+          ]),
+          _vm._v(" "),
+          _vm.currentQuestion.submitted
+            ? _c("h4", [_vm._v("Submitted")])
             : _vm._e(),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "buttons submit-btn",
-            attrs: { type: "button", name: "submit", value: "Submit" },
-            on: {
-              click: function($event) {
-                _vm.onSubmitClick()
-              }
-            }
+          _c("p", [_vm._v(_vm._s(_vm.currentQuestion.description))]),
+          _vm._v(" "),
+          _c("content-display-component", {
+            attrs: { "default-contents": _vm.currentQuestion.contents }
           }),
           _vm._v(" "),
-          _vm.currentIndex + 1 < _vm.questions.length
-            ? _c("input", {
-                staticClass: "buttons skip-btn",
-                attrs: { type: "button", name: "skip", value: "Skip" },
-                on: {
-                  click: function($event) {
-                    _vm.onSkipClick()
+          _c(
+            "ul",
+            _vm._l(_vm.currentQuestion.answers, function(answer, index) {
+              return _c("li", { key: index }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.currentQuestion.selected,
+                      expression: "currentQuestion.selected"
+                    }
+                  ],
+                  attrs: { type: "radio", id: index + "-option" },
+                  domProps: {
+                    value: answer.id,
+                    checked: _vm._q(_vm.currentQuestion.selected, answer.id)
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.onAnswerClick($event, answer)
+                    },
+                    change: function($event) {
+                      _vm.$set(_vm.currentQuestion, "selected", answer.id)
+                    }
                   }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: index + "-option" } }, [
+                  _vm._v(_vm._s(answer.description))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "check" })
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "pagination-buttons" }, [
+            _vm.currentIndex != 0
+              ? _c("input", {
+                  staticClass: "buttons back-btn",
+                  attrs: { type: "button", name: "back", value: "Back" },
+                  on: {
+                    click: function($event) {
+                      _vm.onBackClick()
+                    }
+                  }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "buttons submit-btn",
+              attrs: { type: "button", name: "submit", value: "Submit" },
+              on: {
+                click: function($event) {
+                  _vm.onSubmitClick()
                 }
-              })
-            : _vm._e()
-        ])
-      ])
+              }
+            }),
+            _vm._v(" "),
+            _vm.currentIndex + 1 < _vm.questions.length
+              ? _c("input", {
+                  staticClass: "buttons skip-btn",
+                  attrs: { type: "button", name: "skip", value: "Skip" },
+                  on: {
+                    click: function($event) {
+                      _vm.onSkipClick()
+                    }
+                  }
+                })
+              : _vm._e()
+          ])
+        ],
+        1
+      )
     ])
   ])
 }
@@ -65175,6 +65190,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['defaultQuestions', 'defaultCurrentQuestion', 'defaultCurrentIndex', 'defaultTopic'],
@@ -65268,104 +65286,113 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-sm-12" }, [
-      _c("div", { staticClass: "box questions" }, [
-        _c("h2", [_vm._v("Questions")]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("h3", [
-          _vm._v(
-            "Question " +
-              _vm._s(_vm.currentIndex + 1) +
-              " of " +
-              _vm._s(this.questions.length)
-          )
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _c("small", [
-            _vm._v("Question Chapter : " + _vm._s(_vm.defaultTopic.name))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.currentQuestion.description))]),
-        _vm._v(" "),
-        _c(
-          "ul",
-          _vm._l(_vm.currentQuestion.answers, function(answer, index) {
-            return _c("li", { key: index }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.currentQuestion.selected,
-                    expression: "currentQuestion.selected"
-                  }
-                ],
-                attrs: {
-                  type: "radio",
-                  name: "selector",
-                  id: index + "-option"
-                },
-                domProps: {
-                  value: answer.id,
-                  checked: _vm._q(_vm.currentQuestion.selected, answer.id)
-                },
-                on: {
-                  click: function($event) {
-                    _vm.onAnswerClick($event)
+      _c(
+        "div",
+        { staticClass: "box questions" },
+        [
+          _c("h2", [_vm._v("Questions")]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("h3", [
+            _vm._v(
+              "Question " +
+                _vm._s(_vm.currentIndex + 1) +
+                " of " +
+                _vm._s(this.questions.length)
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _c("small", [
+              _vm._v("Question Chapter : " + _vm._s(_vm.defaultTopic.name))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(_vm.currentQuestion.description))]),
+          _vm._v(" "),
+          _c("content-display-component", {
+            attrs: { "default-contents": _vm.currentQuestion.contents }
+          }),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.currentQuestion.answers, function(answer, index) {
+              return _c("li", { key: index }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.currentQuestion.selected,
+                      expression: "currentQuestion.selected"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "selector",
+                    id: index + "-option"
                   },
-                  change: function($event) {
-                    _vm.$set(_vm.currentQuestion, "selected", answer.id)
+                  domProps: {
+                    value: answer.id,
+                    checked: _vm._q(_vm.currentQuestion.selected, answer.id)
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.onAnswerClick($event)
+                    },
+                    change: function($event) {
+                      _vm.$set(_vm.currentQuestion, "selected", answer.id)
+                    }
                   }
-                }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    class: _vm.questionSubmitted(answer),
+                    attrs: { for: index + "-option" }
+                  },
+                  [_vm._v(_vm._s(answer.description))]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "check" })
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-12 d-flex" }, [
+              _c("input", {
+                staticClass: "buttons submit-btn",
+                attrs: { type: "button", name: "next", value: "Submit Answer" },
+                on: { click: _vm.onSubmitClick }
               }),
               _vm._v(" "),
-              _c(
-                "label",
-                {
-                  class: _vm.questionSubmitted(answer),
-                  attrs: { for: index + "-option" }
-                },
-                [_vm._v(_vm._s(answer.description))]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "check" })
+              _vm.currentIndex + 1 < _vm.questions.length
+                ? _c("input", {
+                    staticClass: "buttons next-btn",
+                    attrs: { type: "button", name: "next", value: "Next" },
+                    on: {
+                      click: function($event) {
+                        _vm.onNextClick(false)
+                      }
+                    }
+                  })
+                : _c("input", {
+                    staticClass: "buttons next-btn",
+                    attrs: { type: "button", name: "submit", value: "Submit" },
+                    on: {
+                      click: function($event) {
+                        _vm.onNextClick(true)
+                      }
+                    }
+                  })
             ])
-          })
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-12 d-flex" }, [
-            _c("input", {
-              staticClass: "buttons submit-btn",
-              attrs: { type: "button", name: "next", value: "Submit Answer" },
-              on: { click: _vm.onSubmitClick }
-            }),
-            _vm._v(" "),
-            _vm.currentIndex + 1 < _vm.questions.length
-              ? _c("input", {
-                  staticClass: "buttons next-btn",
-                  attrs: { type: "button", name: "next", value: "Next" },
-                  on: {
-                    click: function($event) {
-                      _vm.onNextClick(false)
-                    }
-                  }
-                })
-              : _c("input", {
-                  staticClass: "buttons next-btn",
-                  attrs: { type: "button", name: "submit", value: "Submit" },
-                  on: {
-                    click: function($event) {
-                      _vm.onNextClick(true)
-                    }
-                  }
-                })
           ])
-        ])
-      ])
+        ],
+        1
+      )
     ])
   ])
 }
@@ -65868,6 +65895,503 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(313)
+/* template */
+var __vue_template__ = __webpack_require__(314)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Client/contents/ContentDisplayComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2c77c93c", Component.options)
+  } else {
+    hotAPI.reload("data-v-2c77c93c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 313 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultContents'],
+  data: function data() {
+    return {
+      contents: []
+    };
+  },
+  watch: {
+    defaultContents: function defaultContents() {
+      this.setDefault();
+    }
+  },
+  mounted: function mounted() {
+    this.setDefault();
+  },
+
+  methods: {
+    setDefault: function setDefault() {
+      if (!this.defaultContents) {
+        return;
+      }
+      this.contents = this.defaultContents;
+      this.parseContent();
+    },
+    parseContent: function parseContent() {
+      var self = this;
+      if (this.contents.length > 0) {
+        this.contents.forEach(function (content, index) {
+          if (content.type == 'Table' || content.type == 'Paragraph') {
+            content.item = JSON.parse(content.item);
+          }
+        });
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    _vm._l(_vm.contents, function(content, index) {
+      return _c(
+        "div",
+        { key: index },
+        [
+          content.type == "Image"
+            ? _c("img", {
+                staticClass: "img-fluid",
+                attrs: { src: content.item.preview }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          content.type == "Table"
+            ? _c("table-display-component", {
+                attrs: { "default-item": content.item }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          content.type == "Paragraph"
+            ? _c("paragraph-display-component", {
+                attrs: { "default-item": content.item, index: index }
+              })
+            : _vm._e()
+        ],
+        1
+      )
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2c77c93c", module.exports)
+  }
+}
+
+/***/ }),
+/* 315 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(316)
+/* template */
+var __vue_template__ = __webpack_require__(317)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Client/contents/partials/TableDisplayComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d85b1c98", Component.options)
+  } else {
+    hotAPI.reload("data-v-d85b1c98", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 316 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultItem'],
+  data: function data() {
+    return {
+      item: []
+    };
+  },
+  watch: {
+    defaultContents: function defaultContents() {
+      this.setDefault();
+    }
+  },
+  mounted: function mounted() {
+    this.setDefault();
+  },
+
+  methods: {
+    setDefault: function setDefault() {
+      if (!this.defaultItem) {
+        return;
+      }
+      this.item = this.defaultItem;
+    }
+  }
+});
+
+/***/ }),
+/* 317 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "table",
+      { staticClass: "table-striped", attrs: { align: "center" } },
+      [
+        _c(
+          "tr",
+          _vm._l(_vm.item.headings, function(heading, headingIndex) {
+            return _c(
+              "td",
+              { key: headingIndex, attrs: { colspan: heading.colspan } },
+              [_vm._v("\n        " + _vm._s(heading.content) + "\n      ")]
+            )
+          })
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.item.rows, function(row, rowIndex) {
+          return _c(
+            "tr",
+            { key: rowIndex },
+            _vm._l(row.cols, function(col, colIndex) {
+              return _c("td", { key: colIndex }, [
+                _vm._v("\n        " + _vm._s(col.content) + "\n      ")
+              ])
+            })
+          )
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d85b1c98", module.exports)
+  }
+}
+
+/***/ }),
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(325)
+/* template */
+var __vue_template__ = __webpack_require__(326)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Client/contents/partials/ParagraphDisplayComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fdafe458", Component.options)
+  } else {
+    hotAPI.reload("data-v-fdafe458", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 325 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['defaultItem', 'index'],
+  data: function data() {
+    return {
+      item: []
+    };
+  },
+  watch: {
+    defaultContents: function defaultContents() {
+      this.setDefault();
+    }
+  },
+  mounted: function mounted() {
+    this.setDefault();
+  },
+
+  methods: {
+    setDefault: function setDefault() {
+      if (!this.defaultItem) {
+        return;
+      }
+      this.item = this.defaultItem;
+      var contentTag = $('.quill-content' + this.index);
+      var delta = this.item;
+      var converter = new QuillDeltaToHtmlConverter(delta['ops'], {});
+      contentTag.html(converter.convert());
+    }
+  }
+});
+
+/***/ }),
+/* 326 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: "quill-content" + _vm.index })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-fdafe458", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
