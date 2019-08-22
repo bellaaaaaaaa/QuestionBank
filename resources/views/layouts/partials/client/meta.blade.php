@@ -21,7 +21,7 @@
 	  <!-- Scripts -->
 		<script src="{{ asset('js/client.js') }}"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script> 
+    <script src="https://js.stripe.com/v3/"></script>
 	  @yield('scripts')
-
 	</body>
 </html>

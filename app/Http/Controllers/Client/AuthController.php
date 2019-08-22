@@ -12,7 +12,9 @@ use Auth;
 class AuthController extends Controller{
 
 	public function viewRegister(){
-    return view('client.auth.register');
+    $subjects = $this->getSubjects();
+
+    return view('client.auth.register', ['subjects' => $subjects]);
   }
 
  	public function register(Request $request){
@@ -25,7 +27,7 @@ class AuthController extends Controller{
 	    "subject" => "required"
     ]);
     
-    $subject = $this->getSubject($request->subject);
+    $subject = $this->subjectExist($request->subject);
 
     if(!$subject) {
       return redirect()->back()->withInput()->with('error', 'Subject not found.');
@@ -40,18 +42,20 @@ class AuthController extends Controller{
     $student = Student::create([
       'login_to' => $subject->id,
       'nric' => $request->nric,
-      'age' => $request->age 
+      'age' => $request->age
     ]);
     
     $student->owner()->save($user);
 
 	  Auth::login($user);
-		
+
 	  return redirect()->route('home');
 	}
 
 	public function viewLogin(){
-	  return view('client.auth.login');
+    $subjects = $this->getSubjects();
+    
+	  return view('client.auth.login', ['subjects' => $subjects]);
 	}
 
 	public function login(Request $request){
@@ -61,7 +65,7 @@ class AuthController extends Controller{
 	    "subject" => "required"
     ]);
     
-    $subject = $this->getSubject($request->subject);
+    $subject = $this->subjectExist($request->subject);
 
     if(!$subject) {
       return redirect()->back()->withInput()->with('error', 'Subject not found.');
@@ -84,7 +88,17 @@ class AuthController extends Controller{
 	  return redirect()->route('client.login.show');
   }
   
-  public function getSubject($subject) {
+  public function subjectExist($subject) {
     return Subject::find($subject);
+  }
+
+  public function getSubjects() {
+    $subjects = Subject::pluck('name', 'id');
+    
+    if(!$subjects) {
+      $subjects = [1 => 'Accounting'];
+    }
+
+    return $subjects;
   }
 }

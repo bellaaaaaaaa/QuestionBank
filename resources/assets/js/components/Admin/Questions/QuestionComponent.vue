@@ -142,9 +142,6 @@
         }
 
         var fields = new FormData();
-        // var data = {
-        //   'description' 
-        // }
         fields.append('description', this.question.description );
         fields.append('answers', JSON.stringify(answers));
         fields.append('explanation', this.question.explanation);
@@ -171,6 +168,7 @@
           location.href = data
         }, (error) => {
           this.error.show = true;
+          console.log(error.response.data.errors[0]);
           this.error.message = _.values(error.response.data.errors)[0];
           $(window).scrollTop(0);
         });
