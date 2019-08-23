@@ -3,12 +3,17 @@
     <div class="col-sm-12">
       <div class="box questions">
         <h2>Questions</h2>
+        <div class="row" v-if="noAnswerSubmitted">
+          <div class="col-8 offset-2 text-center notification">
+           <i class="fas fa-exclamation-circle"></i> Please submit answer before proceeding.
+          </div>
+        </div>
         <h3>Question {{ currentIndex + 1 }} of {{ questions.length }}</h3>
         <h4 v-if="currentQuestion.submitted">Submitted</h4>
 
         <p>{{ currentQuestion.description }}</p>
 
-        <content-display-component :default-contents="currentQuestion.contents"></content-display-component>
+        <content-display-component :default-contents="currentQuestion.contents" v-if="currentQuestion.contents"></content-display-component>
         
         <ul>
           <li v-for="(answer, index) in currentQuestion.answers" v-bind:key="index">
@@ -35,16 +40,19 @@
     props: ['questions', 'defaultCurrentQuestion', 'currentIndex'],
     data: function(){
       return {
-        currentQuestion: {}
+        currentQuestion: {},
+        noAnswerSubmitted: false
       };
     },
     watch: {
       defaultCurrentQuestion: function() {
+        this.noAnswerSubmitted = false;
         this.currentQuestion = this.defaultCurrentQuestion;
       }
     },
     mounted: function() {
       this.currentQuestion = this.defaultCurrentQuestion;
+      console.log(this.currentQuestion, 'Examqeuesion');
     },
     methods: {
       onAnswerClick: function(e, answer) {
@@ -59,7 +67,12 @@
       },
       onSubmitClick: function() {
         if(!this.currentQuestion.selected || this.currentQuestion.submitted) {
+          this.noAnswerSubmitted = true;
           return;
+        }
+
+        if(this.noAnswerSubmitted) {
+          this.noAnswerSubmitted = false;
         }
 
         this.currentQuestion.submitted = true;

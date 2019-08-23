@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <div class="box questions">
         <h2>Questions</h2>
-        <div class="row">
+        <div class="row" v-if="noAnswerSubmitted">
           <div class="col-8 offset-2 text-center notification">
            <i class="fas fa-exclamation-circle"></i> Please submit answer before proceeding.
           </div>
@@ -13,7 +13,7 @@
 
         <p>{{ currentQuestion.description }}</p>
 
-        <content-display-component :default-contents="currentQuestion.contents"></content-display-component>
+        <content-display-component :default-contents="currentQuestion.contents" v-if="currentQuestion.contents"></content-display-component>
 
         <ul>
           <li v-for="(answer, index) in currentQuestion.answers" v-bind:key="index">
@@ -43,7 +43,8 @@
       return {
         questions: [],
         currentQuestion: {},
-        currentIndex: 0
+        currentIndex: 0,
+        noAnswerSubmitted: false
       };
     },
     watch: {
@@ -51,6 +52,7 @@
         this.questions = this.defaultQuestions;
       },
       defaultCurrentQuestion: function() {
+        this.noAnswerSubmitted = false;
         this.currentQuestion = this.defaultCurrentQuestion;
       },
       defaultCurrentIndex: function() {
@@ -85,7 +87,12 @@
       },
       onSubmitClick: function() {
         if(!this.currentQuestion.selected || this.currentQuestion.submitted) {
+          this.noAnswerSubmitted = true;
           return;
+        }
+
+        if(this.noAnswerSubmitted) {
+          this.noAnswerSubmitted = false;
         }
 
         this.currentQuestion.submitted = true;
@@ -105,10 +112,14 @@
         this.$emit('questionSubmitted', this.currentQuestion, this.currentQuestion.selected);
       },
       onNextClick: function(finalQuestion) {
-
         if(!this.currentQuestion.submitted) {
+          this.noAnswerSubmitted = true;
           return;
         } 
+
+        if(this.noAnswerSubmitted) {
+          this.noAnswerSubmitted = false;
+        }
 
         if(this.currentIndex < this.questions.length) {
           this.$emit('questionNext', finalQuestion);
