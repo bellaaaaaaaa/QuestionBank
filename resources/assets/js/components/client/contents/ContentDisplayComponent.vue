@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(content, index) in contents" :key="index">
-      <img class="img-fluid" :src="content.item.preview" v-if="content.type == 'Image'">
+      <img class="img-fluid" :src="content.item" v-if="content.type == 'Image'">
 
       <table-display-component :default-item="content.item" v-if="content.type == 'Table'"></table-display-component>
 
@@ -39,9 +39,16 @@
         if(this.contents.length > 0) {
           this.contents.forEach((content, index) => {
             if(content.type == 'Table' || content.type == 'Paragraph') {
-              content.item = JSON.parse(content.item);
+              content.item = this.isJSON(content.item);
             }
           });
+        }
+      },
+      isJSON: function(data) {
+        try {
+          return JSON.parse(data);
+        }catch(e) {
+          return data;
         }
       }
     }

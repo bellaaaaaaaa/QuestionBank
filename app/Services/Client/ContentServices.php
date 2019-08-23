@@ -34,12 +34,7 @@ class ContentServices extends TransformerService{
       break;
 
       case 'Image':
-      return (object) [ 
-        'file' => true,
-        'identifier' => $content->item->name,
-        'preview' => $this->imageServices->getPreview($content->item),
-        'hasOldImage' => true
-      ];
+      return $this->imageServices->getPreview($content->item);
       break;
 
       case 'Paragraph':
