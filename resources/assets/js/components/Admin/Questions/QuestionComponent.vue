@@ -158,7 +158,6 @@
             }
           });
         }
-
         axios({
           method: method,
           url: url,

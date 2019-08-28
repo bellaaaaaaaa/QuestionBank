@@ -27,7 +27,6 @@ class PaymentServices {
 
   public function handlePaypal(Request $request, Subject $subject) {
     $paypalServices = new PaypalServices();
-      
     if($request->complete) {
       return $paypalServices->complete($request, $subject);
     } 

@@ -39,16 +39,14 @@
 				</div>
 				<div class="col-7">
 					<div class="numbers">
-						<p class="card-category" style="color:#0077be"><b>Monthly Earnings</b></p>
+						<p class="card-category" style="color:#0077be"><b>{{ date('F')}}: Total Earnings</b></p>
+						<br>
+						<h5 class="card-title">
+							RM {{ $current_month_earnings }}
+						</h5>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="card-footer ">
-		  <hr>
-		  <div class="stats">
-			Total to date
-		  </div>
 		</div>
 	  </div>
   
@@ -74,7 +72,7 @@
 				  <div class="stats">
 						Most Subscribed Subjects
 					<h5 class="card-title">
-						Accounting
+						{{ $most_subscribed_subject }}
 					</h5>
 				  </div>
 			  </div>
@@ -102,7 +100,7 @@
 				  <div class="stats">
 				  Total Subscribers
 					<h5 class="card-title">
-					  2k
+					  {{ $count_subscribers }}
 					</h5>
 				  </div>
 			  </div>
@@ -130,8 +128,8 @@
 				  <div class="stats">
 					Number of Administrators
 					<h5 class="card-title">
-					  19
-					</h4>
+					  {{ $count_admin }}
+					</h5>
 				  </div>
 			  </div>
 		  </div>

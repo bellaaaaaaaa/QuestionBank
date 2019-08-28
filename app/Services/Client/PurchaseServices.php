@@ -14,7 +14,6 @@ class PurchaseServices {
     $student = current_user()->owner;
     $purchase = Purchase::where('student_id', $student->id)->where('subject_id', $subject->id)->first();
     $expirationDate = Carbon::now()->addMonths($request->month);
-
     if($purchase) {
       $purchase->expiration_date = $expirationDate;
       $purchase->save();
@@ -22,6 +21,7 @@ class PurchaseServices {
       Purchase::create([
         'student_id' => $student->id, 
         'subject_id' => $subject->id,
+        'package_duration' => $request->month, 
         'expiration_date' => $expirationDate
       ]);
     }

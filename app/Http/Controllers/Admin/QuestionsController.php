@@ -42,7 +42,9 @@ class QuestionsController extends Controller{
   }
   
   public function update(Request $request, Question $question){
-    return $this->questionServices->update($request, $question);
+    $this->questionServices->update($request, $question);
+    Session::flash('success', 'Question updated.');
+    return route('questions.edit',['question' => $question]);
   }
 
   public function destroy(Question $question){

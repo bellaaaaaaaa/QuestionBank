@@ -50,7 +50,8 @@ Route::prefix('admin')->group(function(){
   });
 });
 
-
+//Mail Routes
+Route::post('sendMail', 'Admin\MailController@index');
 //Client Routes
 Route::get('login','Client\AuthController@viewLogin')->name('client.login.show');
 Route::post('login','Client\AuthController@login')->name('login');
@@ -62,6 +63,9 @@ Route::middleware('client.auth')->group(function(){
   Route::middleware('course.purchased')->group(function(){
     Route::get('payments/{subject}', 'Client\PaymentsController@viewPayment')->name('client.payment.show');
     Route::any('payments/{subject}/{type}', 'Client\PaymentsController@handlePayment')->name('client.payment.handle');
+
+    Route::post('client-settings', "Client\AccountSettingsController@updateAccount")->name("client.account.update");
+
   });
 
   Route::get('/', 'Client\HomeController@home')->name('root');

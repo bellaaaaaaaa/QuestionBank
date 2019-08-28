@@ -1,7 +1,7 @@
 @extends('layouts.client.stranger')
 
 @section('content')
-<div class="login-register">
+<div class="login-register">z
 	<div class="container">
 		<div class="row">
         	<form id="form-validation" class="col-10 col-sm-8 col-lg-4 login-register-form">

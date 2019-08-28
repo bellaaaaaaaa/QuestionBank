@@ -69,8 +69,6 @@ class QuestionServices extends TransformerService{
     }
 
     $this->contentServices->handleContents($request, $question);
-    
-    return route('questions.index');
   }
 
   public function update(Request $request, Question $question){
@@ -104,8 +102,6 @@ class QuestionServices extends TransformerService{
     }
 
     $this->contentServices->handleContents($request, $question);
-
-    return route('questions.index');  
   }
   
   public function updateAnswer($answerExist, $answer){

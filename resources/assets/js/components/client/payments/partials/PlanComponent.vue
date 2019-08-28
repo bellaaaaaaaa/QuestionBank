@@ -84,10 +84,14 @@
         }
       };
     },
+    mounted(){
+      this.setDefault();
+    },
     watch: {
       defaultSubject: function() {
         this.subject = this.defaultSubject;
         this.setDefault();
+        console.log(this.price, 'second time')
       },
       defaultCurrency: function() {
         this.currency = this.defaultCurrency;
@@ -98,6 +102,7 @@
     },
     methods: {
       setDefault: function() {
+        this.subject = this.defaultSubject;
         this.price.oneMonth = this.subject.one_month_price;
         this.price.twoMonth = this.subject.two_month_price;
         this.price.threeMonth = this.subject.three_month_price;

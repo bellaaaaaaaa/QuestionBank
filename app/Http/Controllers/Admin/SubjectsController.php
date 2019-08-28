@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Subject;
+use App\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,7 +34,11 @@ class SubjectsController extends Controller{
   }
 
 	public function edit(Subject $subject){
-    return view($this->path . 'edit',['subject'=>$subject]);
+    $teachers = array();
+    foreach(User::where('owner_type', 'Teacher')->get() as $teacher){
+      $teachers[$teacher->id] = $teacher->name;
+    };
+    return view($this->path . 'edit',['subject' => $subject, 'teachers' => $teachers]);
   }
 
   public function update(Subject $subject, Request $request){

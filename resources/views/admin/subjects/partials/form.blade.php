@@ -7,7 +7,7 @@
   <label>Teacher
     <star class="star">*</star>
   </label>
-  {{ Form::text('teacher_id', null, [ 'class'=>'form-control', 'required']) }}
+  {{ Form::select('teacher_id', $teachers, null, array('class' => 'form-control', 'required')) }}
 
   <label>Description
     <star class="star">*</star>

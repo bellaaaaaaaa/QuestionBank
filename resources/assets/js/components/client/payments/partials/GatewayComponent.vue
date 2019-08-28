@@ -20,6 +20,9 @@
                 </div>
               </div>
             </div>
+            <div class="text-center">
+              <a @click="emailForm()">Ask a guardian to pay</a>
+            </div> 
           </div> 
         </div>
       </div>
@@ -44,8 +47,10 @@
           this.$emit('submit', type);
           return;
         }
-
         location.href = `/payments/${this.defaultSubject.id}/paypal?month=${this.defaultMonth}&currency=${this.defaultCurrency}`;
+      },
+      emailForm: function(){
+        this.$emit('emailForm', `/payments/${this.defaultSubject.id}/paypal?month=${this.defaultMonth}&currency=${this.defaultCurrency}`);
       }
     }
   }

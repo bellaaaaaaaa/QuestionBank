@@ -17,7 +17,7 @@ class PaymentsController extends Controller {
   }
 
   public function viewPayment(Request $request, Subject $subject) {
-    return view($this->path . 'payment', ['subject' => json_encode($subject)]);
+    return view($this->path . 'payment', ['subject' => json_encode($subject), 'siteurl' => env('APP_URL')]);
   }
 
   public function handlePayment(Request $request, Subject $subject, $type) {

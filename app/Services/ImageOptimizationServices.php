@@ -15,10 +15,9 @@ class ImageOptimizationServices {
 
 		$thumbnail_path = $storagePath . 'thumbnail/';
 		$banner_path = $storagePath . 'banner/';
-		$file_unique_name =  $this->get_file_name($file);
-
+    $file_unique_name =  $this->get_file_name($file);
 		if ($option == null) {
-			$this->optimize_thumbnail($file, $thumbnail_path, $file_unique_name);
+      $this->optimize_thumbnail($file, $thumbnail_path, $file_unique_name);
 			$this->optimize_banner($file, $banner_path, $file_unique_name);
 		}elseif ($option == 'thumbnail') {
 			$this->optimize_thumbnail($file, $thumbnail_path, $file_unique_name);
@@ -43,7 +42,6 @@ class ImageOptimizationServices {
     $file_name = str_replace('.' . $file_ext, '', $file_name);
     // Hash a unique name for the file
     $file_unique_name = md5($file_name . time()) . '.' . $file_ext;
-
     return $file_unique_name;
   }
 
@@ -77,7 +75,7 @@ class ImageOptimizationServices {
     $this->make_directory($storagePath);
     $image = Image::make($file);
 
-    $image->fit(300, 200, function ($constraint) {
+    $image->fit(300, 300, function ($constraint) {
      $constraint->upsize();
     });
     $image_file = $image->stream($file_ext)->__toString();

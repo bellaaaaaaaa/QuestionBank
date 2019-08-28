@@ -56,7 +56,7 @@ class SubjectServices extends TransformerService{
       'three_month_price' => 'required|regex:/^\d+(\.\d{1,2})?$/'
     ]);
     
-    $subject->teacher_id = 1; //$request->teacher;
+    $subject->teacher_id = $request->teacher_id;
     $subject->name = $request->name;
     $subject->description = $request->description;
     $subject->one_month_price = $request->one_month_price;
